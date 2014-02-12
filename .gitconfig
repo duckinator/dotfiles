@@ -9,8 +9,8 @@
 	tool = vimdiff
 [color]
 	ui = true
-[push]
-	default = simple
+#[push]
+#	default = simple
 [include]
 	path = .gitconfig.private
 [github]
