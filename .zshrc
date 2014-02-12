@@ -1,69 +1,51 @@
-HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
-setopt appendhistory autocd extendedglob nomatch notify autopushd
-setopt interactive_comments prompt_subst hist_ignore_dups
-unsetopt beep
-bindkey -v
+# vim: set ft=sh:
 
-# Completion
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _prefix
-zstyle ':completion:*' max-errors 2
-zstyle :compinstall filename '/home/curtis/.zshrc'
+source $HOME/.zsh/main.sh
 
-autoload -Uz compinit
-compinit
-
-# Colors
-autoload colors zsh/terminfo
-colors
-
-[[ -n "$COLORTERM" ]] && export TERM='xterm-256color'
-
-# Libs
-
-[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
-
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-ZSH_HIGHLIGHT_STYLES[builtin]='none'
-ZSH_HIGHLIGHT_STYLES[command]='bold'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[function]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='bold'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='bold'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[path]='none'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=cyan,bold'
-
-source ~/.zsh/z/z.sh
-
-if [[ -d /usr/local/share/chruby ]]; then
-  source /usr/local/share/chruby/chruby.sh
-  source /usr/local/share/chruby/auto.sh
-  chruby 'ruby-2.0.0'
+if [ -n "$SSH_CONNECTION" ]; then
+    remote
 fi
 
-[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+#remote # Uncomment this for remote prompts.
 
-[[ -f /usr/local/heroku ]] && export PATH="/usr/local/heroku/bin:$PATH"
+zshload completion
+zshload history
+zshload bind
+zshload colors
+zshload opts
 
-source ~/.zsh/gitprompt.zsh
-source ~/.zsh/title.zsh
+zshload custom_colors
+zshload prompt
 
-source ~/.zsh/aliases.zsh
+# disable flow control
+stty -ixon -ixoff
 
-# Environment
+zshload functions
+zshload alias
+zshload grepfix
+zshload chruby # Prefer chruby
+which chruby &>/dev/null || typeset -f chruby &>/dev/null || zshload rbenv # Fall back to rbenv if we can't find chruby.
+# RVM would be next, but tries to murder my laptop. Add it to ~/.zshrc.user if you want it.
+zshload shimmy
+zshload dagd
+zshload xautolock
+zshload android_sdk
 
-EDITOR=vim
+# ArchLinux-specific stuff
+[ "$(cat /etc/issue | head -n1 | cut -d ' ' -f 1-2)" ] && zshload archlinux
 
-# Prompt
+if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
+    zshload path
+fi
+zshload env
 
-unset _prompt_host
-[[ -n "$SSH_CLIENT" ]] && _prompt_host="%{$fg[magenta]%}%m"
-PROMPT=$'%{$terminfo[bold]%}$_prompt_host%{$fg[green]%}»%{$terminfo[sgr0]$reset_color%} '
-RPROMPT=$'%{$terminfo[bold]%}%(?..%{$fg[red]%}%? )%{$fg[blue]%}%30<…<%~$(gitprompt)%{$terminfo[sgr0]%}'
+# The dynamic prompt is buggy
+static_prompt
+
+[ -f "$HOME/.zshrc.user" ] && source $HOME/.zshrc.user
+
+zshload todo
+
+[ -n "${__ZSH_TODO_EXEC}" ] && which $__ZSH_TODO_EXEC &>/dev/null && todo_summary
+
+clean
