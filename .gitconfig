@@ -1,15 +1,10 @@
 [user]
-	name = Curtis McEnroe
-	email = programble@gmail.com
+	name = Nik Markwell
+	email = nik@duckinator.net
 [core]
 	editor = vim
-	excludesfile = /home/curtis/.gitignore.global
+	excludesfile = /home/nick/.gitignore.global
 	autocrlf = input
-[sendemail]
-	smtpencryption = tls
-	smtpserver = smtp.gmail.com
-	smtpuser = programble@gmail.com
-	smtpserverport = 587
 [merge]
 	tool = vimdiff
 [color]
@@ -19,4 +14,4 @@
 [include]
 	path = .gitconfig.private
 [github]
-	user = programble
+	user = duckinator
