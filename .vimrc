@@ -169,6 +169,8 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
 
+Plug 'flazz/vim-colorschemes'
+
 call plug#end()
 
-colorscheme jellybeans
+colorscheme tango2
