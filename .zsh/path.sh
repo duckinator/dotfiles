@@ -10,6 +10,8 @@ tryppath $HOME/.cabal/bin
 
 tryppath $HOME/.npm-install/bin
 
+tryppath /usr/local/heroku/bin
+
 tryapath /opt/java/jre
 tryapath /opt/java/jre/bin
 
