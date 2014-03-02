@@ -57,7 +57,7 @@ function generate_prompt {
 						RELATION_TO_MASTER="↑" # Branch is ahead of master
 					elif [[ $arr[2] =~ 'diverged' ]]; then
 						RELATION_TO_MASTER="↕" # Branch is diverged from master
-					else
+					elif [[ $arr[2] =~ 'behind' ]]; then
 						RELATION_TO_MASTER="↓" # Branch is behind master
 					fi
 				fi
