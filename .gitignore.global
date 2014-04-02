@@ -3,3 +3,4 @@
 *.swo
 .cabal-sandbox
 cabal.sandbox.config
+*.bak
