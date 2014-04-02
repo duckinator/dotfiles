@@ -3,7 +3,7 @@
 	email = nik@duckinator.net
 [core]
 	editor = vim
-	excludesfile = /home/nick/.gitignore.global
+	excludesfile = ~/.gitignore.global
 	autocrlf = input
 [merge]
 	tool = vimdiff
