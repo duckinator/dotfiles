@@ -10,6 +10,8 @@
 [color]
 	ui = true
 [push]
+	# If it complains about the following line on an Ubuntu-based system, try
+	# using: https://launchpad.net/~git-core/+archive/ppa
 	default = simple
 [include]
 	path = .gitconfig.private
