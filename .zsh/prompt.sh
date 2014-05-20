@@ -2,6 +2,8 @@ PROMPT=''
 RPOMPT=''
 
 function generate_prompt {
+	generate_todo_prompt
+
 	local SHOW_DYNAMIC_PROMPT=true
 	local REPO_INFO=''
 	local REPO_DIRTY=''
@@ -91,7 +93,9 @@ function generate_prompt {
 		PROMPT_SUFFIX='$'
 	fi
 
-	EXIT_CODE="%{$terminfo[bold]%}%(?..%{${ALERT_COLOR}%}%?)%{$terminfo[sgr0]%}"
+	local TODO_PROMPT_TEXT="%{${terminfo[bold]}${ALERT_COLOR}%}${_ZSH_TODO_PROMPT_TEXT}"
+
+	EXIT_CODE="%{$terminfo[bold]%}%(?..%{${ALERT_COLOR}%}%?)${TODO_PROMPT_TEXT}%{$terminfo[sgr0]%}"
 
 	PROMPT="%{$terminfo[sgr0]$terminfo[bold]%}${PROMPT_PREFIX}%{${PROMPT_SYM_COLOR}%}${USER_PREFIX}%{${PATH_COLOR}%}%30<..<%~%{$PROMPT_SYM_COLOR%}${REPO_INFO}%{$PROMPT_SYM_COLOR%}${PROMPT_SUFFIX}%{$terminfo[sgr0]%} "
 	RPROMPT="${EXIT_CODE}"
@@ -108,7 +112,7 @@ function generate_todo_prompt {
 }
 
 function print_terminal_title {
-	#generate_todo_prompt
+	generate_todo_prompt
 
 	case $TERM in
 		*xterm*|*rxvt*|ansi) print -Pn "\e]2;%30<..<%~ | %y${_ZSH_TODO_PROMPT_TEXT}\a" # better for remote shells: "\e]2;%n@%m: %~\a"
