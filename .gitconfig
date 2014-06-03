@@ -1,6 +1,6 @@
 [user]
 	name = Marie Markwell
-	email = marie@duckinator.net
+	email = me@marie.so
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore.global
