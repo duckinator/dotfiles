@@ -20,6 +20,13 @@ tryapath $HOME/duxcc/i386-elf
 tryapath $HOME/duxcc/i386-elf/bin
 tryapath $HOME/duxcc/i386-elf/lib
 
+# For when using the GHC PPA. https://launchpad.net/~hvr/+archive/ubuntu/ghc
+if [ -n "$(find /opt/ghc -maxdepth 1 2>/dev/null)" ]; then
+  __GHC_VERSION=$(find /opt/ghc/ -maxdepth 1 | cut -d '/' -f 4 | sort -n | tail -n1)
+  ppath "/opt/ghc/${__GHC_VERSION}/bin"
+  unset __GHC_VERSION
+fi
+
 if [ -n "$(echo $HOME/j64-*/bin)" ]; then
     for x in $HOME/j64-*/bin; do
         apath $x
