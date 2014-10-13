@@ -1,5 +1,6 @@
 exclude:
   - README.md
   - vim-plug.sh
+  - setup.sh
   - Gemfile
   - Gemfile.lock
