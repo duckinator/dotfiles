@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Latest version: https://github.com/duckinator/dotfiles/raw/master/setup.sh
-# Short URL: http://is.gd/duckie_dotfiles
+# Latest version: https://github.com/duckinator/dotfiles/raw/main/setup.sh
+# Short URL: http://marie.so/setup
 
 CHRUBY_VERSION=0.3.8
 RUBY_INSTALL_VERSION=0.4.3
