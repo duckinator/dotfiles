@@ -75,7 +75,7 @@ prompt "Is this a graphical installation?" GUI_INSTALL no
 prompt "Install nonfree software (Flash, Skype, etc)?" NONFREE_INSTALL no
 
 if $GUI_INSTALL; then
-  GUI_PACKAGES="mate-terminal xchat firefox"
+  GUI_PACKAGES="mate-terminal xchat firefox pidgin"
 fi
 
 if $GUI_INSTALL && $NONFREE_INSTALL; then
