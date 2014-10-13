@@ -107,8 +107,10 @@ enabled=1
 gpgcheck=1" | sudo tee /etc/yum.repos.d/skype.repo >/dev/null 
   fi
 
+  curl -L http://www.skype.com/go/getskype-linux-beta-fc10 > skype-fedora.i586.rpm
+
   SKYPE_PACKAGES="libXv.i?86 libXScrnSaver.i?86 qt.i?86 qt-x11.i?86 pulseaudio-libs.i?86 pulseaudio-libs-glib2.i?86 alsa-plugins-pulseaudio.i?86"
-  SKYPE_NOGPGCHECK_PACKAGES="skype"
+  SKYPE_NOGPGCHECK_PACKAGES="./skype-fedora.i586.rpm"
 fi
 
 sudo su -c "yum -y update &&\
