@@ -6,6 +6,8 @@
 CHRUBY_VERSION=0.3.8
 RUBY_INSTALL_VERSION=0.4.3
 
+SKYPE_FILE="$HOME/skype-fedora.i586.rpm"
+
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   echo "Usage: $0 [OPTION]..."
   echo
@@ -107,10 +109,10 @@ enabled=1
 gpgcheck=1" | sudo tee /etc/yum.repos.d/skype.repo >/dev/null 
   fi
 
-  curl -L http://www.skype.com/go/getskype-linux-beta-fc10 > skype-fedora.i586.rpm
+  curl -L http://www.skype.com/go/getskype-linux-beta-fc10 > $SKYPE_FILE
 
   SKYPE_PACKAGES="libXv.i?86 libXScrnSaver.i?86 qt.i?86 qt-x11.i?86 pulseaudio-libs.i?86 pulseaudio-libs-glib2.i?86 alsa-plugins-pulseaudio.i?86"
-  SKYPE_NOGPGCHECK_PACKAGES="./skype-fedora.i586.rpm"
+  SKYPE_NOGPGCHECK_PACKAGES="$SKYPE_FILE"
 fi
 
 sudo su -c "yum -y update &&\
@@ -146,3 +148,5 @@ if ! [ -f "$HOME/.zshrc" ]; then
     rmdir $HOME/bin 2>/dev/null
   fi
 fi
+
+[ -f "$SKYPE_FILE" ] && rm $SKYPE_FILE
