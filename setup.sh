@@ -71,8 +71,9 @@ function prompt() {
   unset response default
 }
 
-prompt "Is this a graphical installation?" GUI_INSTALL no
+prompt "Is this a graphical installation?" GUI_INSTALL yes
 prompt "Install nonfree software (Flash, Skype, etc)?" NONFREE_INSTALL no
+prompt "Install Development Tools package group?" INSTALL_DEVTOOLS yes
 
 if $GUI_INSTALL; then
   GUI_PACKAGES="mate-terminal xchat firefox pidgin"
@@ -115,9 +116,14 @@ gpgcheck=1" | sudo tee /etc/yum.repos.d/skype.repo >/dev/null
   SKYPE_NOGPGCHECK_PACKAGES="$SKYPE_FILE"
 fi
 
+if $INSTALL_DEVTOOLS; then
+  DEVTOOLS_PACKAGES="clang gcc-c++ cmake make"
+fi
+
 sudo su -c "yum -y update &&\
-  yum -y install git zsh htop ruby $GUI_PACKAGES $FLASH_PACKAGES $SKYPE_PACKAGES\
-  yum -y install $SKYPE_NOGPGCHECK_PACKAGES --nogpgcheck"
+  yum -y install git zsh htop ruby $GUI_PACKAGES $FLASH_PACKAGES $SKYPE_PACKAGES &&\
+  yum -y install $SKYPE_NOGPGCHECK_PACKAGES --nogpgcheck;\
+  $INSTALL_DEVTOOLS && yum groupinstall 'Development Tools' && yum install $DEVTOOLS_PACKAGES"
 
 cd $HOME
 
