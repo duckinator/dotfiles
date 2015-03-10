@@ -1,13 +1,9 @@
 # Aliases
 
-alias back='cd $OLDPWD'
-alias shred='shred -fuz'
-alias home='cd ~ && clear'
 alias sshproxy='ssh -ND 9999'
 
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
-existalias rkhunter='sudo rkhunter -c'  rkhunter
 existalias se='sudo $EDITOR'            sudo
 existalias git='hub'                    hub
 exists hub && compdef hub=git # Make tab completion be nice
