@@ -31,9 +31,6 @@ zshload dagd
 zshload xautolock
 zshload android_sdk
 
-# ArchLinux-specific stuff
-[ "$(cat /etc/issue | head -n1 | cut -d ' ' -f 1-2)" ] && zshload archlinux
-
 if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
     zshload path
 fi
