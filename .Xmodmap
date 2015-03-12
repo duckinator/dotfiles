@@ -1,3 +1,6 @@
 ! Make Caps Lock an extra Super key.
 remove Lock = Caps_Lock
 keysym Caps_Lock = Super_L
+
+! Make Menu key a Compose key.
+keycode 135 = Multi_key
