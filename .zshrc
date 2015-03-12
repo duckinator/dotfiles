@@ -45,4 +45,6 @@ zshload todo
 
 [ -n "${__ZSH_TODO_EXEC}" ] && which $__ZSH_TODO_EXEC &>/dev/null && todo_summary
 
+zshload ripl
+
 clean
