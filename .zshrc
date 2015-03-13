@@ -23,10 +23,13 @@ stty -ixon -ixoff
 zshload functions
 zshload alias
 zshload grepfix
+
 zshload chruby # Prefer chruby
 which chruby &>/dev/null || typeset -f chruby &>/dev/null || zshload rbenv # Fall back to rbenv if we can't find chruby.
-# RVM would be next, but tries to murder my laptop. Add it to ~/.zshrc.user if you want it.
-zshload shimmy
+# RVM would be next, but breaks on my laptop. Add it to ~/.zshrc.user if you want it.
+
+zshload nvm
+
 zshload dagd
 zshload xautolock
 zshload android_sdk
