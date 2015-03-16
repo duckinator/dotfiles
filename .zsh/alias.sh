@@ -11,6 +11,7 @@ exists hub && compdef hub=git # Make tab completion be nice
 existalias sprunge="curl -F 'sprunge=<-' http://sprunge.us" curl
 existalias abssearch='ls -R /var/abs/ | grep' abs
 
+alias install-ripl="sed 's/%w\[\(.*\)\].*/\1/' ~/.riplrc | sed 's/^\| / ripl-/g' | xargs gem install && unalias ripl && echo 'Done! Executing ripl as normal.'"
 existalias irb='ripl' ripl    # ripl > irb
 
 # ls-specific aliases
