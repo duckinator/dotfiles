@@ -48,6 +48,8 @@ set browsedir=buffer " Open dialog starts in working directory
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 
+au BufRead,BufNewFile *.styl setfiletype css
+
 " Default to 2-space indents, 4-character tabs
 set expandtab
 set shiftwidth=2
