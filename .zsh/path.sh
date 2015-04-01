@@ -27,17 +27,3 @@ if [ -n "$(find /opt/ghc -maxdepth 1 2>/dev/null)" ]; then
   unset __GHC_VERSION
 fi
 
-if [ -n "$(find $HOME/j64-*/bin)" ]; then
-    for x in $HOME/j64-*/bin; do
-        apath $x
-    done
-    unset x
-fi
-
-if [ -n "$(find $HOME/j32-*/bin)" ]; then
-    for x in $HOME/j32-*/bin; do
-        apath $x
-    done
-    unset x
-fi
-
