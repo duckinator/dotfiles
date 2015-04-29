@@ -1,5 +1,8 @@
 # Aliases
 
+# https://twitter.com/K_Vladimiroff/status/507091773601370112
+alias fuck='sudo $(fc -ln -1)'
+
 alias sshproxy='ssh -ND 9999'
 
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
