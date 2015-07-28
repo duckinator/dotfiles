@@ -2,13 +2,16 @@ function -info-dump() {
   local IP ISP BATT DISCHARGE_RATE UNTIL_EMPTY
   local ISP_MESSAGE CHARGE_DISCHARGE_MESSAGE EMPTY_MESSAGE
 
-  IP="$(timeout 1s curl -s 'http://da.gd/ip?strip')"
-  ISP="$(timeout 1s curl -s 'http://da.gd/isp?strip')"
-  if [ -n "$IP" ]; then
-    if [ -n "$ISP" ]; then
-      ISP_MESSAGE=" (${ISP})"
+  # Only do this if not shellcasting.
+  if [ -z "$SHELLCAST" ]; then
+    IP="$(timeout 1s curl -s 'http://da.gd/ip?strip')"
+    ISP="$(timeout 1s curl -s 'http://da.gd/isp?strip')"
+    if [ -n "$IP" ]; then
+      if [ -n "$ISP" ]; then
+        ISP_MESSAGE=" (${ISP})"
+      fi
+      echo -e "External IP: \\e[32;1m${IP}\\e[m${ISP_MESSAGE}"
     fi
-    echo -e "External IP: \\e[32;1m${IP}\\e[m${ISP_MESSAGE}"
   fi
 
   if timeout 1s upower -e | grep -q battery 2>/dev/null; then
