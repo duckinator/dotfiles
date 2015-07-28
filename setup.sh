@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Latest version: https://github.com/duckinator/dotfiles/raw/main/setup.sh
-# Short URL: http://marie.so/setup
+# Short URL: https://marie.so/setup
 
 CHRUBY_VERSION=0.3.8
 RUBY_INSTALL_VERSION=0.4.3
@@ -110,7 +110,7 @@ enabled=1
 gpgcheck=1" | sudo tee /etc/yum.repos.d/skype.repo >/dev/null 
   fi
 
-  curl -L http://www.skype.com/go/getskype-linux-beta-fc10 > $SKYPE_FILE
+  curl -L https://www.skype.com/go/getskype-linux-beta-fc10 > $SKYPE_FILE
 
   SKYPE_PACKAGES="libXv.i?86 libXScrnSaver.i?86 qt.i?86 qt-x11.i?86 pulseaudio-libs.i?86 pulseaudio-libs-glib2.i?86 alsa-plugins-pulseaudio.i?86"
   SKYPE_NOGPGCHECK_PACKAGES="$SKYPE_FILE"
