@@ -170,6 +170,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim'
 
 Plug 'flazz/vim-colorschemes'
 
