@@ -12,7 +12,7 @@
 # -R: Allow ANSI escape codes by default. Needed for $RI below.
 # -F: Automagically exit if the file fits on one screen.
 # -X: Disables sending the termcap initialization and deinitialization strings
-#     to the terminal, so as to avoid the stupid crap where it clears the screen.
+#     to the terminal, so as to avoid the crap where it clears the screen.
 export LESS="-RFX"
 
 # -f ansi: Use ANSI escape codes by default.
