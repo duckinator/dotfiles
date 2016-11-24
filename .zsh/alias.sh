@@ -8,8 +8,8 @@ alias sshproxy='ssh -ND 9999'
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
 existalias se='sudo $EDITOR'            sudo
-existalias git='hub'                    hub
-exists hub && compdef hub=git # Make tab completion be nice
+#existalias git='hub'                    hub
+#exists hub && compdef hub=git # Make tab completion be nice
 
 existalias sprunge="curl -F 'sprunge=<-' http://sprunge.us" curl
 existalias abssearch='ls -R /var/abs/ | grep' abs
