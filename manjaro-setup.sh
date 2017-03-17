@@ -92,7 +92,7 @@ fi
 #fi
 
 if $USE_SKYPE; then
-  AUR_SKYPE_PACKAGES="skypeforlinux"
+  AUR_SKYPE_PACKAGES="skypeforlinux-bin"
 fi
 
 # Packages in the normal repos.
@@ -104,7 +104,7 @@ sudo su -c "\
 # Don't do `yaourt -Syu` because gstreamer0.10 is broken.
 # https://aur.archlinux.org/packages/gstreamer0.10/
 #yaourt -Syu --devel --aur &&\
-yaourt -S $AUR_DEFAULT_PACKAGES $AUR_FLASH_PACKAGES $AUR_SKYPE_PACKAGE
+yaourt -S $AUR_DEFAULT_PACKAGES $AUR_FLASH_PACKAGES $AUR_SKYPE_PACKAGES
 
 cd $HOME
 
