@@ -24,15 +24,11 @@ zshload functions
 zshload alias
 zshload grepfix
 
-zshload chruby # Prefer chruby
-which chruby &>/dev/null || typeset -f chruby &>/dev/null || zshload rbenv # Fall back to rbenv if we can't find chruby.
-# RVM would be next, but breaks on my laptop. Add it to ~/.zshrc.user if you want it.
-
+zshload chruby
 zshload nvm
 
 zshload dagd
 zshload xautolock
-zshload android_sdk
 
 if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
     zshload path
