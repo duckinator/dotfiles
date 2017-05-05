@@ -7,7 +7,7 @@
 [ -z "$EDITOR_CHOICES"     ] && EDITOR_CHOICES=(vim nano)
 [ -z "$GUI_EDITOR_CHOICES" ] && GUI_EDITOR_CHOICES=(gedit geany gvim)
 [ -z "$PAGER_CHOICES"      ] && PAGER_CHOICES=(less more most)
-[ -z "$BROWSER_CHOICES"    ] && BROWSER_CHOICES=(firefox chromium-browser chrome midori chromium) # Chromium is last because sometimes it's a game.
+[ -z "$BROWSER_CHOICES"    ] && BROWSER_CHOICES=(opera firefox chromium-browser chrome midori chromium) # Chromium is last because sometimes it's a game.
 
 # -R: Allow ANSI escape codes by default. Needed for $RI below.
 # -F: Automagically exit if the file fits on one screen.
