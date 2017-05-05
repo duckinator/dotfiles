@@ -65,12 +65,3 @@ fi
 
 fi
 
-
-#export OOC_DIST=$HOME/dev/lang/ooc/jooc
-[ -d "$HOME/dev/lang/ooc/rock" ] && export ROCK_DIST=$HOME/dev/lang/ooc/rock
-[ -d "$ROCK_DIST/sdk" ] && export ROCK_SDK=$ROCK_DIST/sdk
-#export OC_DIST=$HOME/dev/lang/ooc/oc
-export OOC_LIBS=$HOME/dev/ooc_libs
-#export OOC_DIR=$HOME/dev/lang/ooc
-
-export CLAY_PATH=$HOME/dev/lang/clay/libs
