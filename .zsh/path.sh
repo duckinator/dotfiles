@@ -1,6 +1,7 @@
 # TODO: Make this not barf in my $PATH
 [ -d "/etc/profile.d/*.sh" ] && source /etc/profile.d/*.sh
 
+tryppath $HOME/bin
 tryppath $HOME/.bin
 
 tryppath $HOME/.shell-utilities/bin
