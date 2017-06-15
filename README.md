@@ -4,11 +4,11 @@ My configuration files.
 
 ## Configurations
 
-* VIM
 * zsh
-* Git
+* git
+* bundler
 * irb
-* ripl
-* MPD
-* ncmpcpp
+* Weston (Wayland compositor)
 * X Compose Key
+* Xmodmap
+* VIM
