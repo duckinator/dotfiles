@@ -28,7 +28,9 @@ zshload chruby
 zshload nvm
 
 zshload dagd
-zshload xautolock
+
+zshload pacman
+zshload aur
 
 if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
     zshload path
