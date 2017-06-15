@@ -8,21 +8,12 @@
   # Courtesy of someone on Twitter, I forget who.
   alias boop=touch
 
-  # https://twitter.com/K_Vladimiroff/status/507091773601370112
-  alias fuck='sudo $(fc -ln -1)'
-
   alias sshproxy='ssh -ND 9999'
 
   alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
-  existalias se='sudo $EDITOR'            sudo
-
   existalias sprunge="curl -F 'sprunge=<-' http://sprunge.us" curl
   existalias abssearch='ls -R /var/abs/ | grep' abs
-
-  alias install-ripl="sed 's/%w\[\(.*\)\].*/\1/' ~/.riplrc | sed 's/^\| / ripl-/g' | xargs gem install && unalias ripl && echo 'Done! Executing ripl as normal.'"
-  existalias irb='ripl' ripl    # ripl > irb
-
 
 ## ls
 
