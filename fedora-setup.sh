@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+# Setup script for Fedora.
+
 # Latest version: https://github.com/duckinator/dotfiles/raw/main/setup.sh
-# Short URL: https://marie.so/setup
 
 CHRUBY_VERSION=0.3.8
 RUBY_INSTALL_VERSION=0.4.3

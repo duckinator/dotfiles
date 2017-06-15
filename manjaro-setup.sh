@@ -3,7 +3,6 @@
 # Setup script for Manjaro Linux.
 
 # Latest version: https://github.com/duckinator/dotfiles/raw/main/manjaro-setup.sh
-# Short URL: (TODO
 
 DEFAULT_PACKAGES="git zsh htop vim yaourt"
 AUR_DEFAULT_PACKAGES="ruby-install chruby"

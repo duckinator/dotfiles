@@ -1,7 +1,7 @@
 exclude:
   - README.md
   - manjaro-setup.sh
-  - setup.sh
+  - fedora-setup.sh
   - vim-plug.sh
   - Gemfile
   - Gemfile.lock
