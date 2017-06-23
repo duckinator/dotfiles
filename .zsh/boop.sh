@@ -1,1 +1,1 @@
-[ -n "$BOOP_REPO_DIR" ] && [ -f "$BOOP_REPO_DIR/boop.sh" ] && source "$BOOP_REPO_DIR/boop.sh"
+[ -n "$BOOP_REPO_DIR" ] && [ -f "$BOOP_REPO_DIR/boop.zsh" ] && source "$BOOP_REPO_DIR/boop.zsh"
