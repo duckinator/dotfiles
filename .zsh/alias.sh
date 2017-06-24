@@ -5,9 +5,6 @@
 
 ## Miscellaneous
 
-  # Courtesy of someone on Twitter, I forget who.
-  alias boop=touch
-
   alias sshproxy='ssh -ND 9999'
 
   alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
