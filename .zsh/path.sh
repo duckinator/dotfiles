@@ -9,7 +9,8 @@ tryppath $HOME/.animation-utilities/bin
 
 tryppath $HOME/.cabal/bin
 
-tryppath $HOME/.npm-install/bin
+# https://docs.npmjs.com/getting-started/fixing-npm-permissions
+tryppath $HOME/.npm-global/bin
 
 tryppath /usr/local/heroku/bin
 
