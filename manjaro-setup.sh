@@ -4,7 +4,7 @@
 
 # Latest version: https://github.com/duckinator/dotfiles/raw/main/manjaro-setup.sh
 
-DEFAULT_PACKAGES="git zsh htop vim yaourt"
+DEFAULT_PACKAGES="git zsh htop vim pacaur"
 AUR_DEFAULT_PACKAGES="ruby-install chruby"
 
 # TODO: make this optional.
@@ -103,7 +103,7 @@ sudo su -c "\
 # Don't do `yaourt -Syu` because gstreamer0.10 is broken.
 # https://aur.archlinux.org/packages/gstreamer0.10/
 #yaourt -Syu --devel --aur &&\
-yaourt -S $AUR_DEFAULT_PACKAGES $AUR_FLASH_PACKAGES $AUR_SKYPE_PACKAGES
+pacaur -S $AUR_DEFAULT_PACKAGES $AUR_FLASH_PACKAGES $AUR_SKYPE_PACKAGES
 
 cd $HOME
 
@@ -118,7 +118,7 @@ if ! [ -f "$HOME/.zshrc" ]; then
   cd .dotfiles &&
   gem install -r bundler &&
   bundle install &&
-  effuse &&
+  bundle exec effuse &&
   ./vim-plug.sh
 fi
 
