@@ -32,6 +32,8 @@ zshload dagd
 zshload pacman
 zshload aur
 
+zshload magic
+
 if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
     zshload path
 fi
