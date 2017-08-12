@@ -1,3 +1,5 @@
+[ -d "/var/run/user/$UID" ] && export XDG_RUNTIME_DIR=/var/run/user/$UID
+
 # You can define $EDITOR, $GUI_EDITOR, $PAGER, and $BROWSER_CHOICES in ~/.zshenv.user,
 #+ from most-preferred to your last choice.
 
