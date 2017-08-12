@@ -4,7 +4,7 @@
 
 # Latest version: https://github.com/duckinator/dotfiles/raw/main/manjaro-setup.sh
 
-DEFAULT_PACKAGES="git zsh htop vim pacaur"
+DEFAULT_PACKAGES="git zsh htop vim pacaur tree"
 AUR_DEFAULT_PACKAGES="ruby-install chruby"
 
 # TODO: make this optional.
