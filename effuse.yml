@@ -5,3 +5,4 @@ exclude:
   - vim-plug.sh
   - Gemfile
   - Gemfile.lock
+  - .bundle
