@@ -4,8 +4,7 @@
 tryppath $HOME/bin
 tryppath $HOME/.bin
 
-tryppath $HOME/.shell-utilities/bin
-tryppath $HOME/.animation-utilities/bin
+tryppath $HOME/go/bin
 
 tryppath $HOME/.cabal/bin
 

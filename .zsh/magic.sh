@@ -9,7 +9,7 @@ function accept-line() {
 	if [[ $BUFFER == ,* ]]; then
 		tmp=${BUFFER#,}
 		BUFFER="mkcd ${(qq)tmp}"
-	elif [[ "${${=BUFFER}[1]}" =~ [0-9]+.?[0-9]* ]]; then
+	elif [[ "${${=BUFFER}[1]}" =~ ^[0-9]+.?[0-9]* ]]; then
 		# Anything starting with a number followed by a space is treated as
 		# code to be run by `dc`.
 		BUFFER="dc -e ${(qq)BUFFER}' f'"
