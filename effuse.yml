@@ -3,6 +3,3 @@ exclude:
   - manjaro-setup.sh
   - fedora-setup.sh
   - vim-plug.sh
-  - Gemfile
-  - Gemfile.lock
-  - .bundle
