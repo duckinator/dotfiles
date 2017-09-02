@@ -29,8 +29,7 @@ fi
 
 if ! [ -f "$HOME/.zshrc" ]; then
   cd .dotfiles &&
-  gem install -r bundler &&
-  bundle install &&
+  gem install effuse &&
   effuse
 
   # If we're using one that throws things in ~/bin, then it's the system Ruby.
