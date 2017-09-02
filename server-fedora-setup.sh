@@ -9,7 +9,7 @@ RUBY_INSTALL_VERSION=0.6.1
 
 sudo su -c "dnf -y update &&\
   dnf -y install git zsh htop ruby clang gcc-c++ cmake make &&\
-  dnf groupinstall 'Development Tools'"
+  dnf -y groupinstall 'Development Tools'"
 
 cd $HOME
 
