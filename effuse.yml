@@ -2,4 +2,5 @@ exclude:
   - README.md
   - manjaro-setup.sh
   - fedora-setup.sh
+  - server-fedora-setup.sh
   - vim-plug.sh
