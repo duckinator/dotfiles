@@ -5,6 +5,9 @@
 
 ## Miscellaneous
 
+  existalias copy='xclip -selection clipboard -i'
+  existalias paste='xclip -selection clipboard -o'
+
   alias sshproxy='ssh -ND 9999'
 
   alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
