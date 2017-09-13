@@ -5,8 +5,8 @@
 
 ## Miscellaneous
 
-  existalias copy='xclip -selection clipboard -i'
-  existalias paste='xclip -selection clipboard -o'
+  existalias copy='xclip -selection clipboard -i' xclip
+  existalias paste='xclip -selection clipboard -o' xclip
 
   alias sshproxy='ssh -ND 9999'
 
