@@ -13,9 +13,9 @@ function accept-line() {
 		# Anything starting with a number followed by a space is treated as
 		# code to be run by `dc`.
 		BUFFER="dc -e ${(qq)BUFFER}' f'"
-	elif [[ "${BUFFER:0:2}" == ">>" ]]; then
+	elif [[ "${BUFFER:0:3}" == ">> " ]]; then
 		# Anything starting with ">> " is treated as code to be run by Ruby.
-		BUFFER="ruby -e ${(qq)${BUFFER#>>}}"
+		BUFFER="ruby -e ${(qq)${BUFFER#>> }}"
 	fi
 
 	zle .accept-line
