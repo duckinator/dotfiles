@@ -44,6 +44,8 @@ static_prompt
 
 [ -f "$HOME/.zshrc.user" ] && source $HOME/.zshrc.user
 
+[ -f "$HOME/.cargo/env" ] && source $HOME/.cargo/env
+
 zshload todo
 
 [ -n "${__ZSH_TODO_EXEC}" ] && which $__ZSH_TODO_EXEC &>/dev/null && todo_summary
