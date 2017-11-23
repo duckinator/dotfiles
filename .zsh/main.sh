@@ -57,14 +57,6 @@ function runs() {
 	$($@ &>/dev/null) && true
 }
 
-function aliased() {
-    [ -n "$(alias $@)" ] && true
-}
-
-function function_defined() {
-    typeset -f $@ && true
-}
-
 # Alias second arg to third arg, if first arg is in $PATH
 function existalias() {
 	# The following $(runs ...) could be:
@@ -86,6 +78,6 @@ function runalias() {
 }
 
 function clean() {
-	unset -f remote zshload apath ppath tryapath tryppath trysource runs exists existalias runalias aliased function_defined clean
+	unset -f remote zshload apath ppath tryapath tryppath trysource runs exists existalias runalias clean
 	unset DIR
 }
