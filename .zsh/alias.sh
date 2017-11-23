@@ -19,6 +19,11 @@ COLORAUTO=''
 DIRSFIRST=''
 INDICATOR_SLASH=''
 
+# true if it runs, false otherwise
+function runs() {
+	$($@ &>/dev/null) && true
+}
+
 # Automagical coloring
 # TODO: Find BSD equivalent
 $(runs ls --color=auto)              && COLORAUTO='--color=auto'
@@ -30,6 +35,8 @@ $(runs ls --group-directories-first) && DIRSFIRST='--group-directories-first'
 # Use a slash suffix for indicating a file is a directory, same as
 # --indicator-style=slash on GNU coreutils' ls
 $(runs ls -p)   && INDICATOR_SLASH='-p'
+
+unset -f runs
 
 LS_ALIAS="ls $COLORAUTO $DIRSFIRST $INDICATOR_SLASH"
 if [ "$LS_ALIAS" != "ls   " ]; then
