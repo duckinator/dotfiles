@@ -1,9 +1,5 @@
 # vim: set ft=sh:
 
-function zshload() {
-  source "$HOME/.zsh/$1.sh"
-}
-
 # Creates a directory and then cd's to it.
 mkcd() {
   if [ -z "$1" ]; then
@@ -28,7 +24,7 @@ autoload -Uz compinit
 compinit
 
 # Key bindings.
-zshload bind
+source ~/.zsh/bind.sh
 
 # Make the prompt pretty.
 autoload colors zsh/terminfo
@@ -40,16 +36,12 @@ setopt interactive_comments
 # Don't beep on tab completion.
 unsetopt beep complete_in_word
 
-# Set the prompt.
-zshload prompt
-
 # Disable flow control.
 stty -ixon -ixoff
 
-zshload alias
-zshload chruby
-zshload dagd
-zshload magic
+for x in alias chruby dagd magic prompt; do
+  source ~/.zsh/$x.sh
+done
 
 if [[ "$(grep --version | head -n1)" =~ "\WGNU\W" ]]; then
   alias grep='grep --color=auto'
