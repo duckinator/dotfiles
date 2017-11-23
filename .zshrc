@@ -146,14 +146,10 @@ generate_prompt
 
 
 if [ ! -n "$ZSH_NO_MAGIC" ]; then
-
   # Very magical things.
   function accept-line() {
-    local tmp
-
     if [[ $BUFFER == ,* ]]; then
-      tmp=${BUFFER#,}
-      BUFFER="mkcd ${(qq)tmp}"
+      BUFFER="mkcd ${(qq)BUFFER#,}"
     elif [[ "${${=BUFFER}[1]}" =~ ^[0-9]+.?[0-9]* ]]; then
       # Anything starting with a number followed by a space is treated as
       # code to be run by `dc`.
