@@ -1,7 +1,4 @@
-PROMPT=''
-RPOMPT=''
-
-function generate_prompt {
+function generate_prompt() {
   # Specify colors to use.
   #
   # Possible color values (wrapped in $fg[ and ]):
@@ -19,7 +16,6 @@ function generate_prompt {
   local PATH_COLOR=$NEUTRAL_COLOR
   local SYMBOL_COLOR=$DEFAULT_COLOR
 
-
   local USER_PREFIX=''
   local PROMPT_SYM_COLOR=''
   local PROMPT_SUFFIX=''
@@ -29,22 +25,17 @@ function generate_prompt {
     USER_PREFIX="%{${NEUTRAL_COLOR}%}${USER}%{${SYMBOL_COLOR}%}@%{${NEUTRAL_COLOR}%}${HOST} "
   fi
 
-  if [ "$UID" = "0" ]; then
+  PROMPT_SYM_COLOR=''
+  PROMPT_SUFFIX=''
+  if [ "$UID" = 0 ]; then
     PROMPT_SYM_COLOR="${ALERT_COLOR}"
-  else
-    PROMPT_SYM_COLOR="${DEFAULT_COLOR}"
-  fi
-
-  if [ "$UID" = "0" ]; then
-    # Root user
     PROMPT_SUFFIX='#'
   else
-    # Non-root user
+    PROMPT_SYM_COLOR="${DEFAULT_COLOR}"
     PROMPT_SUFFIX='$'
   fi
 
-
-  PROMPT="%{$terminfo[sgr0]$terminfo[bold]%}%{${PROMPT_SYM_COLOR}%}${USER_PREFIX}%{${PATH_COLOR}%}%30<..<%~%{$PROMPT_SYM_COLOR%}${REPO_INFO}%{$PROMPT_SYM_COLOR%}${PROMPT_SUFFIX}%{$terminfo[sgr0]%} "
+  PROMPT="%{$terminfo[sgr0]${terminfo[bold]}${NEUTRAL_COLOR}%}${USER_PREFIX}%30<..<%~%{${PROMPT_SYM_COLOR}%}${PROMPT_SUFFIX}%{$terminfo[sgr0]%} "
   # Show exit code on the right side if it's not zero.
   RPROMPT="%{$terminfo[bold]%}%(?..%{${ALERT_COLOR}%}%?)%{$terminfo[sgr0]%}"
 }
