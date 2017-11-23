@@ -26,23 +26,13 @@ set foldmethod=syntax
 set foldlevel=1000
 set laststatus=2
 set scrolloff=1
+set nospell
 syntax on
 
 " Enable mouse in terminals
 if has('mouse')
   set mouse=a
 endif
-
-" Less clutter in terminals
-if !has('gui_running')
-  set nospell
-endif
-
-" GUI options
-set guioptions-=mrLtT " Disable menus, toolbar, scrollbars
-set guioptions+=c " Disable GUI dialogs
-set guifont=Monospace\ 9
-set browsedir=buffer " Open dialog starts in working directory
 
 " Jump to the last cursor position when opening
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
@@ -70,21 +60,10 @@ autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 " g0  Align "public:" and friends to class
 set cinoptions=:0,l1,g0
 
-" Indent Compojure correctly
-autocmd FileType clojure set lispwords+=GET,POST,PUT,DELETE
-
 " Better tab-complete when opening
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.o,*.d,*~
-
-" Smarter %
-" ??? not sure what this is.
-"runtime macros/matchit.vim
-
-" Disable visible whitespace in insert mode
-"autocmd InsertEnter * setlocal nolist
-"autocmd InsertLeave * setlocal list
 
 " Remap leader to ,
 noremap \ ,
@@ -123,8 +102,6 @@ endfunc
 
 nmap <C-n> :call NumberToggle()<CR>
 
-command! W :w
-
 " Plugins
 
 call plug#begin('~/.vim/plugged')
@@ -133,8 +110,6 @@ call plug#begin('~/.vim/plugged')
 " https://github.com/vim-airline/vim-airline
 Plug 'bling/vim-airline'
 set noshowmode
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -149,26 +124,6 @@ let g:signify_vcs_list = ['git']
 let g:signify_sign_overwrite = 1
 let g:signify_sign_change = '~'
 
-Plug 'kien/ctrlp.vim'
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>e :CtrlP<CR>
-nmap <leader>t :CtrlPBufTag<CR>
-nmap <leader>l :CtrlPLine<CR>
-
-"Plug 'tpope/vim-fugitive'
-"nmap <leader>gs :Gstatus<CR>
-"nmap <leader>gc :Gcommit<CR>
-"nmap <leader>gp :Git push<CR>
-
-Plug 'junegunn/vim-easy-align'
-"vnoremap <silent> <Enter> :EasyAlign<Enter> " ??? I'm not sure what this does?
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " Auto-indentation and auto-inserting brackets/parens/quotes.
 " https://github.com/jiangmiao/auto-pairs
 Plug 'jiangmiao/auto-pairs'
@@ -178,32 +133,15 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 
-" Keybindings used for vim splits.
-" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-"Plug 'mattn/webapi-vim'
-
-Plug 'programble/itchy.vim'
 Plug 'programble/jellybeans.vim'
 
 " Makes pasting things in vim nicer.
 " https://github.com/sickill/vim-pasta
 Plug 'sickill/vim-pasta'
 
-" For manipulating code comments.
-" https://github.com/tpope/vim-commentary
-"Plug 'tpope/vim-commentary'
-
 " Helps end structures automatically -- e.g. end after if/do/def in Ruby.
 " https://github.com/tpope/vim-endwise
 Plug 'tpope/vim-endwise'
-
-"Plug 'tpope/vim-surround'
-"Plug 'tpope/vim-ragtag'
 
 Plug 'rust-lang/rust.vim'
 
