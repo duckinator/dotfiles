@@ -39,7 +39,15 @@ unsetopt beep complete_in_word
 # Disable flow control.
 stty -ixon -ixoff
 
-for x in alias chruby dagd magic prompt; do
+if [ -f "/usr/local/share/chruby/chruby.sh" ]; then
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
+elif [ -f "/usr/share/chruby/chruby.sh" ]; then
+  source /usr/share/chruby/chruby.sh
+  source /usr/share/chruby/auto.sh
+fi
+
+for x in alias dagd magic prompt; do
   source ~/.zsh/$x.sh
 done
 
