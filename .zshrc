@@ -29,9 +29,6 @@ zshload nvm
 
 zshload dagd
 
-zshload pacman
-zshload aur
-
 zshload magic
 
 if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
@@ -39,15 +36,8 @@ if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; th
 fi
 zshload env
 
-# The dynamic prompt is buggy
-static_prompt
-
 [ -f "$HOME/.zshrc.user" ] && source $HOME/.zshrc.user
 
 [ -f "$HOME/.cargo/env" ] && source $HOME/.cargo/env
-
-zshload todo
-
-[ -n "${__ZSH_TODO_EXEC}" ] && which $__ZSH_TODO_EXEC &>/dev/null && todo_summary
 
 clean
