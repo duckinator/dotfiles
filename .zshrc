@@ -13,7 +13,7 @@ zshload bind
 zshload colors
 zshload opts
 
-zshload custom_colors
+#zshload custom_colors
 zshload prompt
 
 # disable flow control
@@ -21,7 +21,6 @@ stty -ixon -ixoff
 
 zshload functions
 zshload alias
-zshload grepfix
 
 zshload chruby
 zshload nvm
@@ -29,6 +28,10 @@ zshload nvm
 zshload dagd
 
 zshload magic
+
+if [[ "$(grep --version | head -n1)" =~ "\WGNU\W" ]]; then
+	alias grep='grep --color=auto'
+fi
 
 if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
     zshload path
