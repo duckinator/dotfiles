@@ -33,7 +33,6 @@ zshload bind
 # Make the prompt pretty.
 autoload colors zsh/terminfo
 colors
-source $HOME/.zsh/default.zshrc.colors
 
 # Set some options that make zsh nicer.
 setopt appendhistory autocd nomatch notify autolist automenu badpattern
