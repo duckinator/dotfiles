@@ -4,45 +4,54 @@ function zshload() {
   source "$HOME/.zsh/$1.sh"
 }
 
+# Creates a directory and then cd's to it.
+mkcd() {
+  if [ -z "$1" ]; then
+    echo "Usage:  $0 [-p] dir"
+  else
+    mkdir $@
+    [ "$1" = "-p" ] && shift
+    cd $1
+  fi
+}
+
+# History
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-zshload completion
+# Autocompletion
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} m:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle :compinstall filename "/home/$USER/.zshrc"
+autoload -Uz compinit
+compinit
+
+# Key bindings.
 zshload bind
 
+# Make the prompt pretty.
 autoload colors zsh/terminfo
 colors
 source $HOME/.zsh/default.zshrc.colors
 
+# Set some options that make zsh nicer.
 setopt appendhistory autocd nomatch notify autolist automenu badpattern
 setopt interactive_comments
+# Don't beep on tab completion.
 unsetopt beep complete_in_word
 
-#zshload custom_colors
+# Set the prompt.
 zshload prompt
 
-# disable flow control
+# Disable flow control.
 stty -ixon -ixoff
 
-zshload functions
 zshload alias
-
 zshload chruby
-
 zshload dagd
-
 zshload magic
 
 if [[ "$(grep --version | head -n1)" =~ "\WGNU\W" ]]; then
-	alias grep='grep --color=auto'
+  alias grep='grep --color=auto'
 fi
-
-if [ ! -f "$HOME/.zshenv" ] || [ -n "${SSH_TTY}" ] || [ -n "${VNCDESKTOP}" ]; then
-    zshload path
-fi
-zshload env
-
-[ -f "$HOME/.zshrc.user" ] && source $HOME/.zshrc.user
-
-[ -f "$HOME/.cargo/env" ] && source $HOME/.cargo/env
