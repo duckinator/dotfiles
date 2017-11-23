@@ -2,7 +2,6 @@
 [ -d "/etc/profile.d/*.sh" ] && source /etc/profile.d/*.sh
 
 tryppath $HOME/bin
-tryppath $HOME/.bin
 
 tryppath $HOME/go/bin
 
@@ -13,13 +12,11 @@ tryppath $HOME/.npm-global/bin
 
 tryppath /usr/local/heroku/bin
 
-tryapath /opt/java/jre
-tryapath /opt/java/jre/bin
-
-tryapath $HOME/duxcc/bin
-tryapath $HOME/duxcc/i386-elf
-tryapath $HOME/duxcc/i386-elf/bin
-tryapath $HOME/duxcc/i386-elf/lib
+if [ -d $HOME/.gem/ruby ]; then
+  for dir in $HOME/.gem/ruby/*; do
+    tryapath $dir/bin
+  done
+fi
 
 # For when using the GHC PPA. https://launchpad.net/~hvr/+archive/ubuntu/ghc
 if [ -n "$(find /opt/ghc -maxdepth 1 2>/dev/null)" ]; then
