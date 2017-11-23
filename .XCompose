@@ -25,5 +25,3 @@ include "%L" # Include system defaults for locale
 <Multi_key> <U> <bar>           : "Ψ"
 <Multi_key> <w> <w>             : "ω"
 <Multi_key> <o> <h> <m>         : "Ω"
-
-<Multi_key> <*> <*>             : "⋅"
