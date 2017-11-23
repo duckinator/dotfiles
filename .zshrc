@@ -10,8 +10,14 @@ SAVEHIST=1000
 
 zshload completion
 zshload bind
-zshload colors
-zshload opts
+
+autoload colors zsh/terminfo
+colors
+source $HOME/.zsh/default.zshrc.colors
+
+setopt appendhistory autocd nomatch notify autolist automenu badpattern
+setopt interactive_comments
+unsetopt beep complete_in_word
 
 #zshload custom_colors
 zshload prompt
@@ -23,7 +29,6 @@ zshload functions
 zshload alias
 
 zshload chruby
-zshload nvm
 
 zshload dagd
 
