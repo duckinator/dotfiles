@@ -5,6 +5,33 @@
 	editor = vim
 	excludesfile = ~/.gitignore.global
 	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
 [merge]
 	tool = vimdiff
 [color]

@@ -6,3 +6,4 @@ cabal.sandbox.config
 *.bak
 *.log
 node_modules/
+*.iso
