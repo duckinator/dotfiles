@@ -1,48 +1,39 @@
 # Aliases
 
-
-## Bundler
-
 ## Miscellaneous
 
-  existalias copy='xclip -selection clipboard -i' xclip
-  existalias paste='xclip -selection clipboard -o' xclip
+if $(which xclip &>/dev/null); then
+  alias copy='xclip -selection clipboard -i'
+  alias paste='xclip -selection clipboard -o'
+fi
 
-  alias sshproxy='ssh -ND 9999'
+alias sshproxy='ssh -ND 9999'
 
-  alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
+alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
-  existalias sprunge="curl -F 'sprunge=<-' http://sprunge.us" curl
-  existalias abssearch='ls -R /var/abs/ | grep' abs
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 
-## ls
+## Incredibly complex "ls" alias
 
-  runalias ll='ls -l'        ls -l
-  runalias la='ls -lA'       ls -lA
-  runalias lh='ls -lh'       ls -lh
-  runalias lah='ls -lAh'     ls -lAh
+COLORAUTO=''
+DIRSFIRST=''
+INDICATOR_SLASH=''
 
+# Automagical coloring
+# TODO: Find BSD equivalent
+$(runs ls --color=auto)              && COLORAUTO='--color=auto'
 
-  # Incredibly complex "ls" alias
-  COLORAUTO=''
-  DIRSFIRST=''
-  INDICATOR_SLASH=''
+# Put directories first in the list
+# TODO: Find BSD equivalent
+$(runs ls --group-directories-first) && DIRSFIRST='--group-directories-first'
 
-  # Automagical coloring
-  # TODO: Find BSD equivalent
-  $(runs ls --color=auto)              && COLORAUTO='--color=auto'
+# Use a slash suffix for indicating a file is a directory, same as
+# --indicator-style=slash on GNU coreutils' ls
+$(runs ls -p)   && INDICATOR_SLASH='-p'
 
-  # Put directories first in the list
-  # TODO: Find BSD equivalent
-  $(runs ls --group-directories-first) && DIRSFIRST='--group-directories-first'
+LS_ALIAS="ls $COLORAUTO $DIRSFIRST $INDICATOR_SLASH"
+if [ "$LS_ALIAS" != "ls   " ]; then
+  alias ls="$LS_ALIAS"
+fi
 
-  # Use a slash suffix for indicating a file is a directory, same as
-  # --indicator-style=slash on GNU coreutils' ls
-  $(runs ls -p)   && INDICATOR_SLASH='-p'
-
-  LS_ALIAS="ls $COLORAUTO $DIRSFIRST $INDICATOR_SLASH"
-  if [ "$LS_ALIAS" != "ls   " ]; then
-    alias ls="$LS_ALIAS"
-  fi
-
-  unset COLORAUTO DIRSFIRST INDICATOR_SLASH LS_ALIAS
+unset COLORAUTO DIRSFIRST INDICATOR_SLASH LS_ALIAS
