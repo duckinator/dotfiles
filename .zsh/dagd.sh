@@ -1,7 +1,6 @@
 # Aliases that use http://da.gd
 
 if $(which curl &>/dev/null); then
-
   function dagd() {
     __DAGD_POST=false
     __DAGD_URL="http://da.gd"
@@ -35,20 +34,5 @@ if $(which curl &>/dev/null); then
     else
       curl -F 'url=<-' http://da.gd/shorten
     fi
-  }
-
-  alias dawho='dagd w'
-  alias daua='echo To find out the User Agent String of your browser, go to: http://da.gd/ua'
-  alias daip='dagd ip'
-  # TODO: Uncomment the following + remove das function above once /s works
-  #alias das='dagd s'
-
-  # TODO: Remove following line if/when CodeBlock moves /wp -> /wpe
-  alias dawpe='dagd wp'
-else
-  function dagd() {
-    echo "Please install curl and reload dagd.sh"
-    echo "(closing and re-opening your terminal should suffice if you don't"
-    echo " know how to reload dagd.sh)"
   }
 fi
