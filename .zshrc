@@ -61,8 +61,6 @@ elif [ -f "/usr/share/chruby/chruby.sh" ]; then
   source /usr/share/chruby/auto.sh
 fi
 
-source ~/.zsh/prompt.sh
-
 if [[ "$(grep --version | head -n1)" =~ "\WGNU\W" ]]; then
   alias grep='grep --color=auto'
 fi
@@ -107,6 +105,44 @@ bindkey '^i' expand-or-complete-prefix # C-i
 
 bindkey "\e[A" history-search-backward # ?
 bindkey "\e[B" history-search-forward  # ?
+
+### BEGIN PROMPT ###
+function generate_prompt() {
+  # Possible color values (wrapped in $fg[ and ]):
+  #     black       red     green   yellow  blue
+  #     megenta     cyan    white   bold
+  #     $reset_color
+  local NEUTRAL_COLOR="$fg[blue]"
+  local ALERT_COLOR="$fg[red]"
+  local SYMBOL_COLOR="$fg[magenta]"
+
+  if [ -n "$SSH_CONNECTION" ]; then
+    # Set $USER_PREFIX to "user@host "
+    local USER_PREFIX="%{${NEUTRAL_COLOR}%}${USER}%{${SYMBOL_COLOR}%}@%{${NEUTRAL_COLOR}%}${HOST} "
+  fi
+
+  PROMPT="%{$terminfo[sgr0]${terminfo[bold]}${NEUTRAL_COLOR}%}${USER_PREFIX}%30<..<%~%{${SYMBOL_COLOR}%}$%{$terminfo[sgr0]%} "
+  # Show exit code on the right side if it's not zero.
+  RPROMPT="%{$terminfo[bold]%}%(?..%{${ALERT_COLOR}%}%?)%{$terminfo[sgr0]%}"
+}
+
+if [[ "$TERM" =~ ".*xterm.*|.*rxvt.*|ansi" ]]; then
+  function precmd {
+    # Terminal title, ran before the prompt is generated.
+    print -Pn "\e]2;%30<..<%~ | %y\a" # better for remote shells: "\e]2;%n@%m: %~\a"
+  }
+
+  function preexec {
+    # Terminal title, ran after enter but before command.
+    local CMD="${1//\%/%%}"
+
+    print -nPR $'\e]0;'"${CMD} | %y"$'\a' # better for remote shells: "\e]2;%n@%m: $1\a"
+  }
+fi
+
+generate_prompt
+
+### END PROMPT ###
 
 
 if [ ! -n "$ZSH_NO_MAGIC" ]; then
