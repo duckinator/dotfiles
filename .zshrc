@@ -40,9 +40,6 @@ zstyle :compinstall filename "/home/$USER/.zshrc"
 autoload -Uz compinit
 compinit
 
-# Key bindings.
-source ~/.zsh/bind.sh
-
 # Make the prompt pretty.
 autoload colors zsh/terminfo
 colors
@@ -71,22 +68,66 @@ if [[ "$(grep --version | head -n1)" =~ "\WGNU\W" ]]; then
 fi
 
 
-# Very magical things.
-function accept-line() {
-	local tmp
+### BEGIN KEY BINDINGS ###
 
-	if [[ $BUFFER == ,* ]]; then
-		tmp=${BUFFER#,}
-		BUFFER="mkcd ${(qq)tmp}"
-	elif [[ "${${=BUFFER}[1]}" =~ ^[0-9]+.?[0-9]* ]]; then
-		# Anything starting with a number followed by a space is treated as
-		# code to be run by `dc`.
-		BUFFER="dc -e ${(qq)BUFFER}' f'"
-	elif [[ "${BUFFER:0:3}" == ">> " ]]; then
-		# Anything starting with ">> " is treated as code to be run by Ruby.
-		BUFFER="ruby -e ${(qq)${BUFFER#>> }}"
-	fi
+bindkey "\e[1~" beginning-of-line  # Home
+bindkey "\e[4~" end-of-line        # End
+bindkey "\e[5~" beginning-of-history # PageUp
+bindkey "\e[6~" end-of-history     # PageDown
+bindkey "\e[2~" quoted-insert      # Insert
+bindkey "\e[3~" delete-char        # Delete
+bindkey "\e[5C" forward-word       # ?
+bindkey "\eOc" emacs-forward-word  # ?
+bindkey "\e[5D" backward-word      # ?
+bindkey "\eOd" emacs-backward-word # ?
+bindkey "\e\e[C" forward-word      # ?
+bindkey "\e\e[D" backward-word     # ?
+#bindkey "^H" backward-delete-word  # C-h
 
-	zle .accept-line
-}
-zle -N accept-line
+bindkey "^A" beginning-of-line # C-a
+bindkey "^E" end-of-line       # C-e
+
+# for rxvt
+bindkey "\e[7~" beginning-of-line # ?
+bindkey "\e[8~" end-of-line       # ?
+
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line  # ?
+bindkey "\eOF" end-of-line        # ?
+
+# for freebsd console
+bindkey "\e[H" beginning-of-line  # ?
+bindkey "\e[F" end-of-line        # ?
+
+### END KEY BINDINGS ###
+
+
+# Completion in the middle of a line.
+bindkey '^i' expand-or-complete-prefix # C-i
+
+bindkey "\e[A" history-search-backward # ?
+bindkey "\e[B" history-search-forward  # ?
+
+
+if [ ! -n "$ZSH_NO_MAGIC" ]; then
+
+  # Very magical things.
+  function accept-line() {
+    local tmp
+
+    if [[ $BUFFER == ,* ]]; then
+      tmp=${BUFFER#,}
+      BUFFER="mkcd ${(qq)tmp}"
+    elif [[ "${${=BUFFER}[1]}" =~ ^[0-9]+.?[0-9]* ]]; then
+      # Anything starting with a number followed by a space is treated as
+      # code to be run by `dc`.
+      BUFFER="dc -e ${(qq)BUFFER}' f'"
+    elif [[ "${BUFFER:0:3}" == ">> " ]]; then
+      # Anything starting with ">> " is treated as code to be run by Ruby.
+      BUFFER="ruby -e ${(qq)${BUFFER#>> }}"
+    fi
+
+    zle .accept-line
+  }
+  zle -N accept-line
+fi
