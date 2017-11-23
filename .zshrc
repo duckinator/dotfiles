@@ -1,15 +1,14 @@
 # vim: set ft=sh:
 
-source $HOME/.zsh/main.sh
+function zshload() {
+  source "$HOME/.zsh/$1.sh"
+}
 
-if [ -n "$SSH_CONNECTION" ]; then
-    remote
-fi
-
-#remote # Uncomment this for remote prompts.
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
 
 zshload completion
-zshload history
 zshload bind
 zshload colors
 zshload opts
@@ -39,5 +38,3 @@ zshload env
 [ -f "$HOME/.zshrc.user" ] && source $HOME/.zshrc.user
 
 [ -f "$HOME/.cargo/env" ] && source $HOME/.cargo/env
-
-clean

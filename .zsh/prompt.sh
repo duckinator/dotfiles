@@ -10,7 +10,7 @@ function generate_prompt {
 	local PROMPT_SYM_COLOR=''
 	local PROMPT_SUFFIX=''
 
-	if $_REMOTE; then
+	if [ -n "$SSH_CONNECTION" ]; then
 		# Set $USER_PREFIX to "user@host "
 		USER_PREFIX="%{${NEUTRAL_COLOR}%}${USER}%{${SYMBOL_COLOR}%}@%{${NEUTRAL_COLOR}%}${HOST} "
 	fi

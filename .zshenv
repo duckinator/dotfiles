@@ -1,3 +1,3 @@
-source $HOME/.zsh/main.sh
+function zshload() { source $HOME/.zsh/$1.sh }
 zshload path
 zshload env

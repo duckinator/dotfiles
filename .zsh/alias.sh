@@ -8,10 +8,9 @@ if $(which xclip &>/dev/null); then
 fi
 
 alias sshproxy='ssh -ND 9999'
-
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
-
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+alias open=xdg-open
 
 ## Incredibly complex "ls" alias
 
