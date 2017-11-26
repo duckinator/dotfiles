@@ -43,23 +43,25 @@ set fish_color_cwd          $fish_color_user
 set fish_color_param        $fish_color_normal # *shrug* couldn't find something with good enoguh contrast.
 
 function fish_prompt
-    if test -n "$SSH_CONNECTION"
-      set_color -o $fish_color_user
-      printf $USER
-      set_color -o $fish_color_operator
-      printf @
-      set_color -o $fish_color_user
-      printf $FISH_PROMPT_HOSTNAME
-      set_color -o $fish_color_operator
-      printf :
-    end
-
-    set_color -o $fish_color_cwd
-    printf (prompt_pwd)
+  if test -n "$SSH_CONNECTION"
+    set_color -o $fish_color_user
+    printf $USER
     set_color -o $fish_color_operator
-    printf '$ '
-    set_color normal
+    printf @
+    set_color -o $fish_color_user
+    printf $FISH_PROMPT_HOSTNAME
+    set_color -o $fish_color_operator
+    printf :
+  end
+
+  set_color -o $fish_color_cwd
+  printf (prompt_pwd)
+  set_color -o $fish_color_operator
+  printf '$ '
+  set_color normal
 end
+
+source ~/.config/fish/env.fish
 
 if test -f ~/.config.fish.user
   source ~/.config.fish.user
