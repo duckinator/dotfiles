@@ -22,7 +22,7 @@ alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias ,=mkcd
 
 function =
-  echo $argv p | dc
+  echo $argv f | dc
 end
 
 
