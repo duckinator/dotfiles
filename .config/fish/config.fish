@@ -19,7 +19,12 @@ end
 alias sshproxy='ssh -ND 9999'
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
-alias open=xdg-open
+alias ,=mkcd
+
+function =
+  echo $argv p | dc
+end
+
 
 # -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
 set GNU_GREP (ls --version | grep GNU)
@@ -59,6 +64,19 @@ function fish_prompt
   set_color -o $fish_color_operator
   printf '$ '
   set_color normal
+end
+
+function fish_right_prompt
+  set -l _prompt_status $status
+  if test $_prompt_status -ne 0
+    set_color -o $fish_color_operator
+    printf '['
+    set_color -o red
+    printf $_prompt_status
+    set_color -o $fish_color_operator
+    printf ']'
+    set_color normal
+  end
 end
 
 source ~/.config/fish/env.fish
