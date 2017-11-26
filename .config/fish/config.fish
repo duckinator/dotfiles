@@ -60,3 +60,7 @@ function fish_prompt
     printf '$ '
     set_color normal
 end
+
+if test -f ~/.config.fish.user
+  source ~/.config.fish.user
+end
