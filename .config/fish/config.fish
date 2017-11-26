@@ -64,7 +64,8 @@ function fish_prompt
   printf (prompt_pwd)
   set_color -o $fish_color_operator
   if test -d .git
-    if git status -s >/dev/null 2>/dev/null
+    set -l git_status (git status -s)
+    if test -n "$git_status"
       set_color -o red
     end
     printf '+ '
