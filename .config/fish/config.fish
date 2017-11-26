@@ -1,13 +1,14 @@
 # Creates a directory and then cd's to it.
 function mkcd
-  if test -z "$1"
-    echo "Usage:  $0 [-p] dir"
+  if test (count argv) -eq 0
+    echo "Usage: mkcd [-p] dir"
   else
     mkdir $argv
-    if test "$1" = "-p"
-      shift
+    if test $argv[1] = "-p"
+      cd $argv[2]
+    else
+      cd $argv[1]
     end
-    cd $1
   end
 end
 
@@ -62,7 +63,14 @@ function fish_prompt
   set_color -o $fish_color_cwd
   printf (prompt_pwd)
   set_color -o $fish_color_operator
-  printf '$ '
+  if test -d .git
+    if git status -s >/dev/null 2>/dev/null
+      set_color -o red
+    end
+    printf '+ '
+  else
+    printf '$ '
+  end
   set_color normal
 end
 
