@@ -14,6 +14,18 @@ function mkcd
   end
 end
 
+function demo
+  if test -z "$DEMO_MODE"
+    echo "Entering demo mode."
+    echo
+    set -g DEMO_MODE true
+  else
+    echo
+    echo "Exiting demo mode."
+    set -g DEMO_MODE false
+  end
+end
+
 if which xclip >/dev/null
   alias copy='xclip -selection clipboard -i'
   alias paste='xclip -selection clipboard -o'
@@ -49,6 +61,13 @@ set fish_color_cwd          $fish_color_user
 set fish_color_param        $fish_color_normal # *shrug* couldn't find something with good enoguh contrast.
 
 function fish_prompt
+  if test "$DEMO_MODE" = "true"
+    set_color -o $fish_color_operator
+    printf '$ '
+    set_color -o $fish_color_normal
+    return
+  end
+
   if test -n "$SSH_CONNECTION"
     set_color -o $fish_color_user
     printf $USER
