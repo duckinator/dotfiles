@@ -1,6 +1,6 @@
 # Creates a directory and then cd's to it.
 function mkcd
-  if test (count argv) -eq 0
+  if test (count $argv) -eq 0
     echo "Usage: mkcd [-p] dir"
   else
     set -l cd_args
