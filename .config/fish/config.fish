@@ -30,14 +30,12 @@ end
 
 
 # -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
-set GNU_GREP (ls --version | grep GNU)
 if test -z "$DISABLE_FANCY_LS"
-    and test -n "$GNU_GREP"
+    and command ls --version | grep GNU >/dev/null ^/dev/null
   alias ls='ls --color=auto --group-directories-first -p'
 else
   alias ls='ls -p'
 end
-set -e GNU_GREP
 
 set FISH_PROMPT_HOSTNAME (hostname)
 
