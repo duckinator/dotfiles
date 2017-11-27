@@ -63,15 +63,26 @@ function fish_prompt
   set_color -o $fish_color_cwd
   printf (prompt_pwd)
   set_color -o $fish_color_operator
-  if test -d .git
-    set -l git_status (git status -s)
+
+  set -l git_status (git status -s 2>/dev/null)
+  if test $status -eq 0
+    # If `git status` returns 0, this is a git repo, so show git information.
+    set -l git_branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+    if test -n "$git_branch"
+      printf ' '$git_branch
+    end
+
     if test -n "$git_status"
       set_color -o red
     end
     printf '+ '
   else
+    # If `git status` returns anything else, it's not a git repo, so show the
+    # normal prompt.
     printf '$ '
   end
+
   set_color normal
 end
 
