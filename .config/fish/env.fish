@@ -17,7 +17,7 @@ if test -f ~/.cargo/env
 end
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-export PATH="$HOME/bin:$HOME/.npm-global/bin:$RUBY_PATHS:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$RUBY_PATHS:$PATH"
 set -e RUBY_PATHS
 
 export EDITOR=vim
