@@ -3,12 +3,14 @@ function mkcd
   if test (count argv) -eq 0
     echo "Usage: mkcd [-p] dir"
   else
-    mkdir $argv
-    if test $argv[1] = "-p"
-      cd $argv[2]
+    set -l cd_args
+    if test $argv[1] = "-p" 2>/dev/null
+      set cd_args $argv[2]
     else
-      cd $argv[1]
+      set cd_args $argv[1]
     end
+
+    mkdir $argv; and cd $cd_args
   end
 end
 
