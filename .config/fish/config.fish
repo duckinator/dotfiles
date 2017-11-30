@@ -19,7 +19,7 @@ function mkvenv
     echo "mkvenv: error: Directory ./venv already exists!"
     return 1
   else
-    virtualenv venv --python=3.6
+    virtualenv venv --python=python3.6
   end
 end
 
