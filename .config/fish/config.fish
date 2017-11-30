@@ -14,6 +14,29 @@ function mkcd
   end
 end
 
+function mkvenv
+  if test -d venv
+    echo "mkvenv: error: Directory ./venv already exists!"
+    return 1
+  else
+    virtualenv venv --python=3.6
+  end
+end
+
+function =venv
+  set -l activate_file (find -name 'activate.fish')
+
+  if test -n "$VIRTUAL_ENV"
+    echo "Already in a virtualenv ($VIRTUAL_ENV)"
+  else if test -n $activate_file
+    . $activate_file
+    echo "In virtualenv $VIRTUAL_ENV."
+    echo "Run `deactivate` to exit."
+  else
+    echo "No virtualenv directory found."
+  end
+end
+
 function demo
   if test -z "$DEMO_MODE"
     echo "Entering demo mode."
