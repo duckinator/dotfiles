@@ -28,8 +28,8 @@ function =venv
 
   if test -n "$VIRTUAL_ENV"
     echo "Already in a virtualenv ($VIRTUAL_ENV)"
-  else if test -n $activate_file
-    . $activate_file
+  else if test -n "$activate_file"
+    . "$activate_file"
     echo "In virtualenv $VIRTUAL_ENV."
     echo "Run `deactivate` to exit."
   else
