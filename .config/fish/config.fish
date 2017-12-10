@@ -24,7 +24,14 @@ function mkvenv
 end
 
 function =venv
-  set -l activate_file (find -name 'activate.fish')
+  set -l search_dir
+  if test (count $argv) -gt 0
+    set search_dir $argv[1]
+  else
+    set search_dir .
+  end
+
+  set -l activate_file (find $search_dir -name 'activate.fish')
 
   if test -n "$VIRTUAL_ENV"
     echo "Already in a virtualenv ($VIRTUAL_ENV)"
