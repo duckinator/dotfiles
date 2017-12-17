@@ -65,6 +65,9 @@ alias sshproxy='ssh -ND 9999'
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 alias ,=mkcd
+alias b=bundle
+alias bi=b install
+alias be=b exec
 
 function =
   echo $argv f | dc
