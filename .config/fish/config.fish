@@ -56,6 +56,8 @@ function demo
   end
 end
 
+alias strip='ruby -e "print STDIN.read.strip"'
+
 if which xclip >/dev/null
   alias copy='xclip -selection clipboard -i'
   alias paste='xclip -selection clipboard -o'
