@@ -61,6 +61,7 @@ alias strip='ruby -e "print STDIN.read.strip"'
 if which xclip >/dev/null
   alias copy='xclip -selection clipboard -i'
   alias paste='xclip -selection clipboard -o'
+  alias scopy='strip | copy'
 end
 
 alias sshproxy='ssh -ND 9999'
@@ -73,6 +74,15 @@ alias be=b exec
 
 function =
   echo $argv f | dc
+end
+
+function last-ss
+  find ~/Pictures/Screenshots/ -type f | sort | tail -n 1
+end
+
+function boop-last
+  boop file (last-ss) | scopy
+  paste
 end
 
 
