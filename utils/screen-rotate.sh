@@ -9,6 +9,20 @@ fi
 
 ORIENTATION="$(qdbus --system net.hadess.SensorProxy /net/hadess/SensorProxy net.hadess.SensorProxy.AccelerometerOrientation)"
 
+echo $ORIENTATION
+
+if [ "$1" == "--check" ]; then
+  # We only wanted to check the orientation, so exit.
+  exit
+fi
+
+if [ "$1" == "--if-needed" ]; then
+  if [ "$ORIENTATION" == "$1" ]; then
+    exit
+  fi
+fi
+
+
 XRANDR_OUTPUT="$(xrandr | grep "connected primary" | cut -d ' ' -f 1)"
 
 XINPUT_TRANSFORM="Coordinate Transformation Matrix"
