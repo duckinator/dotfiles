@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$(cat ~/.screen-can-rotate)" == "true"]; then
-  echo -n false > ~/.screen-can-rotate.txt
+if [ -f ~/.screen-can-rotate ]; then
+  rm ~/.screen-can-rotate
 else
-  echo -n true > ~/.screen-can-rotate.txt
+  touch ~/.screen-can-rotate
 fi

@@ -6,8 +6,8 @@ cd $DIR
 OLD_OUTPUT=""
 
 while true; do
-  if [ "$(cat ~/.screen-can-rotate.txt)" == "true" ]; then
-    OUTPUT="$(./screen-rotate.sh "$OUTPUT")"
+  if [ -f ~/.screen-can-rotate ]; then
+    OUTPUT="$(./screen-rotate.sh --if-needed "$OUTPUT")"
   fi
   sleep 1
 done
