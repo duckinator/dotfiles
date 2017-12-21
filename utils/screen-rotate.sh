@@ -1,10 +1,16 @@
 #!/bin/bash
 
+XINPUT_TOUCHSCREEN_NAME="$(cat $HOME/.xinput-touchscreen-name)"
+
+if [ -z "${XINPUT_TOUCHSCREEN_NAME}" ]; then
+  echo "No touchscreen name specified!" >2
+  exit 1
+fi
+
 ORIENTATION="$(qdbus --system net.hadess.SensorProxy /net/hadess/SensorProxy net.hadess.SensorProxy.AccelerometerOrientation)"
 
 XRANDR_OUTPUT="$(xrandr | grep "connected primary" | cut -d ' ' -f 1)"
 
-XINPUT_DEVICE_NAME="Virtual core pointer"
 XINPUT_TRANSFORM="Coordinate Transformation Matrix"
 
 function xrandr-rotate() {
@@ -12,7 +18,7 @@ function xrandr-rotate() {
 }
 
 function xinput-transform() {
-  xinput set-prop "$XINPUT_DEVICE_NAME" "$XINPUT_TRANSFORM" $@
+  xinput set-prop "$XINPUT_TOUCHSCREEN_NAME" "$XINPUT_TRANSFORM" $@
 }
 
 case $ORIENTATION in
