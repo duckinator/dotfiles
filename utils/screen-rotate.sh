@@ -8,7 +8,7 @@ XINPUT_DEVICE_NAME="Virtual core pointer"
 XINPUT_TRANSFORM="Coordinate Transformation Matrix"
 
 function xrandr-rotate() {
-  xrandr --output "$XRANDR_OUTPUT" --rotate "$ORIENTATION"
+  xrandr --output "$XRANDR_OUTPUT" --rotate "$1"
 }
 
 function xinput-transform() {
