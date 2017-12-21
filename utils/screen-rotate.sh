@@ -20,15 +20,15 @@ normal)
   xrandr-rotate normal
   xinput-transform 1 0 0 0 1 0 0 0 1
   ;;
-inverted)
+bottom-up)
   xrandr-rotate inverted
   xinput-transform -1 0 1 0 -1 1 0 0 1
   ;;
-right)
+right-up)
   xrandr-rotate right
   xinput-transform 0 1 0 -1 0 1 0 0 1
   ;;
-left)
+left-up)
   xrandr-rotate left
   xinput-transform 0 -1 1 1 0 0 0 0 1
   ;;

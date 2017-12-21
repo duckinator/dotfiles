@@ -53,6 +53,7 @@ autocmd FileType markdown setlocal tw=72
 
 " Makefiles require hard tabs.
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
+autocmd FileType ld set noexpandtab shiftwidth=4 softtabstop=0
 
 " C/C++ indent options
 " :0  Align case with switch
