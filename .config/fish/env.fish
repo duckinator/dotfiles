@@ -8,7 +8,7 @@ end
 set RUBY_PATHS
 if test -d $HOME/.gem/ruby
   for dir in $HOME/.gem/ruby/*
-    set RUBY_PATHS "$dir/bin" $RUBY_PATHS
+    set RUBY_PATHS "$dir/bin:$RUBY_PATHS"
   end
 end
 
