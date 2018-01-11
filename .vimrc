@@ -118,5 +118,6 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 set background=dark
+set termguicolors
 
 colo ThemerVim
