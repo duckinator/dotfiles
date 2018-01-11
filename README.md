@@ -2,13 +2,16 @@
 
 My configuration files.
 
+## Color themes
+
+Color themes generated with [themer](https://github.com/mjswensen/themer). See `bin/generate-themes.sh`.
+
 ## Configurations
 
-* zsh
+* fish
 * git
 * bundler
-* irb
 * Weston (Wayland compositor)
 * X Compose Key
 * Xmodmap
-* VIM
+* vim

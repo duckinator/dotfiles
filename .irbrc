@@ -1,3 +1,0 @@
-$:.unshift 'lib'
-
-require 'pp'
