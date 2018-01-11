@@ -7,7 +7,7 @@
   let s:shade1 = "#4E244E"
   let s:shade2 = "#B9DADA"
   let s:shade3 = "#E0E6E5"
-  let s:shade4 = "#CC8B86"
+  let s:shade4 = "#EAD0CE"
   let s:shade5 = "#AA00AA"
   let s:shade6 = "#6194DF"
   let s:shade7 = "#F7F9F9"
