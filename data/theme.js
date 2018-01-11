@@ -3,7 +3,7 @@ exports.colors = {
     accent0: "#777777",
     accent1: "#CE95CE",
     accent2: "#BADBDB",
-    accent3: "#AAB9B6",
+    accent3: "#E2E7E6",
     accent4: "#E3BFBD",
     accent5: "#C85CC8",
     accent6: "#9ABAEA",
