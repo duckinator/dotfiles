@@ -113,18 +113,8 @@ let g:signify_vcs_list = ['git']
 let g:signify_sign_overwrite = 1
 let g:signify_sign_change = '~'
 
-Plug 'programble/jellybeans.vim'
-
-" Makes pasting things in vim nicer.
-" https://github.com/sickill/vim-pasta
-Plug 'sickill/vim-pasta'
-
-" Helps end structures automatically -- e.g. end after if/do/def in Ruby.
-" https://github.com/tpope/vim-endwise
-Plug 'tpope/vim-endwise'
-
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
-colorscheme jellybeans
+colo ThemerVim
