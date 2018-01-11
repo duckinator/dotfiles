@@ -17,6 +17,5 @@ exports.colors = {
     shade5: "#AA00AA",
     shade6: "#6194DF",
     shade7: "#F7F9F9",
-
   },
 };
