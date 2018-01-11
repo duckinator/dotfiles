@@ -3,22 +3,22 @@
   
   if &background == 'dark'
     
-  let s:shade0 = "#555555"
-  let s:shade1 = "#FF5555"
-  let s:shade2 = "#55FF55"
-  let s:shade3 = "#FFFF55"
-  let s:shade4 = "#A2A2FF"
-  let s:shade5 = "#FF55FF"
-  let s:shade6 = "#55FFFF"
+  let s:shade0 = "#777777"
+  let s:shade1 = "#CE95CE"
+  let s:shade2 = "#BADBDB"
+  let s:shade3 = "#AAB9B6"
+  let s:shade4 = "#E3BFBD"
+  let s:shade5 = "#C85CC8"
+  let s:shade6 = "#9ABAEA"
   let s:shade7 = "#FFFFFF"
-  let s:accent0 = "#000000"
-  let s:accent1 = "#EE0E00"
-  let s:accent2 = "#00AA00"
-  let s:accent3 = "#AA5500"
-  let s:accent4 = "#3C3C75"
+  let s:accent0 = "#2A2B2A"
+  let s:accent1 = "#B259B2"
+  let s:accent2 = "#81BDBD"
+  let s:accent3 = "#7A918D"
+  let s:accent4 = "#CC8B86"
   let s:accent5 = "#AA00AA"
-  let s:accent6 = "#00AAAA"
-  let s:accent7 = "#CCCCCC"
+  let s:accent6 = "#6194DF"
+  let s:accent7 = "#F7F9F9"
   
   endif
   
