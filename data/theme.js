@@ -12,7 +12,7 @@ exports.colors = {
     shade0: "#2A2B2A",
     shade1: "#4E244E",
     shade2: "#81BDBD",
-    shade3: "#7A918D",
+    shade3: "#E0E6E5",
     shade4: "#CC8B86",
     shade5: "#AA00AA",
     shade6: "#6194DF",
