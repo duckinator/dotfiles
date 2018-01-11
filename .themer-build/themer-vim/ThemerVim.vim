@@ -4,7 +4,7 @@
   if &background == 'dark'
     
   let s:shade0 = "#2A2B2A"
-  let s:shade1 = "#B259B2"
+  let s:shade1 = "#4E244E"
   let s:shade2 = "#81BDBD"
   let s:shade3 = "#7A918D"
   let s:shade4 = "#CC8B86"
