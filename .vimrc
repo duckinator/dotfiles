@@ -107,32 +107,11 @@ nmap <C-n> :call NumberToggle()<CR>
 
 call plug#begin('~/.vim/plugged')
 
-" Far nicer modeline.
-" https://github.com/vim-airline/vim-airline
-Plug 'bling/vim-airline'
-set noshowmode
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#whitespace#enabled = 0
-
-" Run syntax checker for some files and tell you where there's an error.
-Plug 'scrooloose/syntastic'
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-
 " Show git diff information along the left side.
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git']
 let g:signify_sign_overwrite = 1
 let g:signify_sign_change = '~'
-
-" Auto-indentation and auto-inserting brackets/parens/quotes.
-" https://github.com/jiangmiao/auto-pairs
-Plug 'jiangmiao/auto-pairs'
-
-" Class outline viewer.
-" https://github.com/majutsushi/tagbar
-Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
 
 Plug 'programble/jellybeans.vim'
 
