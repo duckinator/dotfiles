@@ -6,7 +6,11 @@ exports.colors = {
     accent3: "#E2E7E6",
     accent4: "#E3BFBD",
     accent5: "#C85CC8",
+
+    /* vim: preprocessor stuff (e.g. #include in C.) */
     accent6: "#9ABAEA",
+
+    /* vim: types */
     accent7: "#FFFFFF",
 
     /* === */
