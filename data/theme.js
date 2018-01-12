@@ -6,11 +6,11 @@ exports.colors = {
     /* vim — ??? */
     accent1: "#CE95CE",
 
-    /* vim — identifiers */
+    /* vim — symbols in the "gutter" for git stuff */
     accent2: "#BADBDB",
 
-    /* vim — constants and symbols in the "gutter" for git stuff */
-    accent3:  "#E2E7E6",
+    /* vim — constants */
+    accent3: "#A2FAA3",
 
     /* vim — vim UI stuff, I think */
     accent4: "#E3BFBD",

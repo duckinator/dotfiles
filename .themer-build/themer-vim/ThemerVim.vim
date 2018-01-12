@@ -14,7 +14,7 @@
   let s:accent0 = "#777777"
   let s:accent1 = "#CE95CE"
   let s:accent2 = "#BADBDB"
-  let s:accent3 = "#E2E7E6"
+  let s:accent3 = "#A2FAA3"
   let s:accent4 = "#E3BFBD"
   let s:accent5 = "#C85CC8"
   let s:accent6 = "#9ABAEA"
