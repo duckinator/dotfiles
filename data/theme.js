@@ -1,5 +1,6 @@
 exports.colors = {
   dark: {
+    /* vim — ??? */
     accent0: "#777777",
 
     /* vim — ??? */
@@ -25,14 +26,21 @@ exports.colors = {
 
     /* === */
 
+    /* vim — background */
     shade0: "#2A2B2A",
+
+    /* vim — background for active line, mode line,
+     *       line showing the 80chr(?) boundary. */
     shade1: "#4E244E",
+
+    /* vim — text color for comments and line numbers;
+     *       background color for matching brackets, parenthesis, etc. */
     shade2: "#B9DADA",
 
     /* vim — line numbers. */
     shade3: "#E0E6E5",
 
-    /* vim — modeline. */
+    /* vim — modeline text. */
     shade4: "#EAD0CE",
 
     /* vim — ??? */
