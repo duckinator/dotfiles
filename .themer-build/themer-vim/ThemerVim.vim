@@ -18,7 +18,7 @@
   let s:accent4 = "#E3BFBD"
   let s:accent5 = "#C85CC8"
   let s:accent6 = "#9ABAEA"
-  let s:accent7 = "#FFFFFF"
+  let s:accent7 = "#AAA197"
   
   endif
   

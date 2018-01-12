@@ -22,7 +22,7 @@ exports.colors = {
     accent6: "#9ABAEA",
 
     /* vim — types */
-    accent7: "#FFFFFF",
+    accent7: "#AAA197",
 
     /* === */
 
