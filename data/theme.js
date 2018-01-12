@@ -9,13 +9,25 @@ exports.colors = {
     accent6: "#9ABAEA",
     accent7: "#FFFFFF",
 
+    /* === */
+
     shade0: "#2A2B2A",
     shade1: "#4E244E",
     shade2: "#B9DADA",
+
+    /* vim: line numbers. */
     shade3: "#E0E6E5",
+
+    /* vim: modeline. */
     shade4: "#EAD0CE",
+
+    /* vim: ??? */
     shade5: "#AA00AA",
+
+    /* vim: default text color. */
     shade6: "#6194DF",
+
+    /* vim: error messages and questions(???) */
     shade7: "#F7F9F9",
   },
 };
