@@ -75,16 +75,9 @@ nmap Y y$
 " Insert hard tab
 imap <S-tab> <C-v><tab>
 
-" Plugins
-
 call plug#begin('~/.vim/plugged')
 
-" Show git diff information along the left side.
 Plug 'mhinz/vim-signify'
-let g:signify_vcs_list = ['git']
-let g:signify_sign_overwrite = 1
-let g:signify_sign_change = '~'
-
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
