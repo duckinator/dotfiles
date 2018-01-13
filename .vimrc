@@ -22,9 +22,16 @@ set list
 set listchars=tab:»·,trail:·
 set laststatus=2
 set scrolloff=1000 " always center except at the top/bottom of files.
-set nospell
 set termguicolors
 syntax on
+
+set statusline+=%t      "tail of the filename
+set statusline+=\ %y    "filetype
+set statusline+=\ %m    "modified flag
+set statusline+=%=      "left/right separator
+set statusline+=%l,%c   "cursor column
+set statusline+=\ %P\   "percent through file
+set statusline+=%r      "read only flag
 
 " Jump to the last cursor position when opening
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
@@ -60,33 +67,14 @@ noremap \ ,
 let mapleader = ","
 
 nmap <leader>n :nohlsearch<CR>
-
-nmap <leader>s :set list!<CR>
-
-nmap <leader>z :set spell!<CR>
-
-nmap <leader>p "+p
-nmap <leader>P "+P
-nmap <leader>y "+y
-nmap <leader>Y "+Y
-nmap <leader>d "+d
-nmap <leader>D "+D
+nmap <leader>l :set list!<CR>
+nmap <leader>s :set spell!<CR>
+nmap <leader>r :set relativenumber!<CR>
 
 nmap Y y$
 
 " Insert hard tab
 imap <S-tab> <C-v><tab>
-
-" Toggle relative/absolute numbers
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
-
-nmap <C-n> :call NumberToggle()<CR>
 
 " Plugins
 
@@ -103,5 +91,4 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 set background=dark
-
 colo ThemerVim
