@@ -1,7 +1,6 @@
 set nocompatible
 
 set backspace=indent,eol,start
-set hidden
 set backup
 set history=50
 set ruler
@@ -12,7 +11,6 @@ set smartcase
 set autoindent
 set smartindent
 set number
-set spell
 set colorcolumn=75
 set title
 set shortmess=atI
@@ -22,29 +20,20 @@ set smarttab
 set hlsearch
 set list
 set listchars=tab:»·,trail:·
-set foldmethod=syntax
-set foldlevel=1000
 set laststatus=2
-set scrolloff=1
+set scrolloff=1000 " always center except at the top/bottom of files.
 set nospell
+set termguicolors
 syntax on
-
-" Enable mouse in terminals
-if has('mouse')
-  set mouse=a
-endif
 
 " Jump to the last cursor position when opening
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 
-au BufRead,BufNewFile *.styl setfiletype css
-
 " Default to 2-space indents, 4-character tabs
 set expandtab
 set shiftwidth=2
 set tabstop=4
-set shiftround
 filetype plugin indent on
 
 " Indentation exceptions
@@ -69,10 +58,6 @@ set wildignore=*.o,*.d,*~
 " Remap leader to ,
 noremap \ ,
 let mapleader = ","
-
-" Custom maps
-nnoremap ' `
-nnoremap ` '
 
 nmap <leader>n :nohlsearch<CR>
 
@@ -118,6 +103,5 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 set background=dark
-set termguicolors
 
 colo ThemerVim
