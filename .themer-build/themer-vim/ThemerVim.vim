@@ -5,20 +5,20 @@
     
   let s:shade0 = "#222222"
   let s:shade1 = "#333333"
-  let s:shade2 = "#ff5555"
+  let s:shade2 = "#bbbbbb"
   let s:shade3 = "#ffff55"
   let s:shade4 = "#a2a2ff"
   let s:shade5 = "#ff55ff"
-  let s:shade6 = "#55ffff"
-  let s:shade7 = "#ffffff"
+  let s:shade6 = "#ffffff"
+  let s:shade7 = "#55ffff"
   let s:accent0 = "#000000"
-  let s:accent1 = "#00aa00"
+  let s:accent1 = "#ff5555"
   let s:accent2 = "#aa5500"
   let s:accent3 = "#aa00aa"
   let s:accent4 = "#3c3c75"
   let s:accent5 = "#00aaaa"
   let s:accent6 = "#eee000"
-  let s:accent7 = "#cccccc"
+  let s:accent7 = "#00aa00"
   
   endif
   

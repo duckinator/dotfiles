@@ -3,21 +3,21 @@ var theme = {
   "author": "Ellen Dash <me@duckie.co>",
   "color": [
     "#000000", // vim — ?
-    "#00aa00", // vim — ?
+    "#ff5555", // vim — ?
     "#aa5500", // vim — ?
     "#aa00aa", // vim — constants.
     "#3c3c75", // vim — ?
     "#00aaaa", // vim — keywords.
     "#eee000", // vim — preprocessor.
-    "#cccccc", // vim — types.
+    "#00aa00", // vim — types.
     "#222222", // vim — background.
     "#333333", // vim — background for current line, modeline, line length vertical bar.
-    "#ff5555", // vim — comments, line numbers.
+    "#cccccc", // vim — comments, line numbers.
     "#ffff55", // vim — current line number.
     "#a2a2ff", // vim — modeline text.
     "#ff55ff", // vim — ?
-    "#55ffff", // vim — default text color.
-    "#ffffff", // vim — ?
+    "#ffffff", // vim — default text color.
+    "#55ffff", // vim — ?
   ],
 };
 
