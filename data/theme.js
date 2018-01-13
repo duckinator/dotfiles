@@ -1,55 +1,38 @@
-exports.colors = {
-  dark: {
-    /* vim — ??? */
-    accent0: "#777777",
+var theme = {
+  "name": "pupterm",
+  "author": "Ellen Dash <me@duckie.co>",
+  "color": [
+    "#000000", // rgb(  0,   0,   0)
+    "#00aa00", // rgb(  0, 170,   0)
+    "#aa5500", // rgb(170,  85,   0)
+    "#3c3c75", // rgb( 60,  60, 117)
+    "#aa00aa", // rgb(170,   0, 170)
+    "#00aaaa", // rgb(  0, 170, 170)
+    "#ee0e00", // rgb(238,  14,   0)
+    "#cccccc", // rgb(204, 204, 204)
 
-    /* vim — ??? */
-    accent1: "#CE95CE",
+    "#222222", // rgb( 85,  85,  85) // background
+//    "#55ff55", // rgb( 85, 255,  85)
 
-    /* vim — symbols in the "gutter" for git stuff */
-    accent2: "#BADBDB",
+    // vim — background for current line, modeline, line length vertical bar.
+    "#333333",
 
-    /* vim — constants */
-    accent3: "#A2FAA3",
-
-    /* vim — vim UI stuff, I think */
-    accent4: "#E3BFBD",
-
-    /* vim — keywords (if, else, return, etc.)  */
-    accent5: "#C85CC8",
-
-    /* vim — preprocessor stuff (e.g. #include in C.) */
-    accent6: "#9ABAEA",
-
-    /* vim — types */
-    accent7: "#AAA197",
-
-    /* === */
-
-    /* vim — background */
-    shade0: "#2A2B2A",
-
-    /* vim — background for active line, mode line,
-     *       line showing the 80chr(?) boundary. */
-    shade1: "#4E244E",
-
-    /* vim — text color for comments and line numbers;
-     *       background color for matching brackets, parenthesis, etc. */
-    shade2: "#B9DADA",
-
-    /* vim — line numbers. */
-    shade3: "#E0E6E5",
-
-    /* vim — modeline text. */
-    shade4: "#EAD0CE",
-
-    /* vim — ??? */
-    shade5: "#AA00AA",
-
-    /* vim — default text color. */
-    shade6: "#6194DF",
-
-    /* vim — error messages and questions(???) */
-    shade7: "#F7F9F9",
-  },
+    // ???
+    "#ff5555", // rgb(255,  85,  85)
+    "#ffff55", // rgb(255, 255,  85)
+    "#a2a2ff", // rgb(162, 162, 255)
+    "#ff55ff", // rgb(255,  85, 255)
+    "#55ffff", // rgb( 85, 255, 255)
+    "#ffffff", // rgb(255, 255, 255) // foreground?
+  ],
 };
+
+var colors = {};
+
+for(var i = 0; i <= 7; i++) {
+  colors["accent" + i] = theme.color[i];
+  colors["shade" + i]  = theme.color[8 + i];
+}
+
+exports.colors = {dark: colors};
+exports.theme = theme;
