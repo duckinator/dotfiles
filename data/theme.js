@@ -6,9 +6,9 @@ var theme = {
     "#ff5555", // vim — ?
     "#aa5500", // vim — ?
     "#aa00aa", // vim — constants.
-    "#3c3c75", // vim — ?
+    "#eee000", // vim — ?
     "#00aaaa", // vim — keywords.
-    "#eee000", // vim — preprocessor.
+    "#7d7dbc", // vim — preprocessor.
     "#00aa00", // vim — types.
     "#222222", // vim — background.
     "#333333", // vim — background for current line, modeline, line length vertical bar.
@@ -16,7 +16,7 @@ var theme = {
     "#ffff55", // vim — current line number.
     "#a2a2ff", // vim — modeline text.
     "#ff55ff", // vim — ?
-    "#ffffff", // vim — default text color.
+    "#fbbfff", // vim — default text color.
     "#55ffff", // vim — ?
   ],
 };
