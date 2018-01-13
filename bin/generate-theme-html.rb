@@ -2,7 +2,7 @@
 
 require 'json'
 
-colors = File.read('data/theme.js').split("\n").grep(/#/).map{|x| x.strip.gsub(',', '').split('"')[1..2] }
+colors = File.read('data/theme.js').split("\n").grep(/#/).map{|x| x.strip.sub(',', '').split('"')[1..2] }
 
 str = <<EOF
 <!DOCTYPE html>
