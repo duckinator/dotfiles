@@ -54,9 +54,11 @@ function up(idx) {
 function dump() {
   var str = [].slice.call(document.querySelectorAll('p')).map(function(p) {
     return ('"' + toHex(p.style.backgroundColor) + '", // ' + p.innerHTML.split("// ")[1]);
-  }).join("\\n  ");
+  }).join("\\n    ");
 
-  document.getElementById('colors').value = "[\\n  " + str + "\\n]";
+  var output = "  \\"color\\": [\\n    " + str + "\\n  ],";
+
+  document.getElementById('colors').value = 
 }
 
 setInterval(dump, 100);
