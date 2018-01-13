@@ -2,3 +2,4 @@
 .bundle/gems
 node_modules/
 package-lock.json
+theme.html
