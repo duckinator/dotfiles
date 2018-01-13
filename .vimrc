@@ -67,7 +67,6 @@ noremap \ ,
 let mapleader = ","
 
 nmap <leader>n :nohlsearch<CR>
-nmap <leader>l :set list!<CR>
 nmap <leader>s :set spell!<CR>
 nmap <leader>r :set relativenumber!<CR>
 
