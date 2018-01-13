@@ -21,7 +21,19 @@ textarea {
 }
 </style>
 <script>
-var colors = #{colors.map(&:first).to_json};
+function lpad(str, n, padding) {
+  for (var i = str.length; i < n; i++) {
+    str += padding;
+  }
+
+  return str;
+}
+
+function toHex(rgb) {
+  var parts = rgb.replace('rgb(', '').replace(')').split(',');
+  return "#" + parts.map(function (x) { return lpad(parseInt(x, 10).toString(16), 2, "0"); }).join("");
+}
+
 function up(idx) {
   var a = document.getElementById('el-' + idx);
   var b = document.getElementById('el-' + (idx - 1));
@@ -41,7 +53,7 @@ function up(idx) {
 
 function dump() {
   var str = [].slice.call(document.querySelectorAll('p')).map(function(p) {
-    return ('"' + p.style.backgroundColor + '", // ' + p.innerHTML.split("// ")[1]);
+    return ('"' + toHex(p.style.backgroundColor) + '", // ' + p.innerHTML.split("// ")[1]);
   }).join("\\n  ");
 
   document.getElementById('colors').value = "[\\n  " + str + "\\n];";
