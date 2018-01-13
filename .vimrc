@@ -13,7 +13,7 @@ set autoindent
 set smartindent
 set number
 set spell
-set colorcolumn=80
+set colorcolumn=75
 set title
 set shortmess=atI
 set visualbell t_vb=
