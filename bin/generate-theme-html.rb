@@ -16,12 +16,8 @@ textarea {
   top: 0px;
   bottom: 0px;
   right: 0px;
-  width: 10em;
+  width: 60ch;
   height: 100%;
-}
-
-textarea:hover, textarea:focus {
-  width: 50%;
 }
 </style>
 <script>
