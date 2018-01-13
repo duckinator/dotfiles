@@ -13,7 +13,7 @@ set smartindent
 set number
 set colorcolumn=75
 set title
-set shortmess=atI
+set shortmess=I
 set visualbell t_vb=
 set cursorline
 set smarttab
