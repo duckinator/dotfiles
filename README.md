@@ -4,14 +4,15 @@ My configuration files.
 
 ## Color themes
 
-Color themes generated with [themer](https://github.com/mjswensen/themer). See `bin/generate-themes.sh`.
+Color themes generated with [themer](https://github.com/mjswensen/themer). See `bin/generate-theme.sh`.
 
 ## Configurations
 
+* bundler
 * fish
 * git
-* bundler
-* Weston (Wayland compositor)
-* X Compose Key
-* Xmodmap
+* npm
+* pip
+* rubygems
 * vim
+* xmodmap
