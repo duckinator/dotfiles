@@ -11,11 +11,10 @@ var theme = {
     "#ee0e00", // rgb(238,  14,   0)
     "#cccccc", // rgb(204, 204, 204)
 
-    "#222222", // rgb( 85,  85,  85) // background
+    "#222222", // background
 //    "#55ff55", // rgb( 85, 255,  85)
-
-    // vim — background for current line, modeline, line length vertical bar.
-    "#333333",
+    
+    "#333333", // vim — background for current line, modeline, line length vertical bar.
 
     // ???
     "#ff5555", // rgb(255,  85,  85)
@@ -23,7 +22,7 @@ var theme = {
     "#a2a2ff", // rgb(162, 162, 255)
     "#ff55ff", // rgb(255,  85, 255)
     "#55ffff", // rgb( 85, 255, 255)
-    "#ffffff", // rgb(255, 255, 255) // foreground?
+    "#ffffff", // foreground?
   ],
 };
 
