@@ -10,6 +10,19 @@ str = <<EOF
 <style>p{margin:0;padding: 0.25em;font: 22pt awoof;}
 .ui-draggable-dragging{z-index:100;}
 button { margin-top: -0.25em; vertical-align: middle; height: 22pt; }
+textarea {
+  position: absolute;
+  display: block;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 10em;
+  height: 100%;
+}
+
+textarea:hover, textarea:focus {
+  width: 50%;
+}
 </style>
 <script>
 var colors = #{colors.map(&:first).to_json};
@@ -46,6 +59,6 @@ colors.each_with_index.map {|x, idx|
   str += "<p id='el-#{idx}' style='background-color: #{x[0]};'><button onclick='up(#{idx})'>^</button><button onclick='up(#{idx} + 1)'>v</button> <span id='t-#{idx}'>#{x[0]}</span> #{x[1]}</p>\n"
 }
 
-str += "<textarea id='colors' style='width: 80em; height: 20em'></textarea>"
+str += "<textarea id='colors'></textarea>"
 
 File.write("theme.html", str.strip)
