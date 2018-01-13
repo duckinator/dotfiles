@@ -56,9 +56,7 @@ function dump() {
     return ('"' + toHex(p.style.backgroundColor) + '", // ' + p.innerHTML.split("// ")[1]);
   }).join("\\n    ");
 
-  var output = "  \\"color\\": [\\n    " + str + "\\n  ],";
-
-  document.getElementById('colors').value = 
+  document.getElementById('colors').value = "  \\"color\\": [\\n    " + str + "\\n  ],";
 }
 
 setInterval(dump, 100);
