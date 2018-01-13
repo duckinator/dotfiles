@@ -14,10 +14,10 @@
   let s:accent0 = "#000000"
   let s:accent1 = "#00aa00"
   let s:accent2 = "#aa5500"
-  let s:accent3 = "#3c3c75"
-  let s:accent4 = "#aa00aa"
+  let s:accent3 = "#aa00aa"
+  let s:accent4 = "#3c3c75"
   let s:accent5 = "#00aaaa"
-  let s:accent6 = "#ee0e00"
+  let s:accent6 = "#eee000"
   let s:accent7 = "#cccccc"
   
   endif
