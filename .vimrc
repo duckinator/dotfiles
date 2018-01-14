@@ -97,8 +97,9 @@ def section_config(items):
 def add_section(section):
     command = section_config(list(section.items()))
     if len(command) > 0:
-        command_str = "au BufReadPost,BufNewFile " + section.name + " set " + " ".join(command)
-        vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
+      return "au BufReadPost,BufNewFile " + section.name + " set " + " ".join(command)
+    else:
+      return ""
 
 def load_editorconfig_for(path):
     config = os.path.join(path, ".editorconfig")
@@ -106,7 +107,9 @@ def load_editorconfig_for(path):
         return
     parser = SafeConfigParser()
     parser.read(config)
-    list(map(add_section, parser.values()))
+    commands = map(add_section, parser.values())
+    for command in commands:
+        vim.eval("execute(\"{}\")".format(command.replace('"', '\\"')))
 
 def load_editorconfig():
     command = "git rev-parse --show-toplevel"
