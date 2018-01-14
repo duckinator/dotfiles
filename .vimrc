@@ -123,6 +123,7 @@ def load_editorconfig():
 load_editorconfig()
 EOF
 endfunction
+nmap <leader>e :call LoadEditorconfig()<CR>
 
 call plug#begin('~/.vim/plugged')
 
