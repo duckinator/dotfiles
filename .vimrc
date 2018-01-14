@@ -83,8 +83,8 @@ import os
 import vim
 
 def section_config(items):
+    command = []
     for (k, v) in items:
-        command = []
         if k == "indent_style":
             if v == "space":
                 command.append("expandtab")
@@ -94,10 +94,10 @@ def section_config(items):
             command.append("shiftwidth=" + v)
     return command
 
-def add_section(section_name, items):
-    command = section_config(items)
+def add_section(section):
+    command = section_config(list(section.items()))
     if len(command) > 0:
-        command_str = "au BufReadPost,BufNewFile " + section_name + " set " + " ".join(command)
+        command_str = "au BufReadPost,BufNewFile " + section.name + " set " + " ".join(command)
         vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
 
 def load_editorconfig_for(path):
@@ -106,8 +106,7 @@ def load_editorconfig_for(path):
         return
     parser = SafeConfigParser()
     parser.read(config)
-    for section_name in parser.sections():
-        add_section(section_name, parser.items(section_name))
+    list(map(add_section, parser.values()))
 
 def load_editorconfig():
     command = "git rev-parse --show-toplevel"
