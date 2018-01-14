@@ -94,7 +94,7 @@ def section_config(items):
             command.append("shiftwidth=" + v)
     return command
 
-def try_section(section_name, items):
+def add_section(section_name, items):
     command = section_config(items)
     if len(command) > 0:
         command_str = "au BufReadPost,BufNewFile " + section_name + " set " + " ".join(command)
@@ -107,7 +107,7 @@ def load_editorconfig_for(dir):
     parser = SafeConfigParser()
     parser.read(config)
     for section_name in parser.sections():
-        try_section(section_name, parser.items(section_name))
+        add_section(section_name, parser.items(section_name))
 
 def load_editorconfig():
     command = "git rev-parse --show-toplevel"
