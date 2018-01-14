@@ -113,7 +113,7 @@ def load_editorconfig():
     command = "git rev-parse --show-toplevel"
     result = subprocess.getoutput(command).strip()
     if not result.startswith("fatal:"):
-      load_editorconfig_for(result)
+        load_editorconfig_for(result)
 
 load_editorconfig()
 EOF
