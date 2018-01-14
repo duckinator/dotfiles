@@ -75,6 +75,49 @@ nmap Y y$
 " Insert hard tab
 imap <S-tab> <C-v><tab>
 
+function! LoadEditorconfig()
+python3 << EOF
+from configparser import SafeConfigParser
+import subprocess
+import os
+import vim
+
+def try_section(section, items):
+    for (k, v) in items:
+        command = []
+        if k == "indent_style":
+            if v == "space":
+                command.append("expandtab")
+            elif v == "tab":
+                command.append("noexpandtab")
+        if k == "indent_size":
+            command.append("shiftwidth=" + v)
+        if len(command) > 0:
+            command_str = "au BufReadPost,BufNewFile " + section + " set " + " ".join(command)
+            vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
+
+def load_editorconfig(git_dir):
+    if git_dir is None:
+      return
+    config = os.path.join(git_dir, ".editorconfig")
+    if os.path.isfile(config):
+        parser = SafeConfigParser()
+        parser.read(config)
+        for section_name in parser.sections():
+            try_section(section_name, parser.items(section_name))
+
+def git_root_dir():
+    command = "git rev-parse --show-toplevel"
+    result = subprocess.getoutput(command).strip()
+    if result.startswith("fatal:"):
+      return None
+    else:
+      return result
+
+load_editorconfig(git_root_dir())
+EOF
+endfunction
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'mhinz/vim-signify'
