@@ -97,11 +97,8 @@ def config_item(t):
     else:
         return None
 
-def config_section(items):
-    return reject_none(map(config_item, items))
-
 def add_section(section):
-    command = list(config_section(section.items()))
+    command = list(reject_none(map(config_item, section.items())))
     if len(command) > 0:
       return "au BufReadPost,BufNewFile " + section.name + " set " + " ".join(command)
     else:
