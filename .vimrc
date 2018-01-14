@@ -82,24 +82,30 @@ import subprocess
 import os
 import vim
 
-def section_config(items):
-    command = []
-    for (k, v) in items:
-        if k == "indent_style":
-            if v == "space":
-                command.append("expandtab")
-            elif v == "tab":
-                command.append("noexpandtab")
-        if k == "indent_size":
-            command.append("shiftwidth=" + v)
-    return command
+def reject_none(items):
+    return filter(lambda x: not x is None, items)
+
+def config_item(t):
+    (k, v) = t
+    if k == "indent_size":
+        return "shiftwidth=" + v
+    elif k == "indent_style":
+        if v == "space":
+            return "expandtab"
+        else:
+            return "noexpandttab"
+    else:
+        return None
+
+def config_section(items):
+    return reject_none(map(config_item, items))
 
 def add_section(section):
-    command = section_config(list(section.items()))
+    command = list(config_section(section.items()))
     if len(command) > 0:
       return "au BufReadPost,BufNewFile " + section.name + " set " + " ".join(command)
     else:
-      return ""
+      return None
 
 def load_editorconfig_for(path):
     config = os.path.join(path, ".editorconfig")
@@ -107,7 +113,7 @@ def load_editorconfig_for(path):
         return
     parser = SafeConfigParser()
     parser.read(config)
-    commands = map(add_section, parser.values())
+    commands = reject_none(map(add_section, parser.values()))
     for command in commands:
         vim.eval("execute(\"{}\")".format(command.replace('"', '\\"')))
 
