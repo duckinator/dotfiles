@@ -96,25 +96,22 @@ def try_section(section, items):
             command_str = "au BufReadPost,BufNewFile " + section + " set " + " ".join(command)
             vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
 
-def load_editorconfig(git_dir):
-    if git_dir is None:
-      return
-    config = os.path.join(git_dir, ".editorconfig")
-    if os.path.isfile(config):
-        parser = SafeConfigParser()
-        parser.read(config)
-        for section_name in parser.sections():
-            try_section(section_name, parser.items(section_name))
+def load_editorconfig_for(dir):
+    config = os.path.join(dir, ".editorconfig")
+    if not os.path.isfile(config):
+        return
+    parser = SafeConfigParser()
+    parser.read(config)
+    for section_name in parser.sections():
+        try_section(section_name, parser.items(section_name))
 
-def git_root_dir():
+def load_editorconfig():
     command = "git rev-parse --show-toplevel"
     result = subprocess.getoutput(command).strip()
-    if result.startswith("fatal:"):
-      return None
-    else:
-      return result
+    if not result.startswith("fatal:"):
+      load_editorconfig_for(result)
 
-load_editorconfig(git_root_dir())
+load_editorconfig()
 EOF
 endfunction
 
