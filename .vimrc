@@ -100,8 +100,8 @@ def add_section(section_name, items):
         command_str = "au BufReadPost,BufNewFile " + section_name + " set " + " ".join(command)
         vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
 
-def load_editorconfig_for(dir):
-    config = os.path.join(dir, ".editorconfig")
+def load_editorconfig_for(path):
+    config = os.path.join(path, ".editorconfig")
     if not os.path.isfile(config):
         return
     parser = SafeConfigParser()
