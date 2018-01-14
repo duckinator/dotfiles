@@ -82,7 +82,7 @@ import subprocess
 import os
 import vim
 
-def try_section(section, items):
+def section_config(items):
     for (k, v) in items:
         command = []
         if k == "indent_style":
@@ -92,9 +92,13 @@ def try_section(section, items):
                 command.append("noexpandtab")
         if k == "indent_size":
             command.append("shiftwidth=" + v)
-        if len(command) > 0:
-            command_str = "au BufReadPost,BufNewFile " + section + " set " + " ".join(command)
-            vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
+    return command
+
+def try_section(section_name, items):
+    command = section_config(items)
+    if len(command) > 0:
+        command_str = "au BufReadPost,BufNewFile " + section_name + " set " + " ".join(command)
+        vim.eval("execute(\"{}\")".format(command_str.replace('"', '\\"')))
 
 def load_editorconfig_for(dir):
     config = os.path.join(dir, ".editorconfig")
