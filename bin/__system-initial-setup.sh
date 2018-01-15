@@ -1,21 +1,31 @@
 #!/bin/bash
 
-COMMON_PACKAGES="git fish htop ruby neovim tree xfce4-terminal hexchat firefox"
-
 if [ -n "$(which pacman 2>/dev/null)" ]; then
-  sudo su -c "\
-    pacman -Syyu && \
-    pacman -S $COMMON_PACKAGES python-neovim pacaur base-devel" || exit 1
+  package_manager=pacman
+  _python3=python
 elif [ -n "$(which dnf 2>/dev/null)" ]; then
-  sudo su -c "\
-    dnf -y update && \
-    dnf -y install $COMMON_PACKAGES python3-neovim && \
-    dnf groupinstall 'Development Tools'" || exit 1
+  package_manager=dnf
+  _python3=python3
 else
   echo "Not sure what distro this is! Exiting!"
   echo "(Currently supports Manjaro and Fedora.)"
   exit 1
 fi
+
+BASE_DEVEL="binutils gawk grep gzip make patch pkg-config sed sudo util-linux which"
+COMMON_PACKAGES="git fish htop ruby neovim ${_python3}-neovim tree xfce4-terminal hexchat firefox docker"
+
+PACKAGES="${BASE_DEVEL} ${COMMON_PACKAGES}"
+
+case $package_manager in
+pacman)
+  sudo pacman -Syyu &&
+    sudo pacman -S $PACKAGES pacaur || exit 1
+  ;;
+dnf)
+  sudo dnf -y update &&
+    sudo dnf -y install $PACKAGES || exit 1
+esac
 
 if ! [ -d "$HOME/dotfiles" ]; then
   pushd $HOME && \
