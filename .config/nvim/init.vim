@@ -75,6 +75,9 @@ nmap Y y$
 " Insert hard tab
 imap <S-tab> <C-v><tab>
 
+let dein_install_dir = "~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/"
+call system("bash -c 'test -f ".dein_install_dir." || mkdir -p ".dein_install_dir." && git clone https://github.com/Shougo/dein.vim ".dein_install_dir."'")
+
 function! LoadEditorconfig()
 python3 << EOF
 from configparser import SafeConfigParser
