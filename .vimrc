@@ -125,12 +125,23 @@ EOF
 endfunction
 nmap <leader>e :call LoadEditorconfig()<CR>
 
-call plug#begin('~/.vim/plugged')
+set runtimepath+=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/
+if dein#load_state('~/.config/nvim/bundle')
+  call dein#begin('~/.config/nvim/bundle')
+  call dein#add('~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/')
 
-Plug 'mhinz/vim-signify'
-Plug 'rust-lang/rust.vim'
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('mhinz/vim-signify')
+  call dein#add('rust-lang/rust.vim')
 
-call plug#end()
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
 
 set background=dark
 colo ThemerVim
+syntax on
