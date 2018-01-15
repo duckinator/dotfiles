@@ -10,7 +10,7 @@ var theme = {
     "#00aaaa", // vim — keywords.
     "#7d7dbc", // vim — preprocessor.
     "#00aa00", // vim — types.
-    "#222222", // vim — background.
+    "#211122", // vim — background.
     "#333333", // vim — background for current line, modeline, line length vertical bar.
     "#cccccc", // vim — comments, line numbers.
     "#ffff55", // vim — current line number.

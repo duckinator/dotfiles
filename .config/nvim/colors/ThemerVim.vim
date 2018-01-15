@@ -3,7 +3,7 @@
   
   if &background == 'dark'
     
-  let s:shade0 = "#222222"
+  let s:shade0 = "#211122"
   let s:shade1 = "#333333"
   let s:shade2 = "#cccccc"
   let s:shade3 = "#ffff55"
