@@ -32,6 +32,7 @@ if ! [ -d "$HOME/dotfiles" ]; then
     git clone https://github.com/duckinator/dotfiles.git && \
     pushd dotfiles && \
       gem install -r effuse && \
+      effuse -c && \
       effuse
     popd
   popd
