@@ -20,8 +20,11 @@ end
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$RUBY_PATHS:$PATH"
 set -e RUBY_PATHS
 
-export EDITOR=vim
-if not which vim >/dev/null
+if which nvim >/dev/null
+  export EDITOR=nvim
+else if which vim >/dev/null
+  export EDITOR=vim
+else
   export EDITOR=nano
 end
 
