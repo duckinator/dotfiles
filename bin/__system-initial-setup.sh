@@ -1,17 +1,15 @@
 #!/bin/bash
 
-DEFAULT_PACKAGES="git zsh htop vim pacaur tree base-devel"
-
-COMMON_PACKAGES="git fish htop ruby vim tree xfce4-terminal hexchat firefox"
+COMMON_PACKAGES="git fish htop ruby neovim tree xfce4-terminal hexchat firefox"
 
 if [ -n "$(which pacman 2>/dev/null)" ]; then
   sudo su -c "\
     pacman -Syyu && \
-    pacman -S $COMMON_PACKAGES pacaur base-devel" || exit 1
+    pacman -S $COMMON_PACKAGES python-neovim pacaur base-devel" || exit 1
 elif [ -n "$(which dnf 2>/dev/null)" ]; then
   sudo su -c "\
     dnf -y update && \
-    dnf -y install $COMMON_PACKAGES && \
+    dnf -y install $COMMON_PACKAGES python3-neovim && \
     dnf groupinstall 'Development Tools'" || exit 1
 else
   echo "Not sure what distro this is! Exiting!"
