@@ -1,0 +1,16 @@
+---
+- hosts: freebsd-desktop
+  strategy: debug
+  remote_user: setup
+  become: yes
+  become_method: sudo
+  gather_facts: no # Do it ourselves in freebsd-common.
+  roles:
+    - freeebsd-common
+    - user-accounts
+  vars:
+    dist_codename: freebsd
+    reboot_after_update: true
+    createusers:
+      - pup
+

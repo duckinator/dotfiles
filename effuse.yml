@@ -3,3 +3,4 @@ exclude:
   - setup.sh
   - vim-plug.sh
   - node_modules
+  - ansible
