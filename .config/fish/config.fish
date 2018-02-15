@@ -92,7 +92,7 @@ end
 
 # -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
 if test -z "$DISABLE_FANCY_LS"
-    and command ls --version | grep GNU >/dev/null ^/dev/null
+    and command ls --version ^/dev/null | grep GNU >/dev/null ^/dev/null
   alias ls='ls --color=auto --group-directories-first -p'
 else
   alias ls='ls -p'
