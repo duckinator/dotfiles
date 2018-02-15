@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ "$(uname)" = "FreeBSD" ]; then
+  sudo pkg install sudo git fish htop ruby neovim tree xfce xorg hexchat firefox || exit 1
+  sudo pkg install $(ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems  || exit 1
+
+  # TODO: docker-machine?
+
+  exit
+fi
+
 if [ -n "$(which pacman 2>/dev/null)" ]; then
   package_manager=pacman
   _python3=python
