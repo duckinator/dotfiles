@@ -91,9 +91,12 @@ end
 
 
 # -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
-if test -z "$DISABLE_FANCY_LS"
-    and command ls --version ^/dev/null | grep GNU >/dev/null ^/dev/null
+if test -n "$DISABLE_FANCY_LS"
+  # Do nothing.
+elsif command ls --version ^/dev/null | grep GNU >/dev/null ^/dev/null
   alias ls='ls --color=auto --group-directories-first -p'
+elsif test (uname) = FreeBSD
+  alias ls='ls -p -F -G'
 else
   alias ls='ls -p'
 end
