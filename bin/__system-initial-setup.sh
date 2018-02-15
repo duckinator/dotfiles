@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ "$(uname)" = "FreeBSD" ]; then
   sudo pkg install sudo git fish htop ruby neovim tree xfce xorg hexchat firefox || exit 1

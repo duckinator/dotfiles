@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 filename="$@"
 code="#include <unistd.h>\r\nint main(){while(1){sleep(100);} return 0;}\r\n"
