@@ -1,3 +1,8 @@
+- name: Copy sudo config
+  copy:
+    src: roles/user-accounts/files
+    dest: /
+
 - name: Adding users
   user:
     name: "{{ item }}"
