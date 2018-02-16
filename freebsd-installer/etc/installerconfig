@@ -1,5 +1,6 @@
 PARTITIONS=ada0
 DISTRIBUTIONS="kernel.txz base.txz"
+export nonInteractive="YES"
 
 #!/bin/sh
 
@@ -7,4 +8,6 @@ echo "ifconfig_em0=DHCP" >> /etc/rc.conf
 echo "ntpd_enable=YES"   >> /etc/rc.conf
 echo "sshd_enable=YES"   >> /etc/rc.conf
 
+pkg update && \
+pkg upgrade && \
 pkg install python3
