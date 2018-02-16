@@ -18,7 +18,7 @@ ${CUSTOM_ISO}: downloads/${ORIGINAL_ISO}
 	cp -r ro-workdir workdir && \
 	umount ./ro-workdir && rmdir ro-workdir
 	cp etc/* ./workdir/etc
-	cp -r ../ansible ./workdir/tmp/system-config-ansible
+	cp -r ../ansible ./workdir/system-config-ansible
 	mkisofs -J -R -no-emul-boot -V "$(shell ./get-iso-title.sh downloads/${ORIGINAL_ISO})" -p "duckinator" -b boot/cdboot -o ${CUSTOM_ISO} ./workdir
 
 downloads/${ORIGINAL_ISO}:

@@ -6,7 +6,7 @@
   setup:
 
 - name: Install common packages
-  raw: yes | sudo pkg install {{ item }}
+  raw: yes | pkg install {{ item }}
   #    name: "{{ item }}"
   #    state: "present"
   with_items:
