@@ -1,8 +1,6 @@
 PARTITIONS=ada0
 DISTRIBUTIONS="kernel.txz base.txz"
 
-cp -r /system-config-ansible /mnt/system-config-ansible
-
 #!/bin/sh
 
 echo "ifconfig_em0=DHCP" >> /etc/rc.conf
@@ -11,9 +9,12 @@ echo "sshd_enable=YES"   >> /etc/rc.conf
 
 export ALWAYS_ASSUME_YES="yes"
 
-dhclient em0 && \
+dhclient em0
 pkg update && \
 pkg upgrade && \
-pkg install ansible python3 &&
-cd /tmp/system-config-ansible && \
-ansible-playbook freebsd-desktop.yml
+pkg install ansible python3 git && \
+cd /tmp && \
+git clone https://github.com/duckinator/dotfiles.git system-config && \
+cd /tmp/system-config/ansible && \
+ansible-playbook freebsd-desktop.yml && \
+rm -rf /tmp/system-config

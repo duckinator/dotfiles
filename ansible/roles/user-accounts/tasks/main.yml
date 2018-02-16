@@ -23,12 +23,12 @@
 
 - name: Expiring Passwords for new users (Linux)
   command: "passwd -d -e {{ item.item.key }}"
-  when: item|changed
+  #when: item|changed
   with_items: "{{ users.results }}"
   when: not dist_codename | search("bsd")
 
 - name: Expiring Passwords for new users (FreeBSD)
-  command: "pw usermod {{ item.item.key }} -p -1"
-  when: item|changed
+  command: "pw usermod {{ item.item }} -p -1"
+  #when: item|changed
   with_items: "{{ users.results }}"
   when: dist_codename | search("freebsd")
