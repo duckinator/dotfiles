@@ -14,13 +14,9 @@ iso: ${CUSTOM_ISO}
 
 ${CUSTOM_ISO}: downloads/${ORIGINAL_ISO}
 	mkdir -p workdir
-	cd workdir
-	pwd
-	exit 1
-	7z x ../downloads/${ORIGINAL_ISO}
-	cp ../etc/* ./etc
-	cd ..
-	mkisofs -J -R -no-emul-boot -V "$(./get-iso-title downloads/${ORIGINAL_ISO})" -p "duckinator" -b boot/cdboot -o ${CUSTOM_ISO} ./workdir
+	cd workdir && 7z x ../downloads/${ORIGINAL_ISO}
+	cp etc/* ./workdir/etc
+	mkisofs -J -R -no-emul-boot -V "$(shell ./get-iso-title.sh downloads/${ORIGINAL_ISO})" -p "duckinator" -b boot/cdboot -o ${CUSTOM_ISO} ./workdir
 
 downloads/${ORIGINAL_ISO}:
 	wget "https://download.freebsd.org/ftp/releases/${ARCH}/${ARCH}/ISO-IMAGES/${FREEBSD_VERSION}/${ORIGINAL_ISO}" -O downloads/${ORIGINAL_ISO}
