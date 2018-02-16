@@ -1,6 +1,5 @@
 exclude:
   - README.md
-  - setup.sh
-  - vim-plug.sh
-  - node_modules
   - ansible
+  - data
+  - node_modules
