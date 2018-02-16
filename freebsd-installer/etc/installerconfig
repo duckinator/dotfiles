@@ -8,6 +8,11 @@ echo "ifconfig_em0=DHCP" >> /etc/rc.conf
 echo "ntpd_enable=YES"   >> /etc/rc.conf
 echo "sshd_enable=YES"   >> /etc/rc.conf
 
+dhclient em0 && \
 pkg update && \
 pkg upgrade && \
-pkg install python3
+pkg install ansible python3 &&
+cd /tmp/system-config-ansible && \
+ansible-playbook freebsd-desktop.yml && \
+cd / && \
+rm -rf /tmp/system-config-ansible
