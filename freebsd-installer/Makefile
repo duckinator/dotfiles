@@ -13,8 +13,10 @@ CUSTOM_ISO := ${ISO_FILENAME_PREFIX}-duckinator.iso
 iso: ${CUSTOM_ISO}
 
 ${CUSTOM_ISO}: downloads/${ORIGINAL_ISO}
-	mkdir -p workdir
-	cd workdir && 7z x ../downloads/${ORIGINAL_ISO}
+	mkdir -p ro-workdir
+	mount -o loop -t iso9660 downloads/${ORIGINAL_ISO} ./ro-workdir && \
+	cp -r ro-workdir workdir && \
+	umount ./ro-workdir && rmdir ro-workdir
 	cp etc/* ./workdir/etc
 	mkisofs -J -R -no-emul-boot -V "$(shell ./get-iso-title.sh downloads/${ORIGINAL_ISO})" -p "duckinator" -b boot/cdboot -o ${CUSTOM_ISO} ./workdir
 
