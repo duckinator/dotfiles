@@ -1,6 +1,6 @@
 PARTITIONS=ada0
 DISTRIBUTIONS="kernel.txz base.txz"
-export nonInteractive="YES"
+export ALWAYS_ASSUME_YES="yes"
 
 #!/bin/sh
 
@@ -11,8 +11,10 @@ echo "sshd_enable=YES"   >> /etc/rc.conf
 dhclient em0 && \
 pkg update && \
 pkg upgrade && \
-pkg install ansible python3 &&
-cd /tmp/system-config-ansible && \
+pkg install ansible python3 git &&
+cd /tmp && \
+git clone git://github.com/duckinator/dotfiles.git system-config && \
+cd system-config/ansible && \
 ansible-playbook freebsd-desktop.yml && \
 cd / && \
-rm -rf /tmp/system-config-ansible
+rm -rf /tmp/system-config
