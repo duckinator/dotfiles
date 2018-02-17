@@ -16,6 +16,4 @@ pkg upgrade && \
 pkg install ansible git && \
 cd /tmp && \
 git clone https://github.com/duckinator/dotfiles.git system-config && \
-cd /tmp/system-config/ansible #&& \
-#ansible-playbook -i localhost freebsd-desktop.yml && \
-#rm -rf /tmp/system-config
+/tmp/system-config/bin/system-setup
