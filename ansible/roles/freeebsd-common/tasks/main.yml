@@ -23,3 +23,8 @@
   shell: "pkg install $(/usr/local/bin/ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems"
   environment:
     ASSUME_ALWAYS_YES: "yes"
+
+- name: Reboot server
+  shell: "sleep 5 && shutdown -r now"
+  async: 10
+  poll: 0

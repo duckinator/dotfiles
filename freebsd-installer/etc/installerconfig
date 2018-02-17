@@ -10,6 +10,16 @@ echo "sshd_enable=YES"   >> /etc/rc.conf
 export ASSUME_ALWAYS_YES="yes"
 ansible_python_interpreter=python2.7
 
+# For some reason it shows an error dialog even though nothing is wrong...?
+sleep 5
+clear
+
+echo "==============================================================================="
+echo "Automagical FreeBSD installation."
+echo "==============================================================================="
+echo
+echo
+
 dhclient em0
 pkg update && \
 pkg upgrade && \
