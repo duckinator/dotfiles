@@ -1,3 +1,6 @@
+- name: (Workaround for text misalignment bug.)
+  command: echo
+
 - name: Install common packages
   #raw: yes | pkg install {{ item }}
   pkgng:
