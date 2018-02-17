@@ -20,4 +20,4 @@
 # There's no ruby-gems metapackage, only ruby<version>-gems, so we have to
 # do some gross, hacky garbage to install rubygems automagically.
 - name: Install rubygems.
-  shell: "pkg install $(ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems"
+  shell: "pkg install $(/usr/local/bin/ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems"
