@@ -14,6 +14,6 @@ dhclient em0
 pkg update && \
 pkg upgrade && \
 pkg install ansible git && \
-cd /tmp && \
-git clone https://github.com/duckinator/dotfiles.git system-config && \
-/tmp/system-config/bin/system-setup
+/usr/local/bin/git clone https://github.com/duckinator/dotfiles.git /tmp/system-config && \
+cd /tmp/system-config/ansible/ && \
+/usr/local/bin/ansible-playbook -i localhost freebsd-desktop.yml &> /tmp/log
