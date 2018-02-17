@@ -11,12 +11,11 @@ export ASSUME_ALWAYS_YES="yes"
 ansible_python_interpreter=python2.7
 
 dhclient em0
+pkg update && \
+pkg upgrade && \
 pkg install ansible git && \
-#pkg update && \
-#pkg upgrade && \
-#pkg install ansible python3 git && \
 cd /tmp && \
 git clone https://github.com/duckinator/dotfiles.git system-config && \
-cd /tmp/system-config/ansible && \
-ansible-playbook -i localhost freebsd-desktop.yml && \
-rm -rf /tmp/system-config
+cd /tmp/system-config/ansible #&& \
+#ansible-playbook -i localhost freebsd-desktop.yml && \
+#rm -rf /tmp/system-config

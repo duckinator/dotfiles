@@ -1,14 +1,8 @@
-#- name: Install Python
-#  raw: sudo pkg install python3
-
-  # Now that we're actually able to, gather facts.
-- name: Gathering facts
-  setup:
-
 - name: Install common packages
-  raw: yes | pkg install {{ item }}
-  #    name: "{{ item }}"
-  #    state: "present"
+  #raw: yes | pkg install {{ item }}
+  pkgng:
+      name: "{{ item }}"
+      state: "present"
   with_items:
     - sudo
     - git
@@ -22,3 +16,8 @@
     - xorg
     - hexchat
     - firefox
+
+# There's no ruby-gems metapackage, only ruby<version>-gems, so we have to
+# do some gross, hacky garbage to install rubygems automagically.
+- name: Install rubygems.
+  command: "pkg install $(ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems"
