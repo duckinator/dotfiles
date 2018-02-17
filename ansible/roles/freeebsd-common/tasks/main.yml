@@ -21,3 +21,5 @@
 # do some gross, hacky garbage to install rubygems automagically.
 - name: Install rubygems.
   shell: "pkg install $(/usr/local/bin/ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems"
+  environment:
+    ASSUME_ALWAYS_YES: "yes"
