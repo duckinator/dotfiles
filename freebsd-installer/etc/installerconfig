@@ -16,4 +16,5 @@ pkg upgrade && \
 pkg install ansible git && \
 /usr/local/bin/git clone https://github.com/duckinator/dotfiles.git /tmp/system-config && \
 cd /tmp/system-config/ansible/ && \
-/usr/local/bin/ansible-playbook -i localhost freebsd-desktop.yml
+/usr/local/bin/ansible-playbook -i localhost freebsd-desktop.yml && \
+echo && echo "Rebooting." && shutdown -r "+5s" && sleep 5

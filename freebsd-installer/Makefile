@@ -19,7 +19,6 @@ ${CUSTOM_ISO}: downloads/${ORIGINAL_ISO}
 	umount ./ro-workdir && rmdir ro-workdir
 	cp etc/* ./workdir/etc
 	cp -r ../ansible ./workdir/system-config-ansible
-	sed -i"" "s/^# END/echo; echo 'Rebooting in 10 seconds.'; shutdown -r +10s # END/" ./workdir/usr/sbin/bsdinstall
 	mkisofs -J -R -no-emul-boot -V "$(shell ./get-iso-title.sh downloads/${ORIGINAL_ISO})" -p "duckinator" -b boot/cdboot -o ${CUSTOM_ISO} ./workdir
 
 downloads/${ORIGINAL_ISO}:
