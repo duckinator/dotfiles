@@ -19,7 +19,7 @@ ${CUSTOM_ISO}: downloads/${ORIGINAL_ISO}
 	umount ./ro-workdir && rmdir ro-workdir
 	cp etc/* ./workdir/etc
 	cp -r ../ansible ./workdir/system-config-ansible
-	sed -i"" "s/^# END/shutdown -r 10s; cdcontrol eject; sleep 10; # END/" ./workdir/usr/sbin/bsdinstall
+	sed -i"" "s/^# END/shutdown -r +10s; cdcontrol eject; sleep 10; # END/" ./workdir/usr/sbin/bsdinstall
 	mkisofs -J -R -no-emul-boot -V "$(shell ./get-iso-title.sh downloads/${ORIGINAL_ISO})" -p "duckinator" -b boot/cdboot -o ${CUSTOM_ISO} ./workdir
 
 downloads/${ORIGINAL_ISO}:
