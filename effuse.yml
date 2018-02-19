@@ -1,5 +1,4 @@
 exclude:
   - README.md
-  - ansible
   - data
   - node_modules
