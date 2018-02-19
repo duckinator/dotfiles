@@ -23,8 +23,3 @@
   shell: "pkg install $(/usr/local/bin/ruby --version | cut -d '.' -f 1-2 | sed 's/[ .]//g')-gems"
   environment:
     ASSUME_ALWAYS_YES: "yes"
-
-- name: Ask the non-chroot system to reboot.
-  file:
-    path: /tmp/reboot-me-please
-    state: touch

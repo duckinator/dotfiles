@@ -1,17 +1,6 @@
 PARTITIONS=ada0
 DISTRIBUTIONS="kernel.txz base.txz"
 
-if [ "$1" == "reboot-watcher" ]; then
-  echo "Reboot watcher spawned successfully."
-  while [ ! -f /mnt/tmp/reboot-me-please ]; do
-    sleep 1
-  done
-  shutdown -r 5
-else
-  echo "Spawning reboot watcher."
-  sh $0 reboot-watcher &
-fi
-
 #!/bin/sh
 
 echo "ifconfig_em0=DHCP" >> /etc/rc.conf
