@@ -7,7 +7,7 @@ end
 
 set RUBY_PATHS
 if test -d $HOME/.gem/ruby
-  for dir in $HOME/.gem/ruby/*
+  for dir in $HOME/.gem/ruby/*/bin
     set RUBY_PATHS "$dir/bin:$RUBY_PATHS"
   end
 end
@@ -17,12 +17,18 @@ if test -f ~/.cargo/env
 end
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$RUBY_PATHS:$PATH"
+set NPM_PATHS
+if test -d $HOME/.npm-global/bin
+  set NPM_PATHS "$HOME/.npm-global/bin"
+end
+
+export PATH="$HOME/bin:$HOME/.local/bin:$NPM_PATHS:$RUBY_PATHS:$PATH"
+set -e NPM_PATHS
 set -e RUBY_PATHS
 
-if which nvim >/dev/null
+if which nvim >/dev/null ^/dev/null
   export EDITOR=nvim
-else if which vim >/dev/null
+else if which vim >/dev/null ^/dev/null
   export EDITOR=vim
 else
   export EDITOR=nano

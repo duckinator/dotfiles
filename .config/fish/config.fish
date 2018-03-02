@@ -58,7 +58,7 @@ end
 
 alias strip='ruby -e "print STDIN.read.strip"'
 
-if which xclip >/dev/null
+if which xclip >/dev/null ^/dev/null
   alias copy='xclip -selection clipboard -i'
   alias paste='xclip -selection clipboard -o'
   alias scopy='strip | copy'
@@ -72,7 +72,7 @@ alias b=bundle
 alias bi=b install
 alias be=b exec
 
-if which nvim >/dev/null
+if which nvim >/dev/null ^/dev/null
   alias vim=nvim
 end
 
