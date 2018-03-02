@@ -7,7 +7,8 @@
 	#editor = vim
 	excludesfile = ~/.gitignore.global
 	autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	#pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = less --tabs=4 -RFX
 [color "branch"]
 	current = yellow reverse
 	local = yellow
