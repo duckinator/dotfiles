@@ -146,5 +146,6 @@ if dein#check_install()
 endif
 
 set background=dark
-colo ThemerVim
+"colorscheme ThemerVim
+colorscheme desert
 syntax on
