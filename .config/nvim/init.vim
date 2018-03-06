@@ -22,7 +22,6 @@ set list
 set listchars=tab:»·,trail:·
 set laststatus=2
 set scrolloff=1000 " always center except at the top/bottom of files.
-set termguicolors
 syntax on
 
 set statusline+=%t      "tail of the filename
@@ -146,6 +145,7 @@ if dein#check_install()
 endif
 
 set background=dark
-"colorscheme ThemerVim
-colorscheme desert
+colorscheme slate
 syntax on
+" Make comments grey by default.
+highlight Comment term=bold ctermfg=lightgrey
