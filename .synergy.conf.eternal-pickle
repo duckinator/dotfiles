@@ -1,0 +1,10 @@
+section: screens
+        eternal-pickle:
+        quasar-snake:
+end
+section: links
+        eternal-pickle:
+                right = quasar-snake
+        quasar-snake:
+                left = eternal-pickle
+end
