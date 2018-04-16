@@ -26,38 +26,38 @@ URxvt*perl-ext-common:
 
 *underlineColor:  yellow
 
-*background:  black
-*foreground:  white
-*cursorColor: #93a1a1
+*foreground:  #FFFFFF
+*background:  #222222
+!*cursorColor: #93a1a1
 
 ! black dark/light
-*color0:  #073642
-*color8:  #002b36
+*color0:  #3F3F3F
+*color8:  #709080
 
 ! red dark/light
-*color1:  #dc322f
-*color9:  #cb4b16
+*color1:  #DC322F
+*color9:  #E14F4C
 
 ! green dark/light
-*color2:  #859900
-*color10: #0fe824
+*color2:  #00BA50
+*color10: #2AF791
 
-! yellow dark/light
-*color3:  #b58900
-*color11: #f3ea00
+! yellow dark (brown)/light
+*color3:  #CC961F
+*color11: #FFDA10
 
 ! blue dark/light
-*color4:  #2656d2
-*color12: #839496
+*color4:  #2699EE
+*color12: #26CCEE
 
 ! magenta dark/light
-*color5:  #d33682
-*color13: #6c71c4
+*color5:  #DF11DF
+*color13: #EE24EE
 
 ! cyan dark/light
-*color6:  #2aa198
-*color14: #93a1a1
+*color6:  #00D7B3
+*color14: #00F9CF
 
 ! white dark/light
-*color7:  #eee8d5
-*color15: #fdf6e3
+*color7:  #DDDFFF
+*color15: #FFFFFF
