@@ -12,11 +12,19 @@ URxvt.internalBorder:   3
 URxvt.lineSpace:        3
 URxvt.scrollBar:        false
 
-!! Fonts.
+!! Fonts
+
 URxvt*font:             xft:Monospace:size=18
 URxvt*boldFont:         xft:Monospace:bold:size=18
 
+!! Disable all perl extensions.
+
+URxvt*perl-ext:
+URxvt*perl-ext-common:
+
 !! Colors
+
+*underlineColor:  yellow
 
 *background:  black
 *foreground:  white
