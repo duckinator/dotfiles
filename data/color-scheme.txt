@@ -9,14 +9,14 @@ Top row:
 #2699EE    Blue
 #DF11DF    Magenta
 #00D7B3    Cyan
-#CFCFCF    Light Gray
+#CFCFCF    LightGray
 
 Bottom row:
-#709080    Dark Gray
-#E14F4C    Light Red
-#2AF791    Light Green
+#709080    DarkGray
+#E14F4C    LightRed
+#2AF791    LightGreen
 #FFDA10    Yellow
-#26CCEE    Light Blue
-#EE24EE    Light Magenta
-#00F9CF    Light Cyan
+#26CCEE    LightBlue
+#EE24EE    LightMagenta
+#00F9CF    LightCyan
 #FFFFFF    White

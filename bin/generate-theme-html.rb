@@ -1,72 +1,15 @@
 #!/usr/bin/env ruby
 
-require 'json'
+to_html = -> (x) { "<p style='background-color: #{x[0]};'>#{x[1]}</p>" }
 
-colors = File.read('data/theme.js').split("\n").grep(/#/).map{|x| x.strip.sub(',', '').split('"')[1..2] }
+doctype = "<!doctype html>"
+css = "<style>p{margin: 0;padding: 0.25em;font: 20pt Monospace;}</style>"
+colors =
+  File.read('data/color-scheme.txt') \
+    .split("\n")    \
+    .grep(/#/)      \
+    .map(&:split)   \
+    .map(&to_html)  \
+    .join("\n")
 
-str = <<EOF
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>p{margin:0;padding: 0.25em;font: 22pt awoof;}
-.ui-draggable-dragging{z-index:100;}
-button { margin-top: -0.25em; vertical-align: middle; height: 22pt; }
-textarea {
-  position: absolute;
-  display: block;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  width: 60ch;
-  height: 100%;
-}
-</style>
-<script>
-function lpad(str, n, padding) {
-  for (var i = str.length; i < n; i++) {
-    str += padding;
-  }
-
-  return str;
-}
-
-function toHex(rgb) {
-  var parts = rgb.replace('rgb(', '').replace(')').split(',');
-  return "#" + parts.map(function (x) { return lpad(parseInt(x, 10).toString(16), 2, "0"); }).join("");
-}
-
-function up(idx) {
-  var a = document.getElementById('el-' + idx);
-  var b = document.getElementById('el-' + (idx - 1));
-  var aT = document.getElementById('t-' + idx);
-  var bT = document.getElementById('t-' + (idx - 1));
-
-  var aBg = a.style.backgroundColor;
-  var bBg = b.style.backgroundColor;
-  var aH = aT.innerHTML;
-  var bH = bT.innerHTML;
-
-  a.style.backgroundColor = bBg;
-  b.style.backgroundColor = aBg;
-  aT.innerHTML = bH;
-  bT.innerHTML = aH;
-}
-
-function dump() {
-  var str = [].slice.call(document.querySelectorAll('p')).map(function(p) {
-    return ('"' + toHex(p.style.backgroundColor) + '", // ' + p.innerHTML.split("// ")[1]);
-  }).join("\\n    ");
-
-  document.getElementById('colors').value = "  \\"color\\": [\\n    " + str + "\\n  ],";
-}
-
-setInterval(dump, 100);
-</script>
-EOF
-
-colors.each_with_index.map {|x, idx|
-  str += "<p id='el-#{idx}' style='background-color: #{x[0]};'><button onclick='up(#{idx})'>^</button><button onclick='up(#{idx} + 1)'>v</button> <span id='t-#{idx}'>#{x[0]}</span> #{x[1]}</p>\n"
-}
-
-str += "<textarea id='colors'></textarea>"
-
-File.write("theme.html", str.strip)
+File.write("theme.html", "<!doctype html>\n#{css}\n#{colors}")
