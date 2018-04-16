@@ -1,0 +1,55 @@
+!---------------------------------------------------------------------!
+! URxvt settings                                                      !
+! More info at:                                                       !
+! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod !
+!---------------------------------------------------------------------!
+
+URxvt.depth:            32
+URxvt.geometry:         80x24
+URxvt.loginShell:       true
+URxvt.saveLines:        1000
+URxvt.internalBorder:   3
+URxvt.lineSpace:        3
+URxvt.scrollBar:        false
+
+!! Fonts.
+URxvt*font:             xft:Monospace:size=18
+URxvt*boldFont:         xft:Monospace:bold:size=18
+
+!! Colors
+
+*background:  black
+*foreground:  white
+*cursorColor: #93a1a1
+
+! black dark/light
+*color0:  #073642
+*color8:  #002b36
+
+! red dark/light
+*color1:  #dc322f
+*color9:  #cb4b16
+
+! green dark/light
+*color2:  #859900
+*color10: #0fe824
+
+! yellow dark/light
+*color3:  #b58900
+*color11: #f3ea00
+
+! blue dark/light
+*color4:  #2656d2
+*color12: #839496
+
+! magenta dark/light
+*color5:  #d33682
+*color13: #6c71c4
+
+! cyan dark/light
+*color6:  #2aa198
+*color14: #93a1a1
+
+! white dark/light
+*color7:  #eee8d5
+*color15: #fdf6e3
