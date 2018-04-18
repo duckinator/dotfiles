@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if test "$1" == "up" || test "$1" == "+"; then
+  command="5%+"
+elif test "$1" == "down" || test "$1" == "-"; then
+  command="5%-"
+fi
+
+amixer set Master $command
