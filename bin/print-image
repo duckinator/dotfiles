@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+def valid(printers, choice)
+  choice > 0 && choice <= printers.length
+end
+
+# This is really gross but oh well lmao
+def pluck_argument(arg, ary=ARGV)
+  ary.delete(ary.grep(/^--#{Regexp.escape(arg)}=/).last)&.split('=')&.last
+end
+
+num_copies = pluck_argument("copies") || 1
+
+printers = `lpstat -p`.split("\n").map { |x| x.split[1] }
+
+actual_choice = 0
+if printers.length > 1
+  puts "Available printers:"
+
+  printers.each_with_index do |printer, idx|
+    puts "#{idx + 1}. #{printer}"
+  end
+
+  print "Which printer should be used? "
+  choice = 0
+  choice = $stdin.gets.chomp.to_i until valid(printers, choice)
+  actual_choice = choice - 1
+end
+
+printer = printers[actual_choice]
+
+puts "Submitting print jobs to #{printer}:"
+ARGV.each do |file|
+  puts "- #{file.inspect} (x#{num_copies})"
+  puts `convert #{file} -background white -alpha remove - | lp -d Lexmark_Lexmark_X204n -n #{num_copies}`
+  puts
+end
