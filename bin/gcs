@@ -2,15 +2,16 @@
 
 from io import BytesIO
 import os
-import subprocess
 import sys
 from urllib.request import urlopen as get
 import zipfile
 
 version="4.10.0"
-folder_name="gcs-{}-linux".format(version)
+
+
 url="https://github.com/richardwilkes/gcs/releases/download/gcs-{version}/gcs-{version}-linux.zip".format(version=version)
-folder_path = os.path.join(os.environ["HOME"], folder_name)
+extract_path = os.path.join(os.environ["HOME"], "software")
+folder_path = os.path.join(extract_path, "gcs-{}-linux".format(version))
 
 # we can't use ZipFile(...).extractall() because apparently it has no way
 # to preserve permissions.
@@ -20,9 +21,9 @@ if not os.path.isdir(folder_path):
     data = BytesIO(get(url).read())
     with zipfile.ZipFile(data) as zipf:
         for info in zipf.infolist():
-            out_path = zipf.extract(info.filename, path=os.environ["HOME"])
+            out_path = zipf.extract(info.filename, path=extract_path)
             perm = info.external_attr >> 16
             os.chmod(out_path, perm)
 
 executable = os.path.join(folder_path, "gcs")
-subprocess.call([executable, *sys.argv[1:]])
+os.execvp(executable, [executable, *sys.argv[1:]])
