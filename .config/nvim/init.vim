@@ -22,6 +22,7 @@ set list
 set listchars=tab:»·,trail:·
 set laststatus=2
 set scrolloff=1000 " always center except at the top/bottom of files.
+set t_Co=88
 syntax on
 
 set statusline+=%t      "tail of the filename
@@ -151,7 +152,7 @@ set background=dark
 "colorscheme slate
 syntax on
 " Make comments grey by default.
-"highlight Comment term=bold ctermfg=lightgrey
+"exec 'highlight Comment term=bold ctermfg=lightgrey
 
 let black=0
 " aka "light black".
@@ -184,49 +185,49 @@ let lightgray=7
 let white=15
 
 let colors_name="puppy"
-highlight Normal ctermfg=white
+exec 'highlight Normal ctermfg='.white
 highlight Cursor cterm=reverse
 
-"highlight Cursor guibg=khaki guifg=slategrey
-highlight VertSplit    cterm=reverse
-highlight Folded       ctermfg=grey      ctermbg=darkgrey
-highlight FoldColumn   ctermfg=blue      ctermbg=lightgray
-highlight IncSearch    cterm=bold,reverse
-highlight ModeMsg      ctermfg=brown                     cterm=none
-highlight MoreMsg      ctermfg=green
-highlight NonText      ctermfg=blue                      cterm=bold
-highlight Question     ctermfg=green
-highlight Search       cterm=bold,reverse
-highlight SpecialKey   ctermfg=green
+"exec 'highlight Cursor guibg=khaki guifg=slategrey
+highlight VertSplit cterm=reverse
+exec 'highlight Folded       ctermfg='.white.'      ctermbg='.darkgray
+exec 'highlight FoldColumn   ctermfg='.blue.'       ctermbg='.lightgray
+highlight IncSearch cterm=bold,reverse
+exec 'highlight ModeMsg      ctermfg='.brown.'      cterm=none'
+exec 'highlight MoreMsg      ctermfg='.green
+exec 'highlight NonText      ctermfg='.blue.'       cterm=bold'
+exec 'highlight Question     ctermfg='.green
+exec 'highlight Search       cterm=bold,reverse'
+exec 'highlight SpecialKey   ctermfg='.green
 highlight StatusLine   cterm=bold,reverse
 highlight StatusLineNC cterm=reverse
-highlight Title        ctermfg=yellow                    cterm=bold
-highlight Statement    ctermfg=lightblue
-highlight Visual       cterm=reverse
-highlight WarningMsg   ctermfg=red                       cterm=bold
-highlight String       ctermfg=cyan
-highlight Comment      ctermfg=grey                      cterm=bold
-highlight Constant     ctermfg=brown
-highlight Special      ctermfg=brown
-highlight Identifier   ctermfg=red
-highlight Include      ctermfg=red
-highlight PreProc      ctermfg=red
-highlight Operator     ctermfg=red
-highlight Define       ctermfg=yellow
-highlight Type         ctermfg=green
-highlight Function     ctermfg=brown
-highlight Structure    ctermfg=green
-highlight LineNr       ctermfg=brown
-highlight Ignore       ctermfg=lightgray                 cterm=bold
-highlight Todo         ctermfg=darkgray  ctermbg=yellow
-highlight Directory    ctermfg=cyan
-highlight ErrorMsg     ctermfg=white     ctermbg=red     cterm=bold
-highlight VisualNOS                                      cterm=bold,underline
-highlight WildMenu     ctermfg=black     ctermbg=brown
-highlight DiffAdd      ctermfg=white     ctermbg=blue
-highlight DiffChange   ctermfg=white     ctermbg=magenta
-highlight DiffDelete   ctermfg=blue      ctermbg=cyan    cterm=bold
-highlight DiffText     ctermfg=white     ctermbg=red     cterm=bold
-highlight Underlined   ctermfg=magenta   cterm=underline
-highlight Error        ctermfg=white     ctermbg=red     cterm=bold
-highlight SpellErrors  ctermfg=white     ctermbg=red    cterm=bold
+exec 'highlight Title        ctermfg='.yellow.'     cterm=bold'
+exec 'highlight Statement    ctermfg='.lightblue
+highlight Visual cterm=reverse
+exec 'highlight WarningMsg   ctermfg='.red.'        cterm=bold'
+exec 'highlight String       ctermfg='.cyan
+exec 'highlight Comment      ctermfg='.darkgray.'   cterm=bold'
+exec 'highlight Constant     ctermfg='.brown
+exec 'highlight Special      ctermfg='.brown
+exec 'highlight Identifier   ctermfg='.red
+exec 'highlight Include      ctermfg='.red
+exec 'highlight PreProc      ctermfg='.red
+exec 'highlight Operator     ctermfg='.red
+exec 'highlight Define       ctermfg='.yellow
+exec 'highlight Type         ctermfg='.green
+exec 'highlight Function     ctermfg='.brown
+exec 'highlight Structure    ctermfg='.green
+exec 'highlight LineNr       ctermfg='.brown
+exec 'highlight Ignore       ctermfg='.lightgray.'  cterm=bold'
+exec 'highlight Todo         ctermfg='.darkgray.'   ctermbg='.yellow
+exec 'highlight Directory    ctermfg='.cyan
+exec 'highlight ErrorMsg     ctermfg='.white.'      ctermbg='.red.'   cterm=bold'
+highlight VisualNOS cterm=bold,underline
+exec 'highlight WildMenu     ctermfg='.black.'      ctermbg='.brown
+exec 'highlight DiffAdd      ctermfg='.white.'      ctermbg='.blue
+exec 'highlight DiffChange   ctermfg='.white.'      ctermbg='.magenta
+exec 'highlight DiffDelete   ctermfg='.blue.'       ctermbg='.cyan.'  cterm=bold'
+exec 'highlight DiffText     ctermfg='.white.'      ctermbg='.red.'   cterm=bold'
+exec 'highlight Underlined   ctermfg='.magenta.'    cterm=underline'
+exec 'highlight Error        ctermfg='.white.'      ctermbg='.red.'   cterm=bold'
+exec 'highlight SpellErrors  ctermfg='.white.'      ctermbg='.red.'   cterm=bold'
