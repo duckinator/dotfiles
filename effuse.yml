@@ -1,5 +1,2 @@
 exclude:
   - README.md
-  - data
-  - node_modules
-  - dotfiles-bootstrap.sh
