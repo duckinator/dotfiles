@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+from urllib.request import urlopen as get
+
+directory_path = os.path.join(os.environ["HOME"], "software", "usb-rubber-ducky")
+file_path = os.path.join(directory_path, "duckencoder.jar")
+if not os.path.isfile(file_path):
+    os.makedirs(directory_path, exist_ok=True)
+    data = get("https://github.com/hak5darren/USB-Rubber-Ducky/raw/master/duckencoder.jar").read()
+    with open(file_path, "wb") as f:
+        f.write(data)
+
+os.execvp("java", ["duckencoder", "-jar", file_path, *sys.argv[1:]])
