@@ -10,11 +10,12 @@ def print_image(filename, printer_name, num_copies):
     lp_cmd = ["lp", "-d", printer_name, "-n", str(num_copies)]
 
     convert = subprocess.Popen(convert_cmd, stdout=subprocess.PIPE)
-    lp = subprocess.Popen(lp_cmd,
+    lp = subprocess.Popen(
+            lp_cmd,
             stdin=convert.stdout,
             stdout=subprocess.PIPE,
             encoding="utf-8")
-    convert.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
+    convert.stdout.close() # Allow `convert` to receive a SIGPIPE if `lp` exits.
     output = lp.communicate()[0]
 
     return output
@@ -25,7 +26,6 @@ def valid(printers, choice):
 def new_current_file():
     return {"copies": 1}
 
-# TODO: Make this not a fucking disaster. aka, "ask Kayila or Jamie for help."
 def pluck_argument(arg, ary=sys.argv):
     args = list(filter(lambda x: x.startswith("--{}=".format(arg)), ary))
     if len(args) == 0:
