@@ -3,6 +3,22 @@
 import subprocess
 import sys
 
+def print_image(filename, printer_name, num_copies):
+    convert_cmd = [
+        "convert", filename, "-background", "white", "-alpha", "remove", "-"
+    ]
+    lp_cmd = ["lp", "-d", printer_name, "-n", str(num_copies)]
+
+    convert = subprocess.Popen(convert_cmd, stdout=subprocess.PIPE)
+    lp = subprocess.Popen(lp_cmd,
+            stdin=convert.stdout,
+            stdout=subprocess.PIPE,
+            encoding="utf-8")
+    convert.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
+    output = lp.communicate()[0]
+
+    return output
+
 def valid(printers, choice):
     return choice > 0 and choice <= printers.length
 
@@ -12,7 +28,7 @@ def new_current_file():
 # TODO: Make this not a fucking disaster. aka, "ask Kayila or Jamie for help."
 def pluck_argument(arg, ary=sys.argv):
     args = list(filter(lambda x: x.startswith("--{}=".format(arg)), ary))
-    if len(arg) == 0:
+    if len(args) == 0:
         return None
     arg = args[-1]
     key, val = arg.split("=")
@@ -42,9 +58,9 @@ def pluralize(n, singular, plural):
     else:
         return plural
 
-num_copies = pluck_argument("copies")
+num_copies = pluck_argument("copies") or 1
 printer = get_printer_choice(list_printers())
-files   = filter(lambda x: not x.startswith("--"), sys.argv[1::])
+files = filter(lambda x: not x.startswith("--"), sys.argv[1::])
 copy_str = pluralize(num_copies, "copy", "copies")
 
 print("Printer: {}".format(printer))
@@ -54,4 +70,4 @@ print("Files:")
 
 for filename in files:
     print("- {}".format(filename))
-    #print("convert {} -background white -alpha remove - | lp -d Lexmark_Lexmark_X204n -n {}".format(filename, num_copies))
+    print(print_image(filename, printer, num_copies))
