@@ -148,7 +148,85 @@ if dein#check_install()
 endif
 
 set background=dark
-colorscheme slate
+"colorscheme slate
 syntax on
 " Make comments grey by default.
-highlight Comment term=bold ctermfg=lightgrey
+"highlight Comment term=bold ctermfg=lightgrey
+
+let black=0
+" aka "light black".
+let lightblack=8
+let darkgray=lightblack
+
+let red=1
+let lightred=9
+
+let green=2
+let lightgreen=10
+
+let darkyellow=3
+let brown=darkyellow
+let lightyellow=11
+let yellow=lightyellow
+
+let blue=4
+let lightblue=12
+
+let magenta=5
+let lightmagenta=13
+
+let cyan=6
+let lightcyan=14
+
+" aka "dark white".
+let lightgray=7
+" aka "light white".
+let white=15
+
+let colors_name="puppy"
+highlight Normal ctermfg=white ctermbg=black
+highlight Cursor cterm=reverse
+
+"highlight Cursor guibg=khaki guifg=slategrey
+highlight VertSplit    cterm=reverse
+highlight Folded       ctermfg=grey      ctermbg=darkgrey
+highlight FoldColumn   ctermfg=blue      ctermbg=lightgray
+highlight IncSearch    cterm=bold,reverse
+highlight ModeMsg      ctermfg=brown                     cterm=none
+highlight MoreMsg      ctermfg=green
+highlight NonText      ctermfg=blue                      cterm=bold
+highlight Question     ctermfg=green
+highlight Search       cterm=bold,reverse
+highlight SpecialKey   ctermfg=green
+highlight StatusLine   cterm=bold,reverse
+highlight StatusLineNC cterm=reverse
+highlight Title        ctermfg=yellow                    cterm=bold
+highlight Statement    ctermfg=lightblue
+highlight Visual       cterm=reverse
+highlight WarningMsg   ctermfg=red                       cterm=bold
+highlight String       ctermfg=cyan
+highlight Comment      ctermfg=grey                      cterm=bold
+highlight Constant     ctermfg=brown
+highlight Special      ctermfg=brown
+highlight Identifier   ctermfg=red
+highlight Include      ctermfg=red
+highlight PreProc      ctermfg=red
+highlight Operator     ctermfg=red
+highlight Define       ctermfg=yellow
+highlight Type         ctermfg=green
+highlight Function     ctermfg=brown
+highlight Structure    ctermfg=green
+highlight LineNr       ctermfg=brown
+highlight Ignore       ctermfg=lightgray                 cterm=bold
+highlight Todo         ctermfg=darkgray  ctermbg=yellow
+highlight Directory    ctermfg=cyan
+highlight ErrorMsg     ctermfg=white     ctermbg=red     cterm=bold
+highlight VisualNOS                                      cterm=bold,underline
+highlight WildMenu     ctermfg=black     ctermbg=brown
+highlight DiffAdd      ctermfg=white     ctermbg=blue
+highlight DiffChange   ctermfg=white     ctermbg=magenta
+highlight DiffDelete   ctermfg=blue      ctermbg=cyan    cterm=bold
+highlight DiffText     ctermfg=white     ctermbg=red     cterm=bold
+highlight Underlined   ctermfg=magenta   cterm=underline
+highlight Error        ctermfg=white     ctermbg=red     cterm=bold
+highlight SpellErrors  ctermfg=white     ctermbg=red    cterm=bold
