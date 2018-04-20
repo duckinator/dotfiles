@@ -1,37 +1,57 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env python3
 
-def valid(printers, choice)
-  choice > 0 && choice <= printers.length
-end
+import subprocess
+import sys
 
-# This is really gross but oh well lmao
-def pluck_argument(arg, ary=ARGV)
-  ary.delete(ary.grep(/^--#{Regexp.escape(arg)}=/).last)&.split('=')&.last
-end
+def valid(printers, choice):
+    return choice > 0 and choice <= printers.length
 
-num_copies = pluck_argument("copies") || 1
+def new_current_file():
+    return {"copies": 1}
 
-printers = `lpstat -p`.split("\n").map { |x| x.split[1] }
+# TODO: Make this not a fucking disaster. aka, "ask Kayila or Jamie for help."
+def pluck_argument(arg, ary=sys.argv):
+    args = list(filter(lambda x: x.startswith("--{}=".format(arg)), ary))
+    if len(arg) == 0:
+        return None
+    arg = args[-1]
+    key, val = arg.split("=")
+    return val
 
-actual_choice = 0
-if printers.length > 1
-  puts "Available printers:"
+def list_printers():
+    lpstat_lines = subprocess.check_output(["lpstat", "-p"], encoding="utf-8").strip().split("\n")
+    printer_list = list(map(lambda x: x.split(" ")[1], lpstat_lines))
+    return printer_list
 
-  printers.each_with_index do |printer, idx|
-    puts "#{idx + 1}. #{printer}"
-  end
+def get_printer_choice(printers):
+    actual_choice = 0
+    if len(printers) > 1:
+        print("Available printers:")
+        for (idx, printer) in enumerate(printers):
+            print("{}. {}".format(idx + 1, printer))
+        print("Which printer should be used? ")
+        choice = 0
+        for line in sys.stdin:
+            print(line)
+        actual_choice = choice - 1
+    return printers[actual_choice]
 
-  print "Which printer should be used? "
-  choice = 0
-  choice = $stdin.gets.chomp.to_i until valid(printers, choice)
-  actual_choice = choice - 1
-end
+def pluralize(n, singular, plural):
+    if n == 1:
+        return singular
+    else:
+        return plural
 
-printer = printers[actual_choice]
+num_copies = pluck_argument("copies")
+printer = get_printer_choice(list_printers())
+files   = filter(lambda x: not x.startswith("--"), sys.argv[1::])
+copy_str = pluralize(num_copies, "copy", "copies")
 
-puts "Submitting print jobs to #{printer}:"
-ARGV.each do |file|
-  puts "- #{file.inspect} (x#{num_copies})"
-  puts `convert #{file} -background white -alpha remove - | lp -d Lexmark_Lexmark_X204n -n #{num_copies}`
-  puts
-end
+print("Printer: {}".format(printer))
+print("Copies:  {}".format(num_copies))
+print("")
+print("Files:")
+
+for filename in files:
+    print("- {}".format(filename))
+    #print("convert {} -background white -alpha remove - | lp -d Lexmark_Lexmark_X204n -n {}".format(filename, num_copies))

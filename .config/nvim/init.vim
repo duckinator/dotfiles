@@ -184,7 +184,7 @@ let lightgray=7
 let white=15
 
 let colors_name="puppy"
-highlight Normal ctermfg=white ctermbg=black
+highlight Normal ctermfg=white
 highlight Cursor cterm=reverse
 
 "highlight Cursor guibg=khaki guifg=slategrey
