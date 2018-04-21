@@ -2,6 +2,7 @@
 
 import subprocess
 import sys
+from argparse import ArgumentParser
 
 def print_image(filename, printer_name, num_copies):
     convert_cmd = [
@@ -25,14 +26,6 @@ def valid(printers, choice):
 
 def new_current_file():
     return {"copies": 1}
-
-def pluck_argument(arg, ary=sys.argv):
-    args = list(filter(lambda x: x.startswith("--{}=".format(arg)), ary))
-    if len(args) == 0:
-        return None
-    arg = args[-1]
-    key, val = arg.split("=")
-    return val
 
 def list_printers():
     lpstat_lines = subprocess.check_output(["lpstat", "-p"], encoding="utf-8").strip().split("\n")
@@ -58,16 +51,28 @@ def pluralize(n, singular, plural):
     else:
         return plural
 
-num_copies = pluck_argument("copies") or 1
-printer = get_printer_choice(list_printers())
-files = filter(lambda x: not x.startswith("--"), sys.argv[1::])
-copy_str = pluralize(num_copies, "copy", "copies")
+def main():
+    argparser = ArgumentParser(description="print files from the command line")
+    argparser.add_argument("files",
+                           nargs="+",
+                           help="file(s) to print")
+    argparser.add_argument("--copies",
+                           default=1,
+                           type=int,
+                           nargs="?",
+                           help="number of copies to print")
+    args = argparser.parse_args()
+    printer = get_printer_choice(list_printers())
+    copy_str = pluralize(args.copies, "copy", "copies")
 
-print("Printer: {}".format(printer))
-print("Copies:  {}".format(num_copies))
-print("")
-print("Files:")
+    print("Printer: {}".format(printer))
+    print("Copies:  {}".format(args.copies))
+    print("")
+    print("Files:")
 
-for filename in files:
-    print("- {}".format(filename))
-    print(print_image(filename, printer, num_copies))
+    for filename in args.files:
+        print("- {}".format(filename))
+        print(print_image(filename, printer, args.copies))
+
+if __name__ == '__main__':
+    main()
