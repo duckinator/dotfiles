@@ -77,9 +77,6 @@ nnoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR>
 " Insert hard tab
 imap <S-tab> <C-v><tab>
 
-let dein_install_dir = "~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/"
-call system("bash -c 'test -f ".dein_install_dir." || mkdir -p ".dein_install_dir." && git clone https://github.com/Shougo/dein.vim ".dein_install_dir."'")
-
 function! LoadEditorconfig()
 python3 << EOF
 from configparser import SafeConfigParser
@@ -130,6 +127,20 @@ EOF
 endfunction
 nmap <leader>e :call LoadEditorconfig()<CR>
 
+function! InitialSetup()
+python3 << EOF
+from pathlib import Path
+import subprocess
+
+dir = Path("~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/").expanduser()
+repo_url = "https://github.com/Shougo/dein.vim"
+
+if not dir.is_dir():
+    subprocess.check_output(["git", "clone", repo_url, str(dir)])
+EOF
+endfunction
+
+call InitialSetup()
 set runtimepath+=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/
 if dein#load_state('~/.config/nvim/bundle')
   call dein#begin('~/.config/nvim/bundle')
