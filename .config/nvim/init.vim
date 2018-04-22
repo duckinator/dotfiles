@@ -78,7 +78,10 @@ nnoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR>
 imap <S-tab> <C-v><tab>
 
 let dein_install_dir = "~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/"
-call system("bash -c 'test -f ".dein_install_dir." || mkdir -p ".dein_install_dir." && git clone https://github.com/Shougo/dein.vim ".dein_install_dir."'")
+if filereadable(expand(dein_install_dir))
+  call system("mkdir -p ".expand(dein_install_dir))
+  call system( git clone https://github.com/Shougo/dein.vim ".dein_install_dir)
+endif
 
 function! LoadEditorconfig()
 python3 << EOF
