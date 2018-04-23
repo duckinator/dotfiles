@@ -1,0 +1,4 @@
+#!/bin/sh
+# Usage: x done "one-line summary of what I did"
+#        x todo "what i need to do"
+echo "$(date +'%Y-%m-%d') ${@:2}" >> ~/$1.txt
