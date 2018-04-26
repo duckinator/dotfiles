@@ -56,12 +56,8 @@ function demo
   end
 end
 
-alias strip='ruby -e "print STDIN.read.strip"'
-
-if which xclip >/dev/null ^/dev/null
-  alias copy='xclip -selection clipboard -i'
-  alias paste='xclip -selection clipboard -o'
-  alias scopy='strip | copy'
+if test -f "$HOME/.bash_aliases"
+  . $HOME/.bash_aliases
 end
 
 alias sshproxy='ssh -ND 9999'
@@ -71,10 +67,6 @@ alias ,=mkcd
 alias b=bundle
 alias bi=b install
 alias be=b exec
-
-if which nvim >/dev/null ^/dev/null
-  alias vim=nvim
-end
 
 function =
   echo $argv f | dc
@@ -88,7 +80,6 @@ function boop-last
   boop file (last-ss) | scopy
   paste
 end
-
 
 # -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
 if test -n "$DISABLE_FANCY_LS"
