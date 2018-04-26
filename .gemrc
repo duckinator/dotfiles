@@ -1,1 +1,1 @@
-gem: --suggestions --user-install
+gem: --suggestions --user-install --no-rdoc --no-ri
