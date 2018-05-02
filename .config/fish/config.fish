@@ -68,6 +68,10 @@ alias b=bundle
 alias bi=b install
 alias be=b exec
 
+if locate nvim >/dev/null
+  alias vim=nvim
+end
+
 function =
   echo $argv f | dc
 end

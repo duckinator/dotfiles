@@ -5,4 +5,3 @@ alias copy='xclip -selection clipboard -i'
 alias paste='xclip -selection clipboard -o'
 alias scopy='strip | copy'
 alias grep='grep --color=auto'
-alias vim=nvim

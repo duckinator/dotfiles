@@ -6,3 +6,7 @@ fi
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
+
+if which nvim &>/dev/null; then
+  alias vim=nvim
+fi
