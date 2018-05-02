@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+find -name '.git' -type d -exec sh -c 'cd "{}/.."; test -z "$(git status -s)" || echo $(pwd)' \;
