@@ -46,7 +46,10 @@ export LESS="-RFX"
 # -f ansi: Use ANSI escape codes by default.
 export RI="-f ansi"
 
-# You can override $EDITOR, $PAGER, and $BROWSER in ~/.fish.env.user.
+if test -f ~/.bash_env
+  source ~/.bash_env
+end
+
 if test -f ~/.env.fish.user
   source ~/.fish.env.user
 end
