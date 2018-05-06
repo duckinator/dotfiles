@@ -17,12 +17,13 @@ def fetch_dotfiles():
         run(["git", "clone", repo_url, dotfiles_dir])
 
 def effuse():
+    effuse_path = str(Path(Path.home(), "bin", "effuse"))
     os.chdir(dotfiles_dir)
 
     run(["gem", "install", "-r", "effuse"])
-    run(["effuse", "-c"])
+    run([effuse_path, "-c"])
     run(["git", "pull"])
-    run(["effuse"])
+    run([effuse_path])
 
 def main():
     fetch_dotfiles()
