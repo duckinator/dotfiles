@@ -14,8 +14,10 @@ URxvt.scrollBar:        false
 
 !! Fonts
 
-URxvt*font:             xft:Monospace:size=18
-URxvt*boldFont:         xft:Monospace:bold:size=18
+!URxvt*font:             xft:Monospace:size=18
+!URxvt*boldFont:         xft:Monospace:bold:size=18
+URxvt*font: xft:Awoof:size=20
+URxvt*boldFont: xft:Awoof:bold:size=20
 
 !! Disable all perl extensions.
 
