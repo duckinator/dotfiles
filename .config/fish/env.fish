@@ -22,7 +22,7 @@ if test -d $HOME/.npm-global/bin
   set NPM_PATHS "$HOME/.npm-global/bin"
 end
 
-export PATH="$HOME/bin:$HOME/.local/bin:$NPM_PATHS:$RUBY_PATHS:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$NPM_PATHS:$RUBY_PATHS:$PATH:/sbin:/usr/sbin"
 set -e NPM_PATHS
 set -e RUBY_PATHS
 
