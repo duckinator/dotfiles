@@ -17,12 +17,7 @@ if test -f ~/.cargo/env
 end
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-set NPM_PATHS
-if test -d $HOME/.npm-global/bin
-  set NPM_PATHS "$HOME/.npm-global/bin"
-end
-
-export PATH="$HOME/bin:$HOME/.local/bin:$NPM_PATHS:$RUBY_PATHS:$PATH:/sbin:/usr/sbin"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$RUBY_PATHS:$PATH:/sbin:/usr/sbin"
 set -e NPM_PATHS
 set -e RUBY_PATHS
 
@@ -46,9 +41,7 @@ export LESS="-RFX"
 # -f ansi: Use ANSI escape codes by default.
 export RI="-f ansi"
 
-if test -f ~/.bash_env
-  source ~/.bash_env
-end
+source ~/.bash_env
 
 if test -f ~/.env.fish.user
   source ~/.fish.env.user

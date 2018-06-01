@@ -60,17 +60,7 @@ function demo
   end
 end
 
-if test -f "$HOME/.bash_aliases"
-  . $HOME/.bash_aliases
-end
-
-alias sshproxy='ssh -ND 9999'
-alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
-alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
-alias ,=mkcd
-alias b=bundle
-alias bi=b install
-alias be=b exec
+source $HOME/.bash_aliases
 
 if locate nvim >/dev/null
   alias vim=nvim
@@ -171,6 +161,5 @@ end
 
 source ~/.config/fish/env.fish
 
-if test -f ~/.config.fish.user
-  source ~/.config.fish.user
-end
+touch ~/.config.fish.user
+source ~/.config.fish.user
