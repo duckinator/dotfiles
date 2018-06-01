@@ -1,5 +1,0 @@
-#!/bin/sh
-# Usage: - done "one-line summary of what I did"
-#        - todo "what i need to do"
-#        - some-project "note about some-project."
-echo "$(date +'%Y-%m-%d') ${@:2}" >> ~/$1.txt
