@@ -44,6 +44,10 @@ function =venv
   end
 end
 
+function =tmux
+  tmux -S ../tmux-(basename (pwd)) $argv
+end
+
 function demo
   if test -z "$DEMO_MODE"
     echo "Entering demo mode."
