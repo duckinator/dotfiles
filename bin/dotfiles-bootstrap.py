@@ -2,32 +2,35 @@
 
 import os
 from pathlib import Path
+import stat
 import subprocess
 import sys
+from urllib.request import urlopen as get
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
 repo_url = "https://github.com/duckinator/dotfiles.git"
+emanate_file = Path("./bin/emanate.py")
+
+def download_emanate():
+    raw_contents = get("https://raw.githubusercontent.com/duckinator/emanate/master/emanate/__init__.py").read()
+    code = str(raw_contents, encoding="utf-8")
+    emanate_file.write_text(code)
+    emanate_file.chmod(emanate_file.stat().st_mode | stat.S_IEXEC)
 
 def run(command):
-    results = subprocess.check_output(command, encoding="utf-8")
-    print("    $ {}\n{}".format(" ".join(command), results))
+    results = subprocess.check_output(command, encoding="utf-8").strip()
+    if len(results) > 0:
+        print(results)
 
 def fetch_dotfiles():
     if not os.path.isdir(dotfiles_dir):
         run(["git", "clone", repo_url, dotfiles_dir])
 
-def effuse():
-    effuse_path = str(Path(Path.home(), "bin", "effuse"))
-    os.chdir(dotfiles_dir)
-
-    run(["gem", "install", "-r", "effuse"])
-    run([effuse_path, "-c"])
-    run(["git", "pull"])
-    run([effuse_path])
-
 def main():
     fetch_dotfiles()
-    effuse()
+    os.chdir(dotfiles_dir)
+    download_emanate()
+    run([sys.executable, str(emanate_file)])
 
 if __name__ == "__main__":
     main()
