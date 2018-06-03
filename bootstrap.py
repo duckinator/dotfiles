@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import stat
 import subprocess
+import sys
 from urllib.request import urlopen as get
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
@@ -31,7 +32,10 @@ def main():
     os.chdir(dotfiles_dir)
     run(["git", "pull"])
     download_emanate()
-    importlib.import_module("emanate").main()
+    emanate = importlib.import_module("emanate").Emanate()
+    if len(sys.argv) > 1 and sys.argv[1] == "--clean-first":
+        emanate.run(["emanate", "--clean"])
+    emanate.run(["emanate"])
 
 if __name__ == "__main__":
     main()
