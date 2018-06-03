@@ -1,7 +1,1 @@
-*.effuse
-.bundle/gems
-node_modules/
-package-lock.json
-theme.html
-workdir/
 /bin/dotfiles_emanate.py

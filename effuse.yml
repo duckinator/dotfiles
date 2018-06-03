@@ -1,4 +1,0 @@
-exclude:
-  - README.md
-  - emanate.json
-  - bin/emanate.py
