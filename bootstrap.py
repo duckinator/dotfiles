@@ -5,7 +5,6 @@ import os
 from pathlib import Path
 import stat
 import subprocess
-import sys
 from urllib.request import urlopen as get
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
