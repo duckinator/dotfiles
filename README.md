@@ -3,21 +3,17 @@
 Installation:
 
 ```
-git clone https://github.com/duckinator/dotfiles.git ~/dotfiles && \
-pushd ~/dotfiles && \
-gem install effuse && \
-effuse && \
-popd
+curl -L https://dotfiles.smallest.dog/bootstrap.py | python3
 ```
 
 Update, if no files have been added or removed:
 
 ```
-pushd ~/dotfiles && git pull && popd
+~/dotfiles/bootstrap.py
 ```
 
 Update, if files _have_ been added or removed:
 
 ```
-pushd ~/dotfiles && effuse -c && git pull && effuse && popd
+~/dotfiles/emanate.py --clean && ~/dotfiles/bootstrap.py
 ```
