@@ -8,3 +8,4 @@ cabal.sandbox.config
 node_modules/
 *.iso
 .rgdev-home/
+__pycache__/

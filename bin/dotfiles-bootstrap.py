@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import importlib
 import os
 from pathlib import Path
 import stat
@@ -9,7 +10,7 @@ from urllib.request import urlopen as get
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
 repo_url = "https://github.com/duckinator/dotfiles.git"
-emanate_file = Path("./bin/emanate.py")
+emanate_file = Path("./bin/dotfiles_emanate.py")
 
 def download_emanate():
     raw_contents = get("https://raw.githubusercontent.com/duckinator/emanate/master/emanate/__init__.py").read()
@@ -30,7 +31,7 @@ def main():
     fetch_dotfiles()
     os.chdir(dotfiles_dir)
     download_emanate()
-    run([sys.executable, str(emanate_file)])
+    importlib.import_module("dotfiles_emanate").main()
 
 if __name__ == "__main__":
     main()
