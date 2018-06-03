@@ -10,7 +10,7 @@ from urllib.request import urlopen as get
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
 repo_url = "https://github.com/duckinator/dotfiles.git"
-emanate_file = Path("./bin/dotfiles_emanate.py")
+emanate_file = Path("./dotfiles_emanate.py")
 
 def download_emanate():
     raw_contents = get("https://raw.githubusercontent.com/duckinator/emanate/master/emanate/__init__.py").read()
