@@ -18,14 +18,11 @@ def download_emanate():
     emanate_file.write_text(code)
     emanate_file.chmod(emanate_file.stat().st_mode | stat.S_IEXEC)
 
-def run(command):
-    results = subprocess.check_output(command, encoding="utf-8").strip()
-    if len(results) > 0:
-        print(results)
-
 def fetch_dotfiles():
     if not os.path.isdir(dotfiles_dir):
-        run(["git", "clone", repo_url, dotfiles_dir])
+        command = ["git", "clone", repo_url, dotfiles_dir]
+        results = subprocess.check_output(command, encoding="utf-8")
+        print(results.strip())
 
 def main():
     fetch_dotfiles()
