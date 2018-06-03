@@ -9,7 +9,7 @@ from urllib.request import urlopen as get
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
 repo_url = "https://github.com/duckinator/dotfiles.git"
-emanate_file = Path("./dotfiles_emanate.py")
+emanate_file = Path("./emanate.py")
 
 def download_emanate():
     raw_contents = get("https://raw.githubusercontent.com/duckinator/emanate/master/emanate/__init__.py").read()
@@ -27,7 +27,7 @@ def main():
     fetch_dotfiles()
     os.chdir(dotfiles_dir)
     download_emanate()
-    importlib.import_module("dotfiles_emanate").main()
+    importlib.import_module("emanate").main()
 
 if __name__ == "__main__":
     main()
