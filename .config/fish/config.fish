@@ -28,7 +28,7 @@ function =venv
   if test (count $argv) -gt 0
     set search_dir $argv[1]
   else
-    set search_dir .
+    set search_dir venv
   end
 
   set -l activate_file (find $search_dir -name 'activate.fish')
