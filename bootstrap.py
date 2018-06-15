@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
 import os
-from pathlib import Path
 from pip._internal import main as pip_main
 import stat
 import subprocess
 import sys
-
-dotfiles_dir = Path(Path.home(), "dotfiles")
 
 def print_run(command):
     print("$ {}".format(" ".join(command)))
@@ -31,6 +28,7 @@ def emanate(*args):
     emanate.main(args)
 
 def main():
+    dotfiles_dir = os.path.dirname(__file__)
     os.chdir(dotfiles_dir)
     pip("install", "emanate")
     #emanate("--clean")
