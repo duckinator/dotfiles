@@ -7,5 +7,5 @@ cabal.sandbox.config
 *.log
 node_modules/
 *.iso
-.rgdev-home/
 __pycache__/
+venv/
