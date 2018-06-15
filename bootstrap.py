@@ -2,6 +2,7 @@
 
 import os
 from pathlib import Path
+from pip._internal import main as pip
 import stat
 import subprocess
 import sys
@@ -25,11 +26,14 @@ def main():
     fetch_dotfiles()
     os.chdir(dotfiles_dir)
     run(["git", "pull"])
-    run(["pip3", "install", "emanate", "--user"])
+    pip(["install", "emanate", "--user", "--no-cache-dir"])
+    import emanate
     clean = "--clean-first" in sys.argv
     #if clean:
     #    emanate("--clean")
-    emanate()
+    print("Running Emanate...")
+    emanate.main()
+    print("Done.")
 
 if __name__ == "__main__":
     main()
