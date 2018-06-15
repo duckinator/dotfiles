@@ -6,12 +6,10 @@ from subprocess import check_output
 
 def run(fn, *args, name):
     print("$ {} {}".format(name, " ".join(args)))
-    results = fn(list(args))
-    if isinstance(results, str):
-        print(results, end='', flush=True)
+    return fn(list(args))
 
 def git(args):
-    return check_output(["git", *args], encoding="utf-8")
+    print(check_output(["git", *args], encoding="utf-8").strip())
 
 def main():
     dotfiles_dir = os.path.dirname(__file__)
