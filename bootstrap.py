@@ -2,38 +2,42 @@
 
 import os
 from pathlib import Path
-from pip._internal import main as pip
+from pip._internal import main as pip_main
 import stat
 import subprocess
 import sys
 
 dotfiles_dir = Path(Path.home(), "dotfiles")
 
-def run(command):
+def print_run(command):
     print("$ {}".format(" ".join(command)))
+
+def run(command):
+    print_run(command)
     results = subprocess.check_output(command, encoding="utf-8").strip()
     if len(results) > 0:
         print(results)
 
-def fetch_dotfiles():
-    if not os.path.isdir(dotfiles_dir):
-        run(["git", "clone", repo_url, dotfiles_dir])
+def git(*args):
+    run(["git", *args])
+
+def pip(*args):
+    print_run(["pip", *args])
+    pip_main([*args, "--user", "--no-cache-dir", "--quiet"])
 
 def emanate(*args):
-    run([str(Path.home() / ".local" / "bin" / "emanate"), *args])
+    import emanate
+    print_run(["emanate", *args])
+    emanate.main(args)
 
 def main():
-    fetch_dotfiles()
     os.chdir(dotfiles_dir)
-    run(["git", "pull"])
-    pip(["install", "emanate", "--user", "--no-cache-dir"])
-    import emanate
-    clean = "--clean-first" in sys.argv
+    git("pull")
+    pip("install", "emanate")
+    #clean = "--clean-first" in sys.argv
     #if clean:
     #    emanate("--clean")
-    print("Running Emanate...")
-    emanate.main()
-    print("Done.")
+    emanate()
 
 if __name__ == "__main__":
     main()
