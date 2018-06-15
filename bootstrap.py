@@ -32,11 +32,9 @@ def emanate(*args):
 
 def main():
     os.chdir(dotfiles_dir)
-    git("pull")
     pip("install", "emanate")
-    #clean = "--clean-first" in sys.argv
-    #if clean:
-    #    emanate("--clean")
+    #emanate("--clean")
+    git("pull")
     emanate()
 
 if __name__ == "__main__":
