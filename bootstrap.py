@@ -3,10 +3,9 @@
 import os
 from pip._internal import main as pip
 from subprocess import check_output
-import sys
 
-def run(fn, *args, name=None):
-    print("$ {} {}".format(name or fn.__name__, " ".join(args)))
+def run(fn, *args, name):
+    print("$ {} {}".format(name, " ".join(args)))
     results = fn(list(args))
     if isinstance(results, str):
         print(results, end='', flush=True)
@@ -21,8 +20,10 @@ def main():
             name="pip")
     import emanate
 
-    #run(emanate, "--clean")
-    run(git, "pull")
+    #run(emanate.main, "--clean",
+    #        name="emanate")
+    run(git, "pull",
+            name="git")
     run(emanate.main,
             name="emanate")
 
