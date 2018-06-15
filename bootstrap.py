@@ -4,9 +4,9 @@ import os
 from pip._internal import main as pip
 from subprocess import check_call
 
-def run(name, args, fn):
-    print("$ {} {}".format(name, " ".join(args)))
-    fn(args)
+def run(fn, args, name=None):
+    print("$ {} {}".format(name or fn.__name__, " ".join(args)))
+    return fn(args)
 
 def git(args):
     return check_call(["git", *args])
@@ -20,10 +20,9 @@ def main():
 
     #run("emanate", ["--clean"],
     #        fn=emanate.main)
-    run("git", ["pull"],
-            fn=git)
-    run("emanate", [],
-            fn=emanate.main)
+    run(git, ["pull"])
+    run(emanate.main, [],
+            name="emanate")
 
 if __name__ == "__main__":
     main()
