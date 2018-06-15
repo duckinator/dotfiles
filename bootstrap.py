@@ -2,14 +2,14 @@
 
 import os
 from pip._internal import main as pip
-from subprocess import check_output
+from subprocess import check_call
 
 def run(fn, *args, name):
     print("$ {} {}".format(name, " ".join(args)))
     return fn(list(args))
 
 def git(args):
-    print(check_output(["git", *args], encoding="utf-8").strip())
+    return check_call(["git", *args])
 
 def main():
     dotfiles_dir = os.path.dirname(__file__)
