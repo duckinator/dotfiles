@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
 import os
-from pip._internal import main as pip_main
 from subprocess import check_call
+
+try:
+    # pip3
+    from pip._internal import main as pip_main
+except ImportError:
+    # pip2
+    from pip import main as pip_main
 
 def run(fn, *args):
     print("$ {} {}".format(fn.__name__, " ".join(args)))
