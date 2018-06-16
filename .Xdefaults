@@ -63,3 +63,5 @@ URxvt*perl-ext-common:
 ! white dark/light
 *color7:  #DDDFFF
 *color15: #FFFFFF
+
+Xcursor.theme: breeze_cursors
