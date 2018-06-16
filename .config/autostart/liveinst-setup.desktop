@@ -1,0 +1,10 @@
+[Desktop Entry]
+Exec=/usr/libexec/liveinst-setup.sh
+Hidden=true
+Name=Liveinst Setup
+NoDisplay=true
+TryExec=/usr/sbin/liveinst
+Type=Application
+X-GNOME-AutoRestart=false
+X-GNOME-Autostart-Notify=false
+X-GNOME-Autostart-Phase=Initialization
