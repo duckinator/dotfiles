@@ -10,6 +10,10 @@ if test -d $HOME/.gem/ruby
   for dir in $HOME/.gem/ruby/*/bin
     set RUBY_PATHS "$dir/bin:$RUBY_PATHS"
   end
+
+  if test -d $HOME/.gem/ruby/bin
+    set RUBY_PATHS "$HOME/.gem/ruby/bin:$RUBY_PATHS"
+  end
 end
 
 if test -f ~/.cargo/env
