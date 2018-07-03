@@ -8,11 +8,11 @@ end
 set RUBY_PATHS
 if test -d $HOME/.gem/ruby
   for dir in $HOME/.gem/ruby/*/bin
-    set RUBY_PATHS "$dir/bin:$RUBY_PATHS"
+    set RUBY_PATHS "$dir/bin" $RUBY_PATHS
   end
 
   if test -d $HOME/.gem/ruby/bin
-    set RUBY_PATHS "$HOME/.gem/ruby/bin:$RUBY_PATHS"
+    set RUBY_PATHS "$HOME/.gem/ruby/bin" $RUBY_PATHS
   end
 end
 
@@ -21,8 +21,7 @@ if test -f ~/.cargo/env
 end
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$RUBY_PATHS:$PATH:/sbin:/usr/sbin"
-set -e NPM_PATHS
+set -g PATH "$HOME/bin" "$HOME/.local/bin" "$HOME/.npm-global/bin" $RUBY_PATHS $PATH "/sbin" "/usr/sbin"
 set -e RUBY_PATHS
 
 if which nvim >/dev/null ^/dev/null
@@ -47,6 +46,5 @@ export RI="-f ansi"
 
 source ~/.bash_env
 
-if test -f ~/.env.fish.user
-  source ~/.fish.env.user
-end
+touch ~/.env.fish.user
+source ~/.env.fish.user
