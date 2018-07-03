@@ -159,7 +159,5 @@ function fish_right_prompt
   end
 end
 
-source ~/.config/fish/env.fish
-
 touch ~/.config.fish.user
 source ~/.config.fish.user
