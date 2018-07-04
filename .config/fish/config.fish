@@ -161,7 +161,6 @@ function fish_right_prompt
   end
 end
 
-touch ~/.config.fish.user
 if test -f "$HOME/.config.fish.user"
   source "$HOME/.config.fish.user"
 end
