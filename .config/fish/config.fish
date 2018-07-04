@@ -1,3 +1,5 @@
+source $HOME/.config/fish/env.fish
+
 # Creates a directory and then cd's to it.
 function mkcd
   if test (count $argv) -eq 0
@@ -160,4 +162,6 @@ function fish_right_prompt
 end
 
 touch ~/.config.fish.user
-source ~/.config.fish.user
+if test -f "$HOME/.config.fish.user"
+  source "$HOME/.config.fish.user"
+end

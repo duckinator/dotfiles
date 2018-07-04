@@ -5,24 +5,12 @@ if test -d "/var/run/user/$UID"
   export XDG_RUNTIME_DIR="/var/run/user/$UID"
 end
 
-set RUBY_PATHS
-if test -d $HOME/.gem/ruby
-  for dir in $HOME/.gem/ruby/*/bin
-    set RUBY_PATHS "$dir/bin" $RUBY_PATHS
-  end
-
-  if test -d $HOME/.gem/ruby/bin
-    set RUBY_PATHS "$HOME/.gem/ruby/bin" $RUBY_PATHS
-  end
-end
-
 if test -f ~/.cargo/env
   source ~/.cargo/env
 end
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-set -g PATH "$HOME/bin" "$HOME/.local/bin" "$HOME/.npm-global/bin" $RUBY_PATHS $PATH "/sbin" "/usr/sbin"
-set -e RUBY_PATHS
+set -gx PATH "$HOME/bin" "$HOME/.local/bin" "$HOME/.gem/ruby/bin" "$HOME/.npm-global/bin" "/bin" "/usr/bin" "/sbin" "/usr/sbin"
 
 if which nvim >/dev/null ^/dev/null
   export EDITOR=nvim
@@ -46,5 +34,6 @@ export RI="-f ansi"
 
 source ~/.bash_env
 
-touch ~/.env.fish.user
-source ~/.env.fish.user
+if test -f "$HOME/.env.fish.user"
+  source "$HOME/.env.fish.user"
+end
