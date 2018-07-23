@@ -5,7 +5,7 @@ from subprocess import check_call
 
 try:
     # pip3
-    from pip._internal import main as pip_main
+    from pip.__main__ import _main as pip_main
 except ImportError:
     # pip2
     from pip import main as pip_main
