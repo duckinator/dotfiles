@@ -55,7 +55,8 @@ function bash_prompt() {
   prompt="$prompt${fg_cwd}\w${fg_operator}"
 
   git_status="$(git status -s 2>/dev/null)"
-  if test $? -eq 0; then
+  #if test $? -eq 0; then
+  if false; then
     # If `git status` returns 0, this is a git repo, so show git information.
     git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 
