@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+from inspect import getdoc
+from pathlib import Path
+import shlex
+
+def get_display():
+    paths = Path('/tmp/.X11-unix').iterdir()
+    displays = map(lambda x: int(x.stem[1:]), paths)
+    return max(displays) + 1
+
+def wm(name, *args):
+    """
+    Known window managers:
+        mwm      -display {display} {args}
+        fvwm    --display {display} {args}
+        fluxbox  -display {display} {args}
+    """
+    docs = getdoc(wm)
+
+    # Get the first line that starts with +name+.
+    idx = docs.index(name)
+    raw_command = docs[idx:].splitlines()[0]
+
+    # Quote args appropriately.
+    args = " ".join(map(shlex.quote, args))
+
+    # Apply the format string.
+    command = raw_command.format(display=get_display(), args=args)
+    return command
+
+print(wm("mwm"))
