@@ -72,10 +72,6 @@ function =
   echo $argv f | dc
 end
 
-function last-ss
-  find ~/Pictures/Screenshots/ -type f | sort | tail -n 1
-end
-
 function boop-last
   boop file (last-ss) | scopy
   paste

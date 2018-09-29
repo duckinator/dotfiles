@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ -d "$HOME/Screenshots/" ]; then
-  DIR="$HOME/Screenshots/"
-else
-  DIR="$HOME/Pictures/Screenshots/"
-fi
-
-find "$DIR" -type f | sort | tail -n 1

@@ -20,18 +20,6 @@ else
   export EDITOR=nano
 end
 
-export PAGER=less
-export BROWSER=firefox
-
-# -R: Allow ANSI escape codes by default. Needed for $RI below.
-# -F: Automagically exit if the file fits on one screen.
-# -X: Disables sending the termcap initialization and deinitialization strings
-#     to the terminal, so as to avoid the crap where it clears the screen.
-export LESS="-RFX"
-
-# -f ansi: Use ANSI escape codes by default.
-export RI="-f ansi"
-
 source ~/.bash_env
 
 if test -f "$HOME/.env.fish.user"
