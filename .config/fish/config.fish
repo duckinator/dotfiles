@@ -10,16 +10,17 @@ end
 function mkcd
   if test (count $argv) -eq 0
     echo "Usage: mkcd [-p] dir"
-  else
-    set -l cd_args
-    if test $argv[1] = "-p" 2>/dev/null
-      set cd_args $argv[2]
-    else
-      set cd_args $argv[1]
-    end
-
-    mkdir $argv; and cd $cd_args
+    return 1
   end
+
+  set -l dir
+  if test "$argv[1]" = "-p"
+    set dir $argv[2]
+  else
+    set dir $argv[1]
+  end
+
+  mkdir $argv; and cd $dir
 end
 
 function mkvenv
@@ -76,11 +77,6 @@ end
 
 function =
   echo $argv f | dc
-end
-
-function boop-last
-  boop file (last-ss) | scopy
-  paste
 end
 
 # -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
