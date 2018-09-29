@@ -58,15 +58,11 @@ function =tmux
 end
 
 function demo
-  if test -z "$DEMO_MODE"
-    echo "Entering demo mode."
-    echo
-    set -g DEMO_MODE true
-  else
-    echo
-    echo "Exiting demo mode."
-    set -g DEMO_MODE false
-  end
+  echo "Entering demo mode."
+  echo
+  env DEMO_MODE=true fish
+  echo
+  echo "Exiting demo mode."
 end
 
 source $HOME/.bash_aliases
