@@ -8,19 +8,12 @@ end
 
 # Creates a directory and then cd's to it.
 function mkcd
-  if test (count $argv) -eq 0
+  if test '(' (count $argv) -eq 0 ')' -o '(' (count $argv) -ge 3 ')'
     echo "Usage: mkcd [-p] dir"
     return 1
   end
 
-  set -l dir
-  if test "$argv[1]" = "-p"
-    set dir $argv[2]
-  else
-    set dir $argv[1]
-  end
-
-  mkdir $argv; and cd $dir
+  mkdir $argv; and cd $argv[-1]
 end
 
 function mkvenv
