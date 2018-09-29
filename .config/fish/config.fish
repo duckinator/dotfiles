@@ -16,36 +16,6 @@ function mkcd
   mkdir $argv; and cd $argv[-1]
 end
 
-function mkvenv
-  if test -d venv
-    echo "mkvenv: error: Directory ./venv already exists!"
-    return 1
-  else
-    virtualenv venv --python=python3.6
-  end
-end
-
-function =venv
-  set -l search_dir
-  if test (count $argv) -gt 0
-    set search_dir $argv[1]
-  else
-    set search_dir venv
-  end
-
-  set -l activate_file (find $search_dir -name 'activate.fish')
-
-  if test -n "$VIRTUAL_ENV"
-    echo "Already in a virtualenv ($VIRTUAL_ENV)"
-  else if test -n "$activate_file"
-    . "$activate_file"
-    echo "In virtualenv $VIRTUAL_ENV."
-    echo "Run `deactivate` to exit."
-  else
-    echo "No virtualenv directory found."
-  end
-end
-
 function =tmux
   tmux -S ../tmux-(basename (pwd)) $argv
 end
