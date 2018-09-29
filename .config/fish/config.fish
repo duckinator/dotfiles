@@ -1,5 +1,11 @@
 source $HOME/.config/fish/env.fish
 
+function update-gem-home
+  set -gx GEM_HOME (ruby -Ilib -r rubygems -e 'puts Gem.user_dir')
+  set -gx GEM_PATH "/usr/share/gems:$GEM_HOME"
+  set -gx PATH $PATH $GEM_HOME/bin
+end
+
 # Creates a directory and then cd's to it.
 function mkcd
   if test (count $argv) -eq 0
