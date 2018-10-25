@@ -71,8 +71,8 @@ nmap <leader>r :set relativenumber!<CR>
 
 nmap Y y$
 
-inoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR>
-nnoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR>
+inoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR><CR>
+nnoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR><CR>
 
 " Insert hard tab
 imap <S-tab> <C-v><tab>
