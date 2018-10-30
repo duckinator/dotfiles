@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env python3
 
-if test "$1" == "up" || test "$1" == "+"; then
-  command="5%+"
-elif test "$1" == "down" || test "$1" == "-"; then
-  command="5%-"
-fi
+import subprocess
+import sys
 
-amixer set Master $command
+arg = sys.argv[1]
+
+if arg in ["up", "+"]:
+    command = "5%+"
+elif arg in ["down", "-"]:
+    command = "5%-"
+
+subprocess.run(["amixer", "set", "Master", command])
