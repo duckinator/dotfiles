@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+# Usage: - done "one-line summary of what I did"
+#        - todo "what i need to do"
+#        - some-project "note about some-project."
+
+from datetime import datetime
+from pathlib import Path
+import sys
+
+def tasks_dir():
+    tasks_dir = Path(Path.home(), "tasks")
+    tasks_dir.mkdir(exist_ok=True)
+    return tasks_dir
+
+def get_file(name):
+    file_obj = Path(tasks_dir(), name + ".txt")
+    if not file_obj.exists():
+        file_obj.write_text("")
+    return file_obj
+
+def append_line(name, line):
+    file_obj = get_file(name)
+    lines = file_obj.read_text().split("\n") + [line]
+    text = "\n".join(lines) + "\n"
+    file_obj.write_text(text)
+
+    return (file_obj.read_text() == text)
+
+def add_entry(args):
+    date = datetime.now().strftime("%Y-%m-%d")
+
+    line = date + " " + " ".join(args[1:])
+    append_line(args[0], line)
+
+def get_entries(name):
+    return get_file(name).read_text()
+
+def main(argv = None):
+    argv = argv or []
+    args = argv[1:]
+
+    if len(args) == 0:
+        print('Usage: - done "some task"', file=sys.stderr)
+        print('       - todo "some other task"', file=sys.stderr)
+        return 1
+    elif len(args) == 1:
+        print(get_entries(args[0]))
+        return 0
+    else:
+        add_entry(args)
+        return 0
+
+if __name__ == "__main__":
+    exit(main(sys.argv))
