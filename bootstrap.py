@@ -17,8 +17,8 @@ def run(fn, *args):
         exit(result)
 
 def emanate(args):
-    import emanate
-    return emanate.main(args)
+    import emanate.cli
+    return emanate.cli.main(args)
 
 def git(args):
     return check_call(["git", *args])
