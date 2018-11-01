@@ -2,14 +2,12 @@
 
 import os
 from pathlib import Path
-import subprocess
+from subprocess import run, PIPE
 
 repos = map(lambda p: p.parent, Path.cwd().glob('**/.git'))
 
 for repo in repos:
     os.chdir(repo)
-    status = subprocess.run(["git", "status", "-s"],
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE)
+    status = run(["git", "status", "-s"], check=True, stdout=PIPE, stderr=PIPE)
     if len(status.stdout) > 0 or len(status.stderr) > 0:
         print(str(repo))
