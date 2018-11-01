@@ -1,6 +1,19 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-filename="$@"
-code="#include <unistd.h>\r\nint main(){while(1){sleep(100);} return 0;}\r\n"
-printf "$code" | cc -x c -o "/tmp/$filename" - && "/tmp/$filename"
-rm "/tmp/$filename"
+import os
+import signal
+import sys
+import subprocess
+
+signal.signal(signal.SIGINT, lambda sig, frame: exit())
+
+filename = "/tmp/" + " ".join(sys.argv[1:])
+code = "#include <unistd.h>\r\nint main(){while(1){sleep(100);} return 0;}\r\n"
+
+try:
+    subprocess.run(["cc", "-x", "c", "-o", filename, "-"], input=code,
+        encoding="utf-8")
+
+    subprocess.run([filename])
+finally:
+    os.remove(filename)
