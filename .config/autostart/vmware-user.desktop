@@ -1,6 +1,0 @@
-[Desktop Entry]
-Exec=/usr/bin/vmware-user-suid-wrapper
-Hidden=true
-Name=VMware User Agent
-Type=Application
-X-KDE-autostart-phase=1
