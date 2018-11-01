@@ -1,3 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-find -name '.git' -type d -exec sh -c 'cd "{}/.."; test -z "$(git status -s)" || echo $(pwd)' \;
+import os
+from pathlib import Path
+import subprocess
+
+repos = map(lambda p: p.parent, Path.cwd().glob('**/.git'))
+
+for repo in repos:
+    os.chdir(repo)
+    status = subprocess.run(["git", "status", "-s"],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+    if len(status.stdout) > 0 or len(status.stderr) > 0:
+        print(str(repo))
