@@ -3,10 +3,8 @@
 from pathlib import Path
 from subprocess import run, PIPE
 
-repos = map(lambda p: p.parent, Path.cwd().glob('**/.git'))
-
-for repo in repos:
-    status = run(["git", "status", "-s"], check=True, cwd=repo,
-                 stdout=PIPE, stderr=PIPE)
-    if len(status.stdout) > 0 or len(status.stderr) > 0:
+for git_dir in Path.cwd().glob('**/.git'):
+    repo = git_dir.parent
+    status = run(["git", "status", "-s"], cwd=repo, stdout=PIPE, stderr=PIPE)
+    if status.stdout or status.stderr or status.returncode != 0:
         print(str(repo))
