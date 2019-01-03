@@ -1,3 +1,8 @@
+# Shell Options
+# https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+# Not 100% sure about: direxpand.
+shopt -s autocd checkjobs checkwinsize direxpand globstar histverify
+
 # Source global definitions
 [ -f /etc/bashrc            ] && . /etc/bashrc
 [ -f "$HOME/.bash_aliases"  ] && . $HOME/.bash_aliases
