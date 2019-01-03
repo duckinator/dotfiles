@@ -1,19 +1,35 @@
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
-fi
-
-if [ -f "$HOME/.bash_aliases" ]; then
-  . $HOME/.bash_aliases
-fi
-
-if [ -f "$HOME/.bash_env" ]; then
-  . $HOME/.bash_env
-fi
+[ -f /etc/bashrc            ] && . /etc/bashrc
+[ -f "$HOME/.bash_aliases"  ] && . $HOME/.bash_aliases
+[ -f "$HOME/.bash_env"      ] && . $HOME/.bash_env
 
 if which nvim &>/dev/null; then
   alias vim=nvim
 fi
+
+# -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
+if [ -n "$DISABLE_FANCY_LS" ]; then
+  # Do nothing.
+  true
+elif $(ls --version 2>/dev/null | grep -q GNU); then
+  alias ls='ls --color=auto --group-directories-first -p'
+elif [ "$(uname)" = "FreeBSD" ]; then
+  alias ls='ls -p -F -G'
+else
+  alias ls='ls -p'
+fi
+
+
+# Creates a directory and then cd's to it.
+function mkcd() {
+  local argv = "$@"
+  if [ "${#@}" -eq 0 ] || [ "${#@}" -ge 3 ]; then
+    echo "Usage: mkcd [-p] dir"
+    return 1
+  fi
+
+  mkdir $@ && cd ${argv[-1]}
+}
 
 declare -A FOREGROUND=(
   ["black"]="\033[30m"
