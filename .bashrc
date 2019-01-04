@@ -27,13 +27,12 @@ fi
 
 # Creates a directory and then cd's to it.
 function mkcd() {
-  local argv = "$@"
   if [ "${#@}" -eq 0 ] || [ "${#@}" -ge 3 ]; then
     echo "Usage: mkcd [-p] dir"
     return 1
   fi
 
-  mkdir $@ && cd ${argv[-1]}
+  mkdir $@ && cd ${@[-1]}
 }
 
 declare -A FOREGROUND=(
@@ -76,8 +75,8 @@ function bash_prompt() {
   prompt="$prompt${fg_cwd}\w${fg_operator}"
 
   git_status="$(git status -s 2>/dev/null)"
-  #if test $? -eq 0; then
-  if false; then
+  if test $? -eq 0; then
+  #if false; then
     # If `git status` returns 0, this is a git repo, so show git information.
     git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 
@@ -86,7 +85,7 @@ function bash_prompt() {
     fi
 
     if test -n "$git_status"; then
-      prompt="\\[${FOREGROUND["red"]}\\]"
+      prompt="$prompt\\[${FOREGROUND["red"]}\\]"
     fi
     prompt="$prompt+ "
   else
@@ -95,8 +94,7 @@ function bash_prompt() {
     prompt="$prompt\$ "
   fi
 
-  prompt="$prompt$fg_normal"
-  export PS1="$prompt"
+  export PS1="$bold$prompt$fg_normal"
 }
 
 function post_cmd() {
