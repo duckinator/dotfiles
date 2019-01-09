@@ -43,7 +43,7 @@ set tabstop=4
 filetype plugin indent on
 
 " Indentation exceptions
-autocmd FileType c,cpp,lua setlocal sw=4
+autocmd FileType c,cpp,java,lua setlocal sw=4
 autocmd FileType markdown setlocal tw=72
 
 " Makefiles require hard tabs.
