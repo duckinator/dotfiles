@@ -21,6 +21,16 @@ if [ -d "/var/run/user/$UID" ]; then
   export XDG_RUNTIME_DIR="/var/run/user/$UID"
 fi
 
+
+if which nvim &>/dev/null; then
+  export EDITOR=nvim
+elif which vim &>/dev/null; then
+  export EDITOR=vim
+else
+  export EDITOR=nano
+fi
+
+
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
 USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin"
 RUBY_PATH=$(ruby -e 'puts "#{Gem.user_dir}/bin"')
@@ -36,3 +46,7 @@ else
 fi
 
 export PATH="$USER_PATH:$SYSTEM_PATH:$RUBY_PATH"
+
+
+[ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
+[ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local

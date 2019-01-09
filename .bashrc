@@ -7,23 +7,6 @@ shopt -s autocd checkjobs checkwinsize globstar histverify
 [ -f "$HOME/.bash_aliases"  ] && . $HOME/.bash_aliases
 [ -f "$HOME/.bash_env"      ] && . $HOME/.bash_env
 
-if which nvim &>/dev/null; then
-  alias vim=nvim
-fi
-
-# -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
-if [ -n "$DISABLE_FANCY_LS" ]; then
-  # Do nothing.
-  true
-elif $(ls --version 2>/dev/null | grep -q GNU); then
-  alias ls='ls --color=auto --group-directories-first -p'
-elif [ "$(uname)" = "FreeBSD" ]; then
-  alias ls='ls -p -F -G'
-else
-  alias ls='ls -p'
-fi
-
-
 # Creates a directory and then cd's to it.
 function mkcd() {
   if [ "${#@}" -eq 0 ] || [ "${#@}" -ge 3 ]; then
@@ -103,3 +86,6 @@ function post_cmd() {
   fi
 }
 export PROMPT_COMMAND="post_cmd; bash_prompt"
+
+
+[ -f "$HOME/.bashrc.local" ] && source ~/.bashrc.local
