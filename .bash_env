@@ -22,14 +22,17 @@ if [ -d "/var/run/user/$UID" ]; then
 fi
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-COMMON_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin"
+USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin"
+RUBY_PATH=$(ruby -e 'puts "#{Gem.user_dir}/bin"')
 
 if [ "$(realpath /bin)" = "/usr/bin" ] && [ "$(realpath /sbin)" = "/usr/sbin" ]; then
   # Some operating systems, such as Fedora, made /bin and /sbin symlinks into /usr.
   # Thus, we avoid adding the duplicates.
   # https://fedoraproject.org/wiki/Features/UsrMove
-  export PATH="$COMMON_PATH:/usr/bin:/usr/sbin"
+  SYSTEM_PATH="/usr/bin:/usr/sbin"
 else
   # This system isn't following UsrMove, so add everything explicitly.
-  export PATH="$COMMON_PATH:/bin:/usr/bin:/sbin:/usr/sbin"
+  SYSTEM_PATH="/bin:/usr/bin:/sbin:/usr/sbin"
 fi
+
+export PATH="$USER_PATH:$SYSTEM_PATH:$RUBY_PATH"
