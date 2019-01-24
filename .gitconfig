@@ -47,3 +47,7 @@
 	path = .gitconfig.private
 [github]
 	user = duckinator
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	revision = rev-parse --short HEAD
