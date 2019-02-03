@@ -1,5 +1,7 @@
 # Default Bash aliases.
 
+alias dokku='ssh dokku@puppy.ws'
+
 alias strstrip='python3 -c "import sys; print(sys.stdin.read().strip(), end=\"\")"'
 alias copy='xclip -selection clipboard -i'
 alias paste='xclip -selection clipboard -o'
@@ -30,4 +32,3 @@ elif [ "$(uname)" = "FreeBSD" ]; then
 else
   alias ls='ls -p'
 fi
-
