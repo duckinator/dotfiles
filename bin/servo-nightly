@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import tarfile
+from urllib.request import urlopen as get
+from pathlib import Path
+import sys
+import shutil
+from subprocess import run
+
+software_dir_path = Path(Path.home(), 'software')
+dir_path = Path(software_dir_path, 'servo')
+tarfile_path = Path(software_dir_path, 'servo-latest.tar.gz')
+exec_path = Path(dir_path, 'servo', 'servo')
+
+if len(sys.argv) > 1 and sys.argv[1] == "--update":
+    if dir_path.exists():
+        # FIXME: Can Path handle this part, somehow?
+        shutil.rmtree(dir_path)
+
+    if tarfile_path.exists():
+        tarfile_path.unlink()
+
+    with get("https://download.servo.org/nightly/linux/servo-latest.tar.gz") as f:
+        tarfile_path.write_bytes(f.read())
+        tf = tarfile.open(tarfile_path)
+        tf.list()
+        print("Press RETURN to continue, or Ctrl-C to cancel.")
+        try:
+            sys.stdin.readline()
+            print("Extracting.")
+            tf.extractall(dir_path)
+        except KeyboardInterrupt:
+            print("!!! Not extracting.")
+            exit(1)
+
+run(str(exec_path))
