@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir -p $HOME/software/KILauncher/
+cd $HOME/software/KILauncher
+[ -f KILauncher.jar ] || wget https://kitsuneindustries.com/minecraft/KILauncher.jar
+
+java -Xms1024M -Xmx8192M -XX:MaxPermSize=512 -jar KILauncher.jar
