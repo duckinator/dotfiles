@@ -32,7 +32,7 @@ fi
 
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin"
+USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin:$HOME/go/bin"
 RUBY_PATH=$(ruby -e 'puts "#{Gem.user_dir}/bin"')
 
 if [ "$(realpath /bin)" = "/usr/bin" ] && [ "$(realpath /sbin)" = "/usr/sbin" ]; then
