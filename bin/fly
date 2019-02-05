@@ -8,7 +8,7 @@ from urllib.request import urlopen as get
 version = "v4.2.2"
 filename = "fly_linux_amd64-{}".format(version)
 
-file_path = os.path.join(os.environ["HOME"], "software", , filename)
+file_path = os.path.join(os.environ["HOME"], "software", filename)
 
 def ensure_parent_directory_exists(file_path):
     directory = os.path.dirname(file_path)
@@ -26,12 +26,14 @@ def download_file(url, file_path):
 def download_executable(url, file_path):
     ensure_parent_directory_exists(file_path)
     download_file(url, file_path)
-    make_executable(file_path)
 
 # Download the executable if required.
 if not os.path.isfile(file_path):
     url = "https://github.com/concourse/concourse/releases/download/{}/fly_linux_amd64".format(version)
     download_executable(url, file_path)
+
+
+make_executable(file_path)
 
 # Run the executable.
 os.execvp(file_path, sys.argv)
