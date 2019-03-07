@@ -69,6 +69,14 @@ nmap <leader>n :nohlsearch<CR>
 nmap <leader>s :set spell!<CR>
 nmap <leader>r :set relativenumber!<CR>
 
+nmap <C-n> :tabnext<CR>
+nmap <C-p> :tabprev<CR>
+nmap <C-o> :tabedit<Space>
+
+nmap <C-s> :w<CR>
+imap <C-s> <Esc>:w<CR>i
+nmap <C-q> :q<CR>
+
 nmap Y y$
 
 inoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR><CR>
