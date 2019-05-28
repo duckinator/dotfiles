@@ -29,8 +29,9 @@ if len(sys.argv) > 1 and sys.argv[1] == "--update":
             sys.stdin.readline()
             print("Extracting.")
             tf.extractall(dir_path)
+            exit(0)
         except KeyboardInterrupt:
             print("!!! Not extracting.")
             exit(1)
 
-run(str(exec_path))
+run([str(exec_path), *sys.argv[1:]])
