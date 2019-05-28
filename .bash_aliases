@@ -10,6 +10,7 @@ alias grep='grep --color=auto'
 
 alias sshproxy='ssh -ND 9999'
 alias drop-caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
+alias flush-swap='sudo bash -c "swapoff -a; swapon -a"'
 
 alias b='bundle'
 alias bi='bundle install'
