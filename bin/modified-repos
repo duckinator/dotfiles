@@ -3,7 +3,15 @@
 from pathlib import Path
 from subprocess import run, PIPE
 
+ignored_dirs = [
+    # ~/.cargo/**/.git/ -- is there really no more concise way using pathlib?
+    *(Path.home() / ".cargo").resolve().glob("**/.git"),
+]
+
 for git_dir in Path.cwd().glob('**/.git'):
+    if git_dir in ignored_dirs:
+        continue
+
     repo = git_dir.parent
     status = run(["git", "status", "-s"], cwd=repo, stdout=PIPE, stderr=PIPE)
     if status.stdout or status.stderr or status.returncode != 0:
