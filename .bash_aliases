@@ -1,5 +1,7 @@
 # Default Bash aliases.
 
+alias sysinfo='konsole --hide-menubar -e neofetch --loop'
+
 alias dokku='ssh dokku@puppy.ws --'
 
 alias strstrip='python3 -c "import sys; print(sys.stdin.read().strip(), end=\"\")"'
