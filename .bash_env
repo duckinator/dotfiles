@@ -45,7 +45,14 @@ else
   SYSTEM_PATH="/bin:/usr/bin:/sbin:/usr/sbin"
 fi
 
-export PATH="$USER_PATH:$SYSTEM_PATH:$RUBY_PATH"
+USR_LOCAL_PATH="/usr/local/bin:/usr/local/sbin"
+
+export PATH="$USER_PATH:$SYSTEM_PATH:$USR_LOCAL_PATH:$RUBY_PATH"
+
+unset USER_PATH
+unset RUBY_PATH
+unset SYSTEM_PATH
+unset USR_LOCAL_PATH
 
 FLATPAK_EXPORTS="/var/lib/flatpak/exports/"
 [ -d "$FLATPAK_EXPORTS/bin" ] && export PATH="$PATH:$FLATPAK_EXPORTS/bin"
