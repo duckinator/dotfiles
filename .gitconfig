@@ -50,4 +50,10 @@
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
-	revision = rev-parse --short HEAD
+  revision = rev-parse --short HEAD
+# Automagically added by installing git-lfs.
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
