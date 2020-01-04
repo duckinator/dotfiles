@@ -158,6 +158,8 @@ if dein#load_state('~/.config/nvim/bundle')
   call dein#add('mhinz/vim-signify')
   call dein#add('rust-lang/rust.vim')
 
+  call dein#add('vim-syntastic/syntastic')
+
   call dein#end()
   call dein#save_state()
 endif
@@ -165,6 +167,22 @@ endif
 if dein#check_install()
   call dein#install()
 endif
+
+" syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_python_checkers = ['flake8', 'pylint', 'python']
+
+
+" color scheme and such
 
 set background=dark
 "colorscheme slate
@@ -224,7 +242,7 @@ exec 'highlight Statement    ctermfg='.lightblue
 highlight Visual cterm=reverse
 exec 'highlight WarningMsg   ctermfg='.red.'        cterm=bold'
 exec 'highlight String       ctermfg='.cyan
-exec 'highlight Comment      ctermfg='.darkgray.'   cterm=bold'
+exec 'highlight Comment      ctermfg='.lightcyan.'   cterm=bold'
 exec 'highlight Constant     ctermfg='.brown
 exec 'highlight Special      ctermfg='.brown
 exec 'highlight Identifier   ctermfg='.red
@@ -237,7 +255,7 @@ exec 'highlight Function     ctermfg='.brown
 exec 'highlight Structure    ctermfg='.green
 exec 'highlight LineNr       ctermfg='.brown
 exec 'highlight Ignore       ctermfg='.lightgray.'  cterm=bold'
-exec 'highlight Todo         ctermfg='.darkgray.'   ctermbg='.yellow
+exec 'highlight Todo         ctermfg='.lightcyan.'   ctermbg='.yellow
 exec 'highlight Directory    ctermfg='.cyan
 exec 'highlight ErrorMsg     ctermfg='.white.'      ctermbg='.red.'   cterm=bold'
 highlight VisualNOS cterm=bold,underline
