@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo gem update --system $1 --install-dir=/usr/share/gems --bindir /usr/local/bin
