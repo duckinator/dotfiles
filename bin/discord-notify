@@ -6,6 +6,7 @@ import json
 import urllib.error
 import urllib.request
 
+
 def fetch(method, url, data=None):
     data = json.dumps(data).encode()
     method = method.upper()
@@ -14,6 +15,7 @@ def fetch(method, url, data=None):
     request.add_header('User-Agent', 'puppy-notify-script/1.0 (+https://github.com/duckinator/dotfiles/blob/main/bin/discord-notify')
     response = urllib.request.urlopen(request)
     return response
+
 
 try:
     url_file = Path.home() / '.config' / 'dotfiles' / 'discord-notify-url.txt'
