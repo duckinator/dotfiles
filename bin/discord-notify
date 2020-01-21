@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+from pprint import pprint
+import json
+import urllib.error
+import urllib.request
+
+def fetch(method, url, data=None):
+    data = json.dumps(data).encode()
+    method = method.upper()
+    request = urllib.request.Request(url, data=data, method=method)
+    request.add_header('Content-Type', 'application/json')
+    request.add_header('User-Agent', 'puppy-notify-script/1.0 (+https://github.com/duckinator/dotfiles/blob/main/bin/discord-notify')
+    response = urllib.request.urlopen(request)
+    return response
+
+try:
+    url_file = Path.home() / '.config' / 'dotfiles' / 'discord-notify-url.txt'
+    url = url_file.read_text()
+    fetch('post', url, {'content': 'Awoo :3'})
+except urllib.error.HTTPError as e:
+    pprint(e)
+    pprint(e.headers.as_string())
+    pprint(e.reason)
