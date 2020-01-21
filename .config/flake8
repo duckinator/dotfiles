@@ -1,0 +1,13 @@
+[flake8]
+select = C,E,F,W,B,B9
+ignore =
+max-complexity = 10
+max-line-length = 120
+exclude =
+    .eggs,
+    .git,
+    .tox,
+    __pycache__,
+    build,
+    dist,
+    venv
