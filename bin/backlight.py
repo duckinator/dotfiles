@@ -5,13 +5,16 @@ import sys
 device = "nv_backlight"
 device_path = "/sys/class/backlight/" + device
 
+
 def backlight_set(file_path, level):
     with open(file_path, "w") as f:
         f.write(str(level))
 
+
 def backlight_get(file_path):
     with open(file_path) as f:
         return int(f.read())
+
 
 def backlight_calc(current, min_, max_, string):
     adjustment = int(string)
@@ -22,6 +25,7 @@ def backlight_calc(current, min_, max_, string):
         result = adjustment
 
     return min(max(min_, result), max_)
+
 
 def main(argv=None):
     if argv is None:
@@ -43,6 +47,7 @@ def main(argv=None):
     backlight_set(cur_file, brightness)
 
     return 0
+
 
 if __name__ == "__main__":
     exit(main())
