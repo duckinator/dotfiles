@@ -1,1 +1,11 @@
-ffplay -fs -vf scale=1920:1080 -s 1280x720 /dev/video0
+#!/bin/bash
+
+~/dotfiles/bin/playing "$1" &
+PID=$?
+
+ffplay -nodisp -f pulse -i 'alsa_input.usb-Magewell_XI100DUSB-HDMI_A201160224366-02.analog-stereo' &
+PID2=$?
+
+ffplay -s 1280x720 /dev/video0
+kill $PID
+kill $PID2
