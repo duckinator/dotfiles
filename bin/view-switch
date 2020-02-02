@@ -1,0 +1,1 @@
+ffplay -fs -vf scale=1920:1080 -s 1280x720 /dev/video0
