@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Uses ffplay to view video from the Magewell USB Capture HDMI.
+# This setup is for the Nintendo Switch, which outputs 1280x720.
+ffplay -fs -s 1280x720 /dev/video0
