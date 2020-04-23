@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xset -dpms s off; read -p 'Press enter to re-enable screensaver.'; xset +dpms s on
