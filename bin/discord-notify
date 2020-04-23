@@ -5,6 +5,7 @@ from pprint import pprint
 import json
 import urllib.error
 import urllib.request
+import sys
 
 
 def fetch(method, url, data=None):
@@ -17,10 +18,26 @@ def fetch(method, url, data=None):
     return response
 
 
+def request_body(argv):
+    args = argv[1:]
+
+    if len(args) == 0:
+        content = sys.stdin.read()
+    elif "-h" in args or "--help" in args:
+        print("Usage: <command> | discord-notify")
+        print("       <command> || discord-notify \"error explanation\"")
+        print("       discord-notify <message>")
+        sys.exit(1)
+    else:
+        content = ' '.join(args)
+
+    return {'content': content}
+
+
 try:
     url_file = Path.home() / '.config' / 'dotfiles' / 'discord-notify-url.txt'
     url = url_file.read_text()
-    fetch('post', url, {'content': 'Awoo :3'})
+    fetch('post', url, request_body(sys.argv))
 except urllib.error.HTTPError as e:
     pprint(e)
     pprint(e.headers.as_string())
