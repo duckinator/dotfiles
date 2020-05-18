@@ -80,10 +80,8 @@ nmap <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>i
 nmap <C-q> :q<CR>
 
+" Yank to end of line
 nmap Y y$
-
-inoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR><CR>
-nnoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR><CR>
 
 " Insert hard tab
 imap <S-tab> <C-v><tab>
