@@ -32,19 +32,22 @@ set statusline+=%l,%c   "cursor column
 set statusline+=\ %P\   "percent through file
 set statusline+=%r      "read only flag
 
+" Set updatetime so vim-gitgutter behaves nicer.
+" May be worth tweaking.
+" https://github.com/airblade/vim-gitgutter#getting-started
+set updatetime=100
+
 " Jump to the last cursor position when opening
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 
 " Default to 2-space indents, 4-character tabs
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set tabstop=4
 filetype plugin indent on
 
-" Indentation exceptions
-autocmd FileType c,cpp,java,lua setlocal sw=4
-autocmd FileType markdown setlocal tw=72
+autocmd FileType rb setlocal shiftwidth=2
 
 " Makefiles require hard tabs.
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
@@ -85,63 +88,17 @@ nnoremap <F5> :update<Bar>execute '!./build.sh '.shellescape(expand('%'), 1)<CR>
 " Insert hard tab
 imap <S-tab> <C-v><tab>
 
-function! LoadEditorconfig()
-python3 << EOF
-from configparser import SafeConfigParser
-import subprocess
-import os
-import vim
-
-def reject_none(items):
-    return filter(lambda x: not x is None, items)
-
-def config_item(t):
-    (k, v) = t
-    if k == "indent_size":
-        return "shiftwidth=" + v
-    elif k == "indent_style":
-        if v == "space":
-            return "expandtab"
-        else:
-            return "noexpandttab"
-    else:
-        return None
-
-def add_section(section):
-    command = list(reject_none(map(config_item, section.items())))
-    if len(command) > 0:
-      return "au BufReadPost,BufNewFile " + section.name + " set " + " ".join(command)
-    else:
-      return None
-
-def load_editorconfig_for(path):
-    config = os.path.join(path, ".editorconfig")
-    if not os.path.isfile(config):
-        return
-    parser = SafeConfigParser()
-    parser.read(config)
-    commands = reject_none(map(add_section, parser.values()))
-    for command in commands:
-        vim.eval("execute(\"{}\")".format(command.replace('"', '\\"')))
-
-def load_editorconfig():
-    command = "git rev-parse --show-toplevel"
-    result = subprocess.getoutput(command).strip()
-    if not result.startswith("fatal:"):
-        load_editorconfig_for(result)
-
-load_editorconfig()
-EOF
-endfunction
-nmap <leader>e :call LoadEditorconfig()<CR>
-
 function! InitialSetup()
 python3 << EOF
 from pathlib import Path
 import subprocess
 
-dir = Path("~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/").expanduser()
-repo_url = "https://github.com/Shougo/dein.vim"
+repo_url = "https://github.com/mhinz/vim-signify.git"
+parent_dir = Path("~/.config/nvim/pack/repos/start/").expanduser()
+dir = parent_dir / "vim-gitgutter"
+
+if not parent_dir.exists():
+  parent_dir.mkdir(parents=True)
 
 if not dir.is_dir():
     subprocess.check_output(["git", "clone", repo_url, str(dir)])
@@ -149,28 +106,6 @@ EOF
 endfunction
 
 call InitialSetup()
-set runtimepath+=~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/
-if dein#load_state('~/.config/nvim/bundle')
-  call dein#begin('~/.config/nvim/bundle')
-  call dein#add('~/.config/nvim/bundle/repos/github.com/Shougo/dein.vim/')
-
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('mhinz/vim-signify')
-  call dein#add('rust-lang/rust.vim')
-
-  call dein#add('dense-analysis/ale')
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif
-
-"let g:syntastic_python_python_exec = '/usr/bin/python3'
-""let g:syntastic_python_checkers = ['flake8', 'pycodestyle', 'python']
-"let g:syntastic_python_checkers = ['pycodestyle', 'python']
 
 
 " color scheme and such
