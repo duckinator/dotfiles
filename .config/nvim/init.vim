@@ -91,15 +91,19 @@ python3 << EOF
 from pathlib import Path
 import subprocess
 
-repo_url = "https://github.com/mhinz/vim-signify.git"
-parent_dir = Path("~/.config/nvim/pack/repos/start/").expanduser()
-dir = parent_dir / "vim-gitgutter"
+root_dir = Path("~/.config/nvim/pack/repos/start/").expanduser()
 
-if not parent_dir.exists():
-  parent_dir.mkdir(parents=True)
+if not root_dir.exists():
+  root_dir.mkdir(parents=True)
 
-if not dir.is_dir():
-    subprocess.check_output(["git", "clone", repo_url, str(dir)])
+def ensure_pack(repo):
+    repo_url = "https://github.com/{}.git".format(repo)
+    dir = root_dir / repo.replace("/", "__")
+    if not dir.is_dir():
+        subprocess.check_output(["git", "clone", repo_url, str(dir)])
+
+ensure_pack("mhinz/vim-signify")
+ensure_pack("dense-analysis/ale")
 EOF
 endfunction
 
