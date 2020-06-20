@@ -50,7 +50,7 @@ function bash_prompt() {
   local git_status
   local git_branch
 
-  if test -n "$SSH_CONNECTION"; then
+  if test -n "$SSH_CONNECTION" || test -n "$PS1_SHOW_HOSTNAME"; then
     prompt="${bold}${fg_user}\u${fg_operator}@${fg_host}\H${fg_operator}:"
   fi
 
