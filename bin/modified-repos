@@ -3,9 +3,20 @@
 from pathlib import Path
 from subprocess import run, PIPE
 
+HOME = Path.home().resolve()
+
 ignored_dirs = [
-    # ~/.cargo/**/.git/ -- is there really no more concise way using pathlib?
-    *(Path.home() / ".cargo").resolve().glob("**/.git"),
+    # ~/.local/share/**/.git
+    *HOME.glob('.local/share/**/.git'),
+
+    # ~/.cache/**/.git/
+    *(HOME / '.cache').glob('**/.git'),
+
+    # ~/.cargo/**/.git/
+    *(HOME / '.cargo').glob('**/.git'),
+
+    # ~/**/.cargo/git/checkouts/*/.git/
+    *HOME.glob('**/.cargo/git/checkouts/**/.git'),
 ]
 
 for git_dir in Path.cwd().glob('**/.git'):
@@ -13,6 +24,6 @@ for git_dir in Path.cwd().glob('**/.git'):
         continue
 
     repo = git_dir.parent
-    status = run(["git", "status", "-s"], cwd=repo, stdout=PIPE, stderr=PIPE)
+    status = run(['git', 'status', '-s'], cwd=repo, check=False, stdout=PIPE, stderr=PIPE)
     if status.stdout or status.stderr or status.returncode != 0:
         print(str(repo))
