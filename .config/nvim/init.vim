@@ -112,6 +112,7 @@ call InitialSetup()
 
 let g:ale_linters = {
 \   'c': ['clangd'],
+\   'python': ['pylint']
 \}
 
 
