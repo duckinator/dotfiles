@@ -9,12 +9,16 @@ shopt -s autocd checkjobs checkwinsize globstar histverify
 
 # Creates a directory and then cd's to it.
 function mkcd() {
-  if [ "${#@}" -eq 0 ] || [ "${#@}" -ge 3 ]; then
-    echo "Usage: mkcd [-p] dir"
-    return 1
-  fi
+    if [ "${#@}" -eq 0 ] || [ "${#@}" -ge 3 ]; then
+        echo "Usage: mkcd [-p] dir"
+        return 1
+    fi
 
-  mkdir $@ && cd ${@[-1]}
+    if [ "$1" = "-p" ]; then
+        mkdir -p "$2" && cd "$2"
+    else
+        mkdir "$1" && cd "$1"
+    fi
 }
 
 declare -A FOREGROUND=(
