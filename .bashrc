@@ -22,26 +22,26 @@ function mkcd() {
 }
 
 declare -A FOREGROUND=(
-  ["black"]="\033[30m"
-  ["red"]="\033[31m"
-  ["green"]="\033[32m"
-  ["yellow"]="\033[33m"
-  ["blue"]="\033[34m"
-  ["magenta"]="\033[35m"
-  ["cyan"]="\033[36m"
-  ["white"]="\033[37m"
+    ["black"]="\033[30m"
+    ["red"]="\033[31m"
+    ["green"]="\033[32m"
+    ["yellow"]="\033[33m"
+    ["blue"]="\033[34m"
+    ["magenta"]="\033[35m"
+    ["cyan"]="\033[36m"
+    ["white"]="\033[37m"
 
-  ["brblack"]="\033[90m"
-  ["brred"]="\033[91m"
-  ["brgreen"]="\033[92m"
-  ["bryellow"]="\033[93m"
-  ["brblue"]="\033[94m"
-  ["brmagenta"]="\033[95m"
-  ["brcyan"]="\033[96m"
-  ["brwhite"]="\033[97m"
+    ["brblack"]="\033[90m"
+    ["brred"]="\033[91m"
+    ["brgreen"]="\033[92m"
+    ["bryellow"]="\033[93m"
+    ["brblue"]="\033[94m"
+    ["brmagenta"]="\033[95m"
+    ["brcyan"]="\033[96m"
+    ["brwhite"]="\033[97m"
 
-  ["bold"]="\033[1m"
-  ["reset"]="\033[0m"
+    ["bold"]="\033[1m"
+    ["reset"]="\033[0m"
 )
 function bash_prompt() {
     local fg_normal="\\[${FOREGROUND["reset"]}\\]"
@@ -87,10 +87,10 @@ function bash_prompt() {
 }
 
 function post_cmd() {
-  local LAST_STATUS=$?
-  if [ $LAST_STATUS -gt 0 ]; then
-    printf "%$[ $(tput cols) - ${#LAST_STATUS} - 2]s[$LAST_STATUS]\r"
-  fi
+    local LAST_STATUS=$?
+    if [ $LAST_STATUS -gt 0 ]; then
+        printf "%$[ $(tput cols) - ${#LAST_STATUS} - 2]s[$LAST_STATUS]\r"
+    fi
 }
 export PROMPT_COMMAND="post_cmd; bash_prompt"
 
