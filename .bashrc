@@ -44,43 +44,46 @@ declare -A FOREGROUND=(
   ["reset"]="\033[0m"
 )
 function bash_prompt() {
-  local prompt=""
-  local fg_normal="\\[${FOREGROUND["reset"]}\\]"
-  local fg_operator="\\[${FOREGROUND["brmagenta"]}\\]"
-  local fg_user="\\[${FOREGROUND["blue"]}\\]"
-  local fg_host="$fg_user"
-  local fg_cwd="$fg_user"
-  local bold="\\[${FOREGROUND["bold"]}\\]"
-  local git_status
-  local git_branch
+    local fg_normal="\\[${FOREGROUND["reset"]}\\]"
+    local fg_operator="\\[${FOREGROUND["brmagenta"]}\\]"
+    local fg_user="\\[${FOREGROUND["blue"]}\\]"
+    local fg_host="$fg_user"
+    local fg_cwd="$fg_user"
+    local bold="\\[${FOREGROUND["bold"]}\\]"
+    local git_status
+    local git_branch
 
-  if test -n "$SSH_CONNECTION" || test -n "$PS1_SHOW_HOSTNAME"; then
-    prompt="${bold}${fg_user}\u${fg_operator}@${fg_host}\H${fg_operator}:"
-  fi
+    local prefix_hostname=""
+    local prefix_venv=""
+    local suffix_git=""
+    local prompt_symbol="$"
 
-  prompt="$prompt${fg_cwd}\w${fg_operator}"
-
-  git_status="$(git status -s 2>/dev/null)"
-  if test $? -eq 0; then
-  #if false; then
-    # If `git status` returns 0, this is a git repo, so show git information.
-    git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-
-    if test -n "$git_branch"; then
-      prompt="$prompt $git_branch"
+    if test -n "$VIRTUAL_ENV"; then
+        prefix_venv="(`basename \"$VIRTUAL_ENV\"`) "
     fi
 
-    if test -n "$git_status"; then
-      prompt="$prompt\\[${FOREGROUND["red"]}\\]"
+    if test -n "$SSH_CONNECTION" || test -n "$PS1_SHOW_HOSTNAME"; then
+        prefix_hostname="${bold}${fg_user}\u${fg_operator}@${fg_host}\H${fg_operator}:"
     fi
-    prompt="$prompt+ "
-  else
-    # If `git status` returns anything else, it's not a git repo, so show the
-    # normal prompt.
-    prompt="$prompt\$ "
-  fi
 
-  export PS1="$bold$prompt$fg_normal"
+    git_status="$(git status -s 2>/dev/null)"
+    if test $? -eq 0; then
+        # If `git status` returns 0, this is a git repo, so show git information.
+        git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+
+        if test -n "$git_branch"; then
+            suffix_git=" $git_branch"
+        fi
+
+        if test -n "$git_status"; then
+            prompt_symbol="\\[${FOREGROUND["red"]}\\]+"
+        else
+            prompt_symbol="+"
+        fi
+    fi
+
+    local prompt_main="${fg_cwd}\w${fg_operator}"
+    export PS1="$bold$prefix_venv$prefix_hostname$prompt_main$suffix_git$prompt_symbol$fg_normal "
 }
 
 function post_cmd() {
