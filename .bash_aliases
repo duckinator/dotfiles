@@ -1,5 +1,7 @@
 # Default Bash aliases.
 
+source "$HOME/.bash_demo_aliases"
+
 alias sysinfo='konsole --workdir ~ --hide-menubar -e neofetch --loop'
 
 alias dokku='ssh dokku@puppy.ws --'
