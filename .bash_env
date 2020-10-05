@@ -59,6 +59,7 @@ unset USR_LOCAL_PATH
 
 FLATPAK_EXPORTS="/var/lib/flatpak/exports"
 [ -d "$FLATPAK_EXPORTS/bin" ] && export PATH="$PATH:$FLATPAK_EXPORTS/bin"
+[ -d "$HOME/.tfenv/bin" ] && export PATH="$PATH:$HOME/.tfenv/bin"
 
 [ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
 [ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
