@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$(readlink -f "$(dirname $0)")
+
+for x in $DIR/*.sh; do
+    $x clean
+done
