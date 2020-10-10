@@ -20,3 +20,6 @@ if [ "$1" = "clean" ]; then
     cd "$FONTDIR"
     rm -f Hack-*.ttf
 fi
+
+# Always run this after playing with fonts.
+fc-cache -f -v
