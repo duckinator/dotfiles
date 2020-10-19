@@ -77,7 +77,7 @@ nmap <C-p> :tabprev<CR>
 nmap <C-o> :tabedit<Space>
 
 nmap <C-s> :w<CR>
-imap <C-s> <Esc>:w<CR>i
+imap <C-s> <Esc>:w<CR>a
 nmap <C-q> :q<CR>
 
 " Yank to end of line
