@@ -4,6 +4,7 @@ source "$HOME/.bash_demo_aliases"
 
 alias sysinfo='konsole --workdir ~ --hide-menubar -e neofetch --loop'
 
+alias venv='if [ -n "$VIRTUAL_ENV" ]; then deactivate; else . venv/bin/activate; fi'
 alias dokku='ssh dokku@puppy.ws --'
 
 alias strstrip='python3 -c "import sys; print(sys.stdin.read().strip(), end=\"\")"'
