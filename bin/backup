@@ -9,6 +9,7 @@ LOG_FILE="$HOME/backup.log"
 LAST_BACKUP_FILE="$HOME/.last-backup.txt"
 
 function fail() {
+    echo "$@" > ~/.backup-error.txt
     printf "\n-----------------------------" >> $LOG_FILE
     echo >> $LOG_FILE
     echo "$@" >> $LOG_FILE
@@ -28,7 +29,7 @@ function notify-log() {
 printf "Backup started on $START\n\n" > $LOG_FILE
 
 if [ -z "${HOSTNAME}" ]; then
-    fail '$HOSTNAME is empty; cannot infer directory structure.' >> $LOG_FILE
+    fail '$HOSTNAME is empty.'
 fi
 
 # -a:   "Archive mode."
@@ -37,11 +38,13 @@ fi
 # -P:   --partial (keep partially-transferred files), --progress (show progress during transfer)
 # -h:   Use human-readable numbers.
 # --delete: Delete extraneous files from dest dirs.
-rsync -avzPh --delete "$HOME/Cloud/" "${BACKUP_REMOTE}:/home/puppy/backups/${HOSTNAME}/" 2>&1 | tee -a $LOG_FILE || fail "Error running rsync command."
+rsync -avzPh --delete "$HOME/Cloud/" "${BACKUP_REMOTE}:/home/puppy/backups/${HOSTNAME}/" 2>&1 | tee -a $LOG_FILE || fail "Error running rsync ($?)."
 
 END_TS=$(date +'%s')
 
 DURATION=$[$END_TS - $START_TS]
+
+rm -f ~/.backup-error.txt
 
 echo "$END_TS" > $LAST_BACKUP_FILE
 
