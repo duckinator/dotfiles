@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import time
+import termcolor
+
+backup_ts = int((Path.home() / '.last-backup.txt').read_text())
+current_ts = int(time.time())
+
+seconds = current_ts - backup_ts
+minutes, seconds = divmod(seconds, 60)
+
+if minutes > 60:
+    kwargs = {'color': 'red'}
+else:
+    kwargs = {}
+
+#termcolor.cprint(f'{minutes} minutes since last backup', **kwargs)
+print('☁️✅')

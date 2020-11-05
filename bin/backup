@@ -1,0 +1,48 @@
+#!/bin/bash
+
+BACKUP_REMOTE="puppy@backup.boop.ws"
+
+START=$(date +'%d %b %Y at %H:%M:%S')
+START_TS=$(date +'%s')
+
+LOG_FILE="$HOME/backup.log"
+LAST_BACKUP_FILE="$HOME/.last-backup.txt"
+
+function fail() {
+    printf "\n-----------------------------" >> $LOG_FILE
+    echo >> $LOG_FILE
+    echo "$@" >> $LOG_FILE
+    notify-send -u critical "Backup failed!" "See $LOG_FILE for details."
+    exit 1
+}
+
+function notify-log() {
+    notify-send "$1" "$2"
+    printf "\n-----------------------------" >> $LOG_FILE
+    echo >> $LOG_FILE
+    echo "$1" >> $LOG_FILE
+    printf "$2\n" >> $LOG_FILE
+}
+
+[ -f "$LOG_FILE" ] && mv "$LOG_FILE" "$LOG_FILE.1"
+printf "Backup started on $START\n\n" > $LOG_FILE
+
+if [ -z "${HOSTNAME}" ]; then
+    fail '$HOSTNAME is empty; cannot infer directory structure.' >> $LOG_FILE
+fi
+
+# -a:   "Archive mode."
+# -z:   Compress file data during transfer
+# -v:   Increase verbosity.
+# -P:   --partial (keep partially-transferred files), --progress (show progress during transfer)
+# -h:   Use human-readable numbers.
+# --delete: Delete extraneous files from dest dirs.
+rsync -avzPh --delete "$HOME/Cloud/" "${BACKUP_REMOTE}:/home/puppy/backups/${HOSTNAME}/" 2>&1 | tee -a $LOG_FILE || fail "Error running rsync command."
+
+END_TS=$(date +'%s')
+
+DURATION=$[$END_TS - $START_TS]
+
+echo "$END_TS" > $LAST_BACKUP_FILE
+
+notify-log "Backup complete." "Started on $START.\\nTook $DURATION seconds."
