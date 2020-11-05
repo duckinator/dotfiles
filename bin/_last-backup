@@ -11,9 +11,6 @@ seconds = current_ts - backup_ts
 minutes, seconds = divmod(seconds, 60)
 
 if minutes > 60:
-    kwargs = {'color': 'red'}
+    termcolor.cprint('✖️', color='red')
 else:
-    kwargs = {}
-
-#termcolor.cprint(f'{minutes} minutes since last backup', **kwargs)
-print('☁️✅')
+    termcolor.cprint('✔️', color='green')
