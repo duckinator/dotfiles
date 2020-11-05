@@ -3,6 +3,7 @@
 from pathlib import Path
 import time
 import termcolor
+import sys
 
 backup_ts = int((Path.home() / '.last-backup.txt').read_text())
 current_ts = int(time.time())
@@ -10,7 +11,17 @@ current_ts = int(time.time())
 seconds = current_ts - backup_ts
 minutes, seconds = divmod(seconds, 60)
 
-if minutes > 60:
-    termcolor.cprint('✖️', color='red')
+def color_print(color, text):
+    if len(sys.argv) > 1 and sys.argv[1] == '--tmux':
+        print(f'#[fg={color}]{text}#[fg=white]')
+    else:
+        termcolor.cprint(text, color=color)
+
+backup_error = Path.home() / '.backup-error.txt'
+
+if backup_error.exists():
+    color_print('red', '✖️ ' + backup_error.read_text().strip())
+elif minutes > 60:
+    color_print('red', '✖️ backup delayed')
 else:
-    termcolor.cprint('✔️', color='green')
+    color_print('green', '✔️')
