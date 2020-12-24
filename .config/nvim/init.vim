@@ -22,6 +22,7 @@ set list
 set listchars=tab:»·,trail:·
 set laststatus=2
 set scrolloff=1000 " always center except at the top/bottom of files.
+set nowrap " don't automatically insert newlines.
 syntax on
 
 set statusline+=%t      "tail of the filename
