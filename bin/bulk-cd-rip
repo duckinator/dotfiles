@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+while true; do
+    cdcontrol eject
+    printf "Remove the CD. If continuing, insert the next cd. Rip another? [Y/n] "
+    read RESPONSE
+    cdcontrol close
+
+    if [ -n "$RESPONSE" ] && [ "$RESPONSE" != "y" ] && [ "$RESPONSE" != "Y" ]; then
+        echo "Exiting."
+        exit
+    fi
+
+    abcde
+done
