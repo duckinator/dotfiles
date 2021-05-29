@@ -1,3 +1,9 @@
+# If not running interactively, don't do anything.
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
 # Shell Options
 # https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
 shopt -s autocd checkjobs checkwinsize globstar histverify
