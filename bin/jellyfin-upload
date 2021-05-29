@@ -6,7 +6,7 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ -z "$1" ]; then
     echo "Where CATEGORY_DIR is a folder on the remote system (Music, Audiobook, MusicVideo, Movies, TV, etc), and"
     echo "Where LOCAL_DIR is the local directory to put there."
     echo
-    echo "E.g., \`$0 Music 'Fear Factory'\` will upload \`./Fear Factory/\` to `$LIBRARY/Music/Fear Factory\`."
+    echo "E.g., \`$0 Music 'Fear Factory'\` will upload \`./Fear Factory/\` to \`$LIBRARY/Music/Fear Factory\`."
     exit 1
 fi
 # plex-upload TV "That Time I Got Reincarnated as a Slime"
