@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#BACKUP_REMOTE="puppy@backup.boop.ws"
-BACKUP_REMOTE="puppy@157.230.48.59"
+BACKUP_REMOTE="puppy@backup.do1g.com"
 
 START=$(date +'%d %b %Y at %H:%M:%S')
 START_TS=$(date +'%s')
