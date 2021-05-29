@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #BACKUP_REMOTE="puppy@backup.do1g.com"
 BACKUP_REMOTE="puppy@64.227.29.183"
