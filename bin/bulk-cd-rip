@@ -11,5 +11,5 @@ while true; do
         exit
     fi
 
-    abcde
+    time abcde
 done
