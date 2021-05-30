@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-#BACKUP_REMOTE="puppy@backup.do1g.com"
-BACKUP_REMOTE="puppy@64.227.29.183"
+BACKUP_REMOTE="puppy@backup.do1g.com"
+
+# Configure it so the TERM process calls `exit 1` at the top level.
+trap "exit 1" TERM
+export TOP_PID=$$
 
 START=$(date +'%d %b %Y at %H:%M:%S')
 START_TS=$(date +'%s')
@@ -15,7 +18,8 @@ function fail() {
     echo >> $LOG_FILE
     echo "$@" >> $LOG_FILE
     notify-send -u critical "Backup failed!" "See $LOG_FILE for details."
-    exit 1
+    # Kill the top-level process, instead of just exiting this function.
+    kill -s TERM $TOP_PID
 }
 
 function notify-log() {
@@ -39,7 +43,7 @@ fi
 # -P:   --partial (keep partially-transferred files), --progress (show progress during transfer)
 # -h:   Use human-readable numbers.
 # --delete: Delete extraneous files from dest dirs.
-rsync -avzPh --delete "$HOME/Cloud/" "${BACKUP_REMOTE}:/home/puppy/backups/${HOSTNAME}/" 2>&1 | tee -a $LOG_FILE || fail "Error running rsync ($?)."
+{ rsync -avzPh --delete "$HOME/Cloud/" "${BACKUP_REMOTE}:/home/puppy/backups/${HOSTNAME}/" 2>&1 || fail "Error running rsync ($?)."; } | tee -a $LOG_FILE
 
 END_TS=$(date +'%s')
 
