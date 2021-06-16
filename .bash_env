@@ -34,10 +34,6 @@ fi
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
 USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin:$HOME/go/bin"
 
-if which ruby &>/dev/null; then
-    RUBY_PATH=$(ruby -e 'puts "#{Gem.user_dir}/bin"')
-fi
-
 if [ "$(realpath /bin)" = "/usr/bin" ] && [ "$(realpath /sbin)" = "/usr/sbin" ]; then
   # Some operating systems, such as Fedora, made /bin and /sbin symlinks into /usr.
   # Thus, we avoid adding the duplicates.
@@ -50,10 +46,9 @@ fi
 
 USR_LOCAL_PATH="/usr/local/bin:/usr/local/sbin"
 
-export PATH="$USER_PATH:$SYSTEM_PATH:$USR_LOCAL_PATH:$RUBY_PATH"
+export PATH="$USER_PATH:$SYSTEM_PATH:$USR_LOCAL_PATH"
 
 unset USER_PATH
-unset RUBY_PATH
 unset SYSTEM_PATH
 unset USR_LOCAL_PATH
 
@@ -63,3 +58,9 @@ FLATPAK_EXPORTS="/var/lib/flatpak/exports"
 
 [ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
 [ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
+
+[ -f "/usr/local/share/chruby/chruby.sh" ] && source /usr/local/share/chruby/chruby.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
