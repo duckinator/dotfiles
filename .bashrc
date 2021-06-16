@@ -72,19 +72,21 @@ function bash_prompt() {
         prefix_hostname="${bold}${fg_user}\u${fg_operator}@${fg_host}\H${fg_operator}:"
     fi
 
-    git_status="$(git status -s 2>/dev/null)"
-    if test $? -eq 0; then
-        # If `git status` returns 0, this is a git repo, so show git information.
-        git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+    if [ -z "$STATIC_PROMPT" ]; then
+        git_status="$(git status -s 2>/dev/null)"
+        if test $? -eq 0; then
+            # If `git status` returns 0, this is a git repo, so show git information.
+            git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 
-        if test -n "$git_branch"; then
-            suffix_git=" $git_branch"
-        fi
+            if test -n "$git_branch"; then
+                suffix_git=" $git_branch"
+            fi
 
-        if test -n "$git_status"; then
-            prompt_symbol="\\[${FOREGROUND["red"]}\\]+"
-        else
-            prompt_symbol="+"
+            if test -n "$git_status"; then
+                prompt_symbol="\\[${FOREGROUND["red"]}\\]+"
+            else
+                prompt_symbol="+"
+            fi
         fi
     fi
 
