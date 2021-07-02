@@ -1,58 +1,28 @@
 [user]
-	name = Ellen Marie Dash
-	email = me@duckie.co
-[core]
-	# Uses the default editor. (Defined with $EDITOR.)
-	# Uncomment and modify the following line to override it.
-	#editor = vim
-	excludesfile = ~/.gitignore.global
-	autocrlf = input
-	#pager = diff-so-fancy | less --tabs=4 -RFX
-	pager = less --tabs=4 -RFX
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-[merge]
-	tool = vimdiff
-[color]
-	ui = true
-[push]
-	# If it complains about the following line on an Ubuntu-based system, try
-	# using: https://launchpad.net/~git-core/+archive/ppa
-	default = simple
-[include]
-	path = .gitconfig.private
+    name = Ellen Marie Dash
+    email = me@duckie.co
 [github]
-	user = duckinator
-[alias]
-	unstage = reset HEAD --
-	last = log -1 HEAD
-  revision = rev-parse --short HEAD
+    user = duckinator
 [init]
     defaultBranch = main
+[alias]
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    revision = rev-parse --short HEAD
+[include]
+    path = .gitconfig.private
+[core]
+    # Uses the default editor. (Defined with $EDITOR.)
+    # Uncomment and modify the following line to override it.
+    #editor = vim
+    excludesfile = ~/.gitignore.global
+    autocrlf = input
+    #pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = less --tabs=4 -RFX
+[push]
+    # If it complains about the following line on an Ubuntu-based system, try
+    # using: https://launchpad.net/~git-core/+archive/ppa
+    default = simple
 [pull]
     # https://stackoverflow.com/a/62653400
     # See comments on that answer, too.
@@ -63,9 +33,42 @@
     # There's a pull.rebase=true option, but honestly it feels too magical
     # for me.
     ff = only
+[merge]
+    tool = vimdiff
+[color]
+    ui = true
+
+# Color settings.
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
 # Automagically added by installing git-lfs.
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
