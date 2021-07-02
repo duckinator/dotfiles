@@ -51,11 +51,21 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
   revision = rev-parse --short HEAD
+[init]
+    defaultBranch = main
+[pull]
+    # https://stackoverflow.com/a/62653400
+    # See comments on that answer, too.
+    # This means it pulls only if a fast-forward is possible.
+    # If it can't fast-forward, it'll throw an error -- allowing you to
+    # e.g. do a `git fetch` and rebase on the remote branch.
+    #
+    # There's a pull.rebase=true option, but honestly it feels too magical
+    # for me.
+    ff = only
 # Automagically added by installing git-lfs.
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[init]
-	defaultBranch = main
