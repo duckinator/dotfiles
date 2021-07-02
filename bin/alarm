@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 TIME"
+    echo "Sets alarms for TIME, TIME + 15 minutes, TIME + 30 minutes, TIME + 45 minutes,"
+    echo "and TIME + 60 minutes."
+    exit 1
+fi
+
+TIME=$1
+
+echo "espeak 'aaaaaaaaa time to get up a a a a a a aaaaaaaaaaah'" | at "$TIME"
+
+echo "espeak 'BEEP BEEP BEEP BEEP. ITS BEEN 15 MINUTES.'" | at "$TIME" + 15 minutes
+
+echo "espeak 'HELLO, TIME TO GET OUT OF BED. ITS BEEN 30 MINUTES.'" | at "$TIME" + 30 minutes
+
+echo "espeak 'I ACTUALLY CANT TELL IF YOU'RE STILL ASLEEP. PLEASE GET UP, IF YOU ARENT ALREADY. ITS BEEN 45 MINUTES.'" | at "$TIME" + 45 minutes
+
+echo "espeak 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'" | at "$TIME" + 60 minutes
