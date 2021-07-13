@@ -20,6 +20,9 @@ alias b='bundle'
 alias bi='bundle install'
 alias be='bundle exec'
 
+# A desperate attempt to make fluid work with a dark system theme.
+# The colors could be better, but it works.
+alias fluid='fluid -fg "#000000" -bg "#cccccc" -bg2 "#ccccdd" -scheme plastic'
 
 if which nvim &>/dev/null; then
   alias vim=nvim
