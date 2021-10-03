@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo bash -c 'grubby --update-kernel=$(grubby --default-kernel) --args="systemd.unified_cgroup_hierarchy=0"'
