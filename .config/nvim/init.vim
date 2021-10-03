@@ -69,6 +69,9 @@ set wildignore=*.o,*.d,*~
 noremap \ ,
 let mapleader = ","
 
+nmap <F5> :!make clean test<CR>
+imap <F5> <Esc><F5>
+
 nmap <leader>n :nohlsearch<CR>
 nmap <leader>s :set spell!<CR>
 nmap <leader>r :set relativenumber!<CR>
@@ -113,7 +116,8 @@ call InitialSetup()
 
 let g:ale_linters = {
 \   'c': ['clangd'],
-\   'python': ['pylint']
+\   'python': ['pylint'],
+\   'ruby': []
 \}
 
 
