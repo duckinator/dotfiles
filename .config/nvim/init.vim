@@ -48,7 +48,7 @@ set shiftwidth=4
 set tabstop=4
 filetype plugin indent on
 
-autocmd FileType rb,yml setlocal shiftwidth=2
+autocmd FileType js,rb,yml setlocal shiftwidth=2
 
 " Makefiles require hard tabs.
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
