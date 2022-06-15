@@ -7,7 +7,7 @@ run_cmd() {
 }
 
 [ -f "Makefile" ]   && run_cmd make clean test
-[ -f "Cargo.toml" ] && run_cmd cargo clean test
+[ -f "Cargo.toml" ] && run_cmd cargo test
 
 if [ -f "Rakefile" ]; then
     # TODO: Figure out how to handle "rake spec" vs "rake test" and others.
