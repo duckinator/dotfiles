@@ -70,7 +70,7 @@ noremap \ ,
 let mapleader = ","
 
 "nmap <F5> :!make clean test<CR>
-nmap <F5> :!~/bin/try-run-tests
+nmap <F5> :!~/bin/try-run-tests<CR>
 imap <F5> <Esc><F5>
 
 nmap <leader>n :nohlsearch<CR>
