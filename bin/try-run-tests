@@ -1,0 +1,15 @@
+#!/bin/sh
+
+run_cmd() {
+    echo "$ $@"
+    "$@"
+    exit $?
+}
+
+[ -f "Makefile" ]   && run_cmd make clean test
+[ -f "Cargo.toml" ] && run_cmd cargo clean test
+
+if [ -f "Rakefile" ]; then
+    # TODO: Figure out how to handle "rake spec" vs "rake test" and others.
+    #run_cmd rake clean test
+fi
