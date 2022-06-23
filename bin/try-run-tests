@@ -13,3 +13,6 @@ if [ -f "Rakefile" ]; then
     # TODO: Figure out how to handle "rake spec" vs "rake test" and others.
     #run_cmd rake clean test
 fi
+
+echo "ERROR: Not sure how to run tests!"
+exit 1

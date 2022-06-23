@@ -1,0 +1,13 @@
+#!/bin/sh
+
+run_cmd() {
+    echo "$ $@"
+    "$@"
+    exit $?
+}
+
+#[ -f "Makefile" ]   && run_cmd make ????
+[ -f "Cargo.toml" ] && run_cmd cargo doc --open
+
+echo "ERROR: Not sure how to open docs."
+exit 1

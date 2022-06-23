@@ -1,0 +1,14 @@
+#!/bin/sh
+
+run_cmd() {
+    echo "$ $@"
+    "$@"
+    exit $?
+}
+
+[ -f "Makefile" ]   && run_cmd make
+[ -f "Cargo.toml" ] && run_cmd cargo build
+
+if [ -f "Rakefile" ]; then
+    run_cmd rake build
+fi
