@@ -53,4 +53,7 @@ rm -f ~/.backup-error.txt
 
 echo "$END_TS" > $LAST_BACKUP_FILE
 
+echo | tee -a $LOG_FILE
+ssh "${BACKUP_REMOTE}" df -h / | tee -a $LOG_FILE
+
 notify-log "Backup complete." "Started on $START.\\nTook $DURATION seconds."
