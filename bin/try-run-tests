@@ -10,8 +10,17 @@ run_cmd() {
 [ -f "Cargo.toml" ] && run_cmd cargo test
 
 if [ -f "Rakefile" ]; then
-    # TODO: Figure out how to handle "rake spec" vs "rake test" and others.
-    #run_cmd rake clean test
+    # Use `rake spec`, if it exists.
+    if rake -T | grep '^rake spec \+#' &>/dev/null; then
+        run_cmd rake spec
+    fi
+
+    # Use `rake test`, if it exists.
+    if rake -T | grep '^rake test \+#' &>/dev/null; then
+        run_cmd rake spec
+    fi
+
+    # Otherwise, fall through to the default error message.
 fi
 
 echo "ERROR: Not sure how to run tests!"
