@@ -50,9 +50,11 @@ filetype plugin indent on
 
 autocmd FileType js,rb,yml setlocal shiftwidth=2
 
+autocmd FileType rs setlocal noexpandtab shiftwidth=4
+
 " Makefiles require hard tabs.
-autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
-autocmd FileType ld set noexpandtab shiftwidth=4 softtabstop=0
+autocmd FileType make setlocal noexpandtab shiftwidth=4 softtabstop=0
+autocmd FileType ld setlocal noexpandtab shiftwidth=4 softtabstop=0
 
 " C/C++ indent options
 " :0  Align case with switch
@@ -93,8 +95,10 @@ nmap <C-q> :q<CR>
 " Yank to end of line
 nmap Y y$
 
+imap <S-tab> <C-d>
+
 " Insert hard tab
-imap <S-tab> <C-v><tab>
+imap <C-tab> <C-v><tab>
 
 function! InitialSetup()
 python3 << EOF
@@ -123,9 +127,11 @@ call InitialSetup()
 let g:ale_linters = {
 \   'c': ['clangd'],
 \   'python': ['pylint'],
-\   'ruby': []
+\   'ruby': [],
+\   'rust': ['cargo', 'rust-analyzer'],
 \}
 
+let g:ale_virtualtext_cursor='disabled'
 
 " color scheme and such
 
