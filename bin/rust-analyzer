@@ -1,0 +1,4 @@
+#!/bin/sh
+# NOTE: This file can probably be removed after the next rustup release.
+#       Current one as of now (2023-03-30) is 1.25.2.
+$(rustup which rust-analyzer) "$@"
