@@ -118,6 +118,7 @@ def ensure_pack(repo):
 
 ensure_pack("mhinz/vim-signify")
 ensure_pack("dense-analysis/ale")
+ensure_pack("rust-lang/rust.vim")
 EOF
 endfunction
 
