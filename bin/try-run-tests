@@ -6,7 +6,7 @@ run_cmd() {
     exit $?
 }
 
-[ -f "Makefile" ]   && run_cmd make clean test
+[ -f "Makefile" ]   && run_cmd gmake clean test
 [ -f "Cargo.toml" ] && run_cmd cargo test
 
 if [ -f "Rakefile" ]; then
