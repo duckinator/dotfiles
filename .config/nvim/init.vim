@@ -119,6 +119,7 @@ def ensure_pack(repo):
 ensure_pack("mhinz/vim-signify")
 ensure_pack("dense-analysis/ale")
 ensure_pack("rust-lang/rust.vim")
+ensure_pack("sickill/vim-monokai")
 EOF
 endfunction
 
@@ -137,7 +138,8 @@ let g:ale_virtualtext_cursor='disabled'
 " color scheme and such
 
 set background=dark
-"colorscheme slate
 syntax on
+"colorscheme slate
+colorscheme monokai
 " Make comments grey by default.
 "exec 'highlight Comment term=bold ctermfg=lightgrey
