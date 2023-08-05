@@ -15,12 +15,10 @@ export RI="-f ansi"
 # Use system-wide libvirt server.
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
-
-# TODO: Figure out what this is for.
-if [ -d "/var/run/user/$UID" ]; then
-  export XDG_RUNTIME_DIR="/var/run/user/$UID"
-fi
-
+# Set $XDG_RUNTIME_DIR so things like e.g. buildkit work.
+# Due to some software having trouble with $XDG_RUNTIME_DIR on ZFS,
+# it is put in /var/run instead.
+[ -z "$XDG_RUNTIME_DIR" ] && export XDG_RUNTIME_DIR="/var/run/user/$UID"
 
 if which nvim &>/dev/null; then
   export EDITOR=nvim
