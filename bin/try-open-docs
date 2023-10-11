@@ -6,7 +6,14 @@ run_cmd() {
     exit $?
 }
 
-#[ -f "Makefile" ]   && run_cmd make ????
+if [ -f "pyproject.toml" ] && grep -q '^\[tool.bork.aliases\]$' pyproject.toml; then
+    run_cmd python3 -m bork run docs
+fi
+
+if [ -f "Makefile" ] && grep -qE '^docs:' Makefile; then
+    run_cmd make clean docs
+fi
+
 [ -f "Cargo.toml" ] && run_cmd cargo doc --open
 
 echo "ERROR: Not sure how to open docs."
