@@ -6,6 +6,7 @@ run_cmd() {
     exit $?
 }
 
+[ -f "run-tests" ]  && run_cmd ./run-tests
 [ -f "Makefile" ]   && run_cmd gmake clean test
 [ -f "Cargo.toml" ] && run_cmd cargo test
 
