@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+while true; do
+    for x in {5,-5}; do
+        DISPLAY=:0.0 xdotool mousemove_relative -- $x 0
+        sleep 0.5
+        done
+    sleep 30
+done
