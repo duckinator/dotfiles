@@ -2,6 +2,8 @@
 
 source "$HOME/.bash_demo_aliases"
 
+alias rss='liferea'
+
 alias sysinfo='konsole --workdir ~ --hide-menubar -e neofetch --loop'
 
 alias venv='if [ -n "$VIRTUAL_ENV" ]; then deactivate; else . venv/bin/activate; fi'
