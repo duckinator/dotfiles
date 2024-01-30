@@ -8,7 +8,7 @@ run_cmd() {
 
 [ -f "Makefile" ]   && run_cmd gmake
 [ -f "Cargo.toml" ] && run_cmd cargo build
+[ -f "Rakefile" ]   && run_cmd rake build
 
-if [ -f "Rakefile" ]; then
-    run_cmd rake build
-fi
+echo "ERROR: Not sure how to build this!"
+exit 1
