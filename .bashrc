@@ -69,7 +69,8 @@ function bash_prompt() {
     fi
 
     if test -n "$SSH_CONNECTION" || test -n "$PS1_SHOW_HOSTNAME"; then
-        prefix_hostname="${bold}${fg_user}\u${fg_operator}@${fg_host}\H${fg_operator}:"
+        #prefix_hostname="${bold}${fg_user}\u${fg_operator}@${fg_host}\H${fg_operator}:"
+        prefix_hostname="${bold}${fg_user}\u${fg_operator}@${fg_host}\h${fg_operator}:"
     fi
 
     if [ -z "$STATIC_PROMPT" ]; then
