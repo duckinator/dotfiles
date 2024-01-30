@@ -1,0 +1,13 @@
+#!/bin/sh
+
+run_cmd() {
+    echo "$ $@"
+    "$@"
+    exit $?
+}
+
+[ -f "Makefile" ]   && run_cmd gmake run
+[ -f "Cargo.toml" ] && run_cmd cargo run
+
+echo "ERROR: Not sure how to run this!"
+exit 1
