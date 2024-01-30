@@ -135,6 +135,10 @@ let g:ale_linters = {
 
 let g:ale_virtualtext_cursor='disabled'
 
+" Disable ale highlighting things
+let g:ale_set_highlights = 0
+" TODO: Improve the highlight colors (e.g. not red on red) instead of disabling it.
+
 " color scheme and such
 
 set background=dark
