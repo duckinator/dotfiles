@@ -71,16 +71,16 @@ set wildignore=*.o,*.d,*~
 noremap \ ,
 let mapleader = ","
 
-nmap <F1> :!~/bin/try-open-docs<CR>
+nmap <F1> :!~/bin/try-open-docs %<CR>
 imap <F1> <Esc><F1>
 
-nmap <F2> :!~/bin/try-build<CR>
+nmap <F2> :!~/bin/try-build %<CR>
 imap <F2> <Esc><F2>
 
-nmap <F3> :!~/bin/try-run<CR>
+nmap <F3> :!~/bin/try-run %<CR>
 imap <F3> <Esc><F3>
 
-nmap <F5> :!~/bin/try-run-tests<CR>
+nmap <F5> :!~/bin/try-run-tests %<CR>
 imap <F5> <Esc><F5>
 
 nmap <leader>n :nohlsearch<CR>
