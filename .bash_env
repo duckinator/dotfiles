@@ -28,6 +28,7 @@ else
   export EDITOR=nano
 fi
 
+[[ "$TERM" == *color* ]] && export COLORTERM=true
 
 # Re: .npm-global: https://docs.npmjs.com/getting-started/fixing-npm-permissions
 USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/.npm-global/bin:$HOME/go/bin"

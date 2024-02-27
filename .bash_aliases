@@ -24,21 +24,27 @@ alias be='bundle exec'
 
 # A desperate attempt to make fluid work with a dark system theme.
 # The colors could be better, but it works.
-alias fluid='fluid -fg "#000000" -bg "#cccccc" -bg2 "#ccccdd" -scheme plastic'
+if which fluid &>/dev/null; then
+    alias fluid='fluid -fg "#000000" -bg "#cccccc" -bg2 "#ccccdd" -scheme plastic'
+fi
+
+if which batcat &>/dev/null; then
+    alias bat=batcat
+fi
 
 if which nvim &>/dev/null; then
   alias vim=nvim
 fi
 
 
-# -p is the same as --indicator-style=slash on GNU coreutils' `ls`.
 if [ -n "$DISABLE_FANCY_LS" ]; then
   # Do nothing.
   true
 elif $(ls --version 2>/dev/null | grep -q GNU); then
-  alias ls='ls --color=auto --group-directories-first -p'
+  alias ls='ls -F --color=auto --group-directories-first'
 elif [ "$(uname)" = "FreeBSD" ]; then
-  alias ls='ls -p -F -G'
+  # --color=auto only enables color on FreeBSD if $COLORTERM is set.
+  alias ls='ls -F --color=auto'
 else
-  alias ls='ls -p'
+  alias ls='ls -F'
 fi
