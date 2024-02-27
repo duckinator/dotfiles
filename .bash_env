@@ -58,7 +58,11 @@ FLATPAK_EXPORTS="/var/lib/flatpak/exports"
 [ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
 [ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
 
-[ -f "/usr/local/share/chruby/chruby.sh" ] && source /usr/local/share/chruby/chruby.sh
+if [ -f "$HOME/software/chruby/share/chruby/chruby.sh" ]; then
+  source $HOME/software/chruby/share/chruby/chruby.sh
+elif [ -f "/usr/local/share/chruby/chruby.sh" ]; then
+  source /usr/local/share/chruby/chruby.sh
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

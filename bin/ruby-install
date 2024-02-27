@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+VERSION=0.9.3
+
+EXECUTABLE="$HOME/software/ruby-install-${VERSION}/bin/ruby-install"
+
+if [ ! -f "${EXECUTABLE}" ]; then
+    mkdir -p "$HOME/software" || exit $?
+    pushd "$HOME/software" || exit 1
+    wget -q "https://github.com/postmodern/ruby-install/releases/download/v${VERSION}/ruby-install-${VERSION}.tar.gz" || exit $?
+    tar xzf "ruby-install-${VERSION}.tar.gz"
+    popd
+fi
+
+"${EXECUTABLE}" "$@"

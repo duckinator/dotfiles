@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+VERSION=0.3.9
+
+EXECUTABLE="$HOME/software/chruby/bin/chruby-exec"
+
+if [ -f "${EXECUTABLE}" ]; then
+    exit
+fi
+
+mkdir -p "$HOME/software" || exit $?
+cd "$HOME/software" || exit 1
+wget -q "https://github.com/postmodern/chruby/releases/download/v${VERSION}/chruby-${VERSION}.tar.gz" || exit $?
+tar xzf "chruby-${VERSION}.tar.gz"
+mv "./chruby-${VERSION}/" "./chruby/"
+
+echo "To use chruby, open a new shell or run the following command:"
+echo "    source $HOME/software/chruby/share/chruby/chruby.sh"
