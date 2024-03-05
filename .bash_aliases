@@ -2,6 +2,8 @@
 
 source "$HOME/.bash_demo_aliases"
 
+alias ansible-update-system='ansible-pull -K -U https://github.com/duckinator/system-config.git'
+
 alias rss='liferea'
 
 alias sysinfo='konsole --workdir ~ --hide-menubar -e neofetch --loop'
