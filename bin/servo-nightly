@@ -15,7 +15,7 @@ exec_path = Path(dir_path, 'servo', 'servo')
 if not dir_path.exists():
     dir_path.mkdir(parents=True, exist_ok=True)
 
-if len(sys.argv) > 1 and sys.argv[1] == "--update":
+if not exec_path.exists() or (len(sys.argv) > 1 and sys.argv[1] == "--update"):
     if dir_path.exists():
         # FIXME: Can Path handle this part, somehow?
         shutil.rmtree(dir_path)
