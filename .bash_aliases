@@ -3,6 +3,8 @@
 source "$HOME/.bash_demo_aliases"
 
 alias ansible-update-system='ansible-pull -K -U https://github.com/duckinator/system-config.git'
+# Run nginx with both http & https using self-signed cert in current folder
+alias nginx-here='podman run --rm -it -p 8080:80 -p 4443:443 -v "${PWD}:/srv/data" docker.io/rflathers/nginxserve'
 
 alias rss='liferea'
 
