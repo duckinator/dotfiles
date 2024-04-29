@@ -8,6 +8,7 @@ run_cmd() {
 
 [ -f "Makefile" ]   && run_cmd gmake run
 [ -f "Cargo.toml" ] && run_cmd cargo run
+(head -n 1 "$1" | grep -qE '^#!') && run_cmd "$(realpath "$1")"
 
 echo "ERROR: Not sure how to run this!"
 exit 1
