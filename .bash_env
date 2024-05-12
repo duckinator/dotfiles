@@ -1,7 +1,6 @@
-# Default pager (less, more, most, ...).
-export PAGER=less
-# Default web browser.
 export BROWSER=firefox
+export EDITOR=nvim
+export PAGER=less
 
 # -R: Allow ANSI escape codes by default. Needed for $RI below.
 # -F: Automagically exit if the file fits on one screen.
@@ -9,55 +8,15 @@ export BROWSER=firefox
 #     to the terminal, so as to avoid the crap where it clears the screen.
 export LESS="-RFX"
 
-# -f ansi: Use ANSI escape codes by default.
-export RI="-f ansi"
-
 # Use system-wide libvirt server.
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
-# Set $XDG_RUNTIME_DIR so things like e.g. buildkit work.
-# Due to some software having trouble with $XDG_RUNTIME_DIR on ZFS,
-# it is put in /var/run instead.
-[ -z "$XDG_RUNTIME_DIR" ] && export XDG_RUNTIME_DIR="/var/run/user/$UID"
-
-if which nvim &>/dev/null; then
-  export EDITOR=nvim
-elif which vim &>/dev/null; then
-  export EDITOR=vim
-else
-  export EDITOR=nano
-fi
-
 [[ "$TERM" == *color* ]] && export COLORTERM=true
 
-USER_PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/bin:$HOME/go/bin"
-
-if [ "$(realpath /bin)" = "/usr/bin" ] && [ "$(realpath /sbin)" = "/usr/sbin" ]; then
-  # Some operating systems, such as Fedora, made /bin and /sbin symlinks into /usr.
-  # Thus, we avoid adding the duplicates.
-  # https://fedoraproject.org/wiki/Features/UsrMove
-  SYSTEM_PATH="/usr/bin:/usr/sbin"
-else
-  # This system isn't following UsrMove, so add everything explicitly.
-  SYSTEM_PATH="/usr/sbin:/usr/bin:/sbin:/bin"
-fi
-
-USR_LOCAL_PATH="/usr/local/sbin:/usr/local/bin"
-
-export PATH="$USER_PATH:$SYSTEM_PATH:$USR_LOCAL_PATH"
-
-unset USER_PATH
-unset SYSTEM_PATH
-unset USR_LOCAL_PATH
-
-FLATPAK_EXPORTS="/var/lib/flatpak/exports"
-[ -d "$FLATPAK_EXPORTS/bin" ] && export PATH="$PATH:$FLATPAK_EXPORTS/bin"
+# Add ~/bin, ~/.local/bin, and flatpak exports to $PATH.
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH:/var/lib/flatpak/exports/bin"
 
 [ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
-[ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
+[ -f "/usr/local/share/chruby/chruby.sh" ] && source /usr/local/share/chruby/chruby.sh
 
-if [ -f "$HOME/software/chruby/share/chruby/chruby.sh" ]; then
-  source $HOME/software/chruby/share/chruby/chruby.sh
-elif [ -f "/usr/local/share/chruby/chruby.sh" ]; then
-  source /usr/local/share/chruby/chruby.sh
-fi
+[ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
