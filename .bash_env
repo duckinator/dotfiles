@@ -17,6 +17,7 @@ export LIBVIRT_DEFAULT_URI="qemu:///system"
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH:/var/lib/flatpak/exports/bin"
 
 [ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
-[ -f "/usr/local/share/chruby/chruby.sh" ] && source /usr/local/share/chruby/chruby.sh
+#[ -f "/usr/local/share/chruby/chruby.sh" ] && source /usr/local/share/chruby/chruby.sh
+[ -f "$HOME/software/chruby/share/chruby/chruby.sh" ] && source "$HOME/software/chruby/share/chruby/chruby.sh"
 
 [ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
