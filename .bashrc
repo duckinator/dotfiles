@@ -104,4 +104,6 @@ function post_cmd() {
 export PROMPT_COMMAND="post_cmd; bash_prompt"
 
 
-[ -f "$HOME/.bashrc.local" ] && source ~/.bashrc.local
+# The `|| true` is to avoid starting with a non-zero status code if there's
+# no ~/.bashrc.local.
+[ -f "$HOME/.bashrc.local" ] && source ~/.bashrc.local || true
