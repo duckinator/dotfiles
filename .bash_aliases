@@ -13,8 +13,8 @@ alias sysinfo='konsole --workdir ~ --hide-menubar -e neofetch --loop'
 alias venv='if [ -n "$VIRTUAL_ENV" ]; then deactivate; else . venv/bin/activate; fi'
 
 alias strstrip='python3 -c "import sys; print(sys.stdin.read().strip(), end=\"\")"'
-alias copy='xclip -selection clipboard -i'
-alias paste='xclip -selection clipboard -o'
+alias copy='wl-copy'
+alias paste='wl-paste'
 alias scopy='strstrip | copy'
 alias grep='grep --color=auto'
 
