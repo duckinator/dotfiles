@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+uxplay -s 1080x810 -nc "$@"
