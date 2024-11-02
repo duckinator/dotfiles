@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-uxplay -s 1334x750 -nc "$@"
+if [ "$1" = "-r" ]; then
+    uxplay -s 750x1334 -nc "$@"
+else
+    uxplay -s 1334x750 -nc "$@"
+fi
