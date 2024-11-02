@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+VERSION=4.3-stable
+
+EXECUTABLE="$HOME/software/Godot-v${VERSION}-stable_linux.x86_64"
+
+if [ ! -f "${EXECUTABLE}" ]; then
+    mkdir -p "$HOME/software" || exit $?
+    wget -O- https://github.com/godotengine/godot/releases/download/${VERSION}/Godot_v${VERSION}_linux.x86_64.zip | funzip > "${EXECUTABLE}"
+    chmod +x "${EXECUTABLE}"
+fi
+
+"${EXECUTABLE}" "$@"
