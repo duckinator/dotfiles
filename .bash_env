@@ -21,3 +21,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH:/var/lib/flatpak/exports/bin"
 [ -f "$HOME/software/chruby/share/chruby/chruby.sh" ] && source "$HOME/software/chruby/share/chruby/chruby.sh"
 
 [ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
