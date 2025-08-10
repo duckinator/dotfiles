@@ -12,3 +12,8 @@ venv/
 /.bundle/gems
 .clangd/
 .cache/
+/.editorconfig
+bacon.toml
+cscope.out
+cscope.in.out
+cscope.po.out
