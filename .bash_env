@@ -11,16 +11,27 @@ export LESS="-RFX"
 # Use system-wide libvirt server.
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
+# Have `woodpecker-cli` use the per-user podman socket.
+# If it doesn't exist, try: systemctl --user enable --now podman.socket
+export WOODPECKER_BACKEND_DOCKER_HOST="unix:///run/user/$UID/podman/podman.sock"
+
 [[ "$TERM" == *color* ]] && export COLORTERM=true
 
 # Add ~/bin, ~/.local/bin, and flatpak exports to $PATH.
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH:/var/lib/flatpak/exports/bin"
 
-[ -f "$HOME/.cargo/env" ] && source ~/.cargo/env
+if [ -f "$HOME/.cargo/env" ]; then
+    source ~/.cargo/env
+elif [ $(command -v cargo) ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 #[ -f "/usr/local/share/chruby/chruby.sh" ] && source /usr/local/share/chruby/chruby.sh
-[ -f "$HOME/software/chruby/share/chruby/chruby.sh" ] && source "$HOME/software/chruby/share/chruby/chruby.sh"
+#[ -f "$HOME/software/chruby/share/chruby/chruby.sh" ] && source "$HOME/software/chruby/share/chruby/chruby.sh"
 
 [ -f "$HOME/.bash_env.local" ] && source ~/.bash_env.local
+
+command -v rv >/dev/null && eval "$(rv shell init bash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
