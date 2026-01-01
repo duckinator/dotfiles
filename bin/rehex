@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+VERSION="0.63.3"
+REHEX="$HOME/software/rehex.AppImage"
+
+if [ "$1" = "--update" ]; then
+    mkdir -p $HOME/software/
+    wget "https://github.com/solemnwarning/rehex/releases/download/${VERSION}/rehex-${VERSION}-linux-generic-x86_64.AppImage" -O "$REHEX"
+    chmod +x "$REHEX"
+    exit
+fi
+
+exec "$REHEX" "$@"
