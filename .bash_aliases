@@ -2,13 +2,15 @@
 
 source "$HOME/.bash_demo_aliases"
 
+alias last-se-log='ls -1 ~/.steam/debian-installation/steamapps/compatdata/244850/pfx/drive_c/users/steamuser/AppData/Roaming/SpaceEngineers/SpaceEngineers_*.log | sort | tail -n 1'
+
 alias ansible-update-system='ansible-pull -K -U https://github.com/duckinator/system-config.git'
 # Run nginx with both http & https using self-signed cert in current folder
 alias nginx-here='podman run --rm -it -p 8080:80 -p 4443:443 -v "${PWD}:/srv/data" docker.io/rflathers/nginxserve'
 
 alias rss='liferea'
 
-alias sysinfo='konsole --workdir ~ --hide-menubar -e neofetch --loop'
+alias sysinfo='konsole --workdir ~ --hide-menubar -e neowofetch --loop'
 
 alias venv='if [ -n "$VIRTUAL_ENV" ]; then deactivate; else . venv/bin/activate; fi'
 
