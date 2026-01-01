@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+"""
+Usage: COMMAND | outer [CONTEXT_WINDOW] [SEPARATOR]
+
+Reads standard input, and prints (in order):
+- the first CONTEXT_WINDOW lines.
+- a line separating the two chunks, consisting of SEPARATOR if specified.
+- the last CONTEXT_WINDOW lines.
+
+Arguments:
+    CONTEXT_WINDOW      the number of lines of context to show.
+                        (default: {DEFAULT_CONTEXT_WINDOW})
+    SEPARATOR           the separating character
+                        (default: blank; frequently used: - or =)
+
+
+Example usage:
+
+    puppy@cerberus:~$ seq 1 30 | outer 3 =
+    1
+    2
+    3
+    ===============================================
+    28
+    29
+    30
+    puppy@cerberus:~$
+"""
+
+import collections
+import shutil
+import sys
+
+DEFAULT_CONTEXT_WINDOW = 5
+
+if "--help" in sys.argv:
+    exit(sys.modules[__name__].__doc__.format(**locals()))
+
+
+window = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_CONTEXT_WINDOW
+separator = sys.argv[2] if len(sys.argv) > 2 else ""
+
+for _ in range(window):
+    print(sys.stdin.readline(), end="")
+
+print(separator * shutil.get_terminal_size().columns)
+
+for x in collections.deque(sys.stdin, window):
+    print(x, end="")
