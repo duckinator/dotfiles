@@ -48,7 +48,7 @@ set shiftwidth=4
 set tabstop=4
 filetype plugin indent on
 
-autocmd FileType js,rb,yml setlocal shiftwidth=2
+autocmd FileType mjs,js,rb,rbs,yml setlocal shiftwidth=2
 
 autocmd FileType rs setlocal noexpandtab shiftwidth=4
 
