@@ -2,8 +2,14 @@
 
 from pathlib import Path
 from subprocess import run, PIPE
+import sys
 
 HOME = Path.home().resolve()
+
+# Allows e.g. searching for modified git repos in an old backup of someone's
+# home directory.
+if len(sys.argv) > 1 and sys.argv[1] == '--cwd':
+    HOME = Path.cwd()
 
 ignored_dirs = [
     # ~/.local/share/**/.git
